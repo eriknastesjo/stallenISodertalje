@@ -16,11 +16,43 @@ export default function ParkList() {
     }, []);
 
 
-    const listOfParks = parks
-        .map((park, index) => {
+    // listToSort behöver skapas för att bli av med ﻿
+    // framför namn key så att det går att sortera!
+
+    const listToSort: Array= [];
+
+    for (let i = 0; i < parks.length; i++) {
+        listToSort.push({
+            "beskrivning": parks[i]["beskrivning"],
+            "nord-koordinat (wgs84)": parks[i]["nord-koordinat (wgs84)"],
+            "ost-koordinat (wgs84)": parks[i]["ost-koordinat (wgs84)"],
+            "webbsida": parks[i]["webbsida"],
+            "namn": parks[i]["﻿namn"],
+
+        });
+    }
+
+    if (listToSort) {
+        listToSort.sort((a, b) => {
+            let fa = a.namn.toLowerCase(),
+                fb = b.namn.toLowerCase();
+
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+
+            return 0;
+        });
+    }
+
+    const listOfParks = listToSort
+        .map((listToSort, index) => {
             return <Button
-                color='#A85D14'
-                title={park["﻿namn"]}
+                color='#313131'
+                title={listToSort["namn"]}
                 key={index}
                 // onPress={() => {
                 //     navigation.navigate('Details', {
