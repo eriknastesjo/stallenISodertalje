@@ -15,8 +15,8 @@ export default function Home(props) {
     // console.log(props);
     // console.log(props.setIsLoggedIn);
     return (
-        <Stack.Navigator initialRouteName="Meny">
-            <Stack.Screen name="ParkMeny" component={ParkMenu} />
+        <Stack.Navigator initialRouteName="Meny" >
+            <Stack.Screen name="ParkMeny" component={ParkMenu} options={{ title:"Park" }}/>
             <Stack.Screen name="Lista" component={ParkList} />
             <Stack.Screen name="Karta" component={ParkMap} />
         </Stack.Navigator>

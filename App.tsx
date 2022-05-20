@@ -41,6 +41,7 @@ export default function App() {
           },
           tabBarActiveTintColor: '#313131',
           tabBarInactiveTintColor: '#646464',
+          headerShown: false,
         })}
         >
           <Tab.Screen name="Hem" component={Home} />
