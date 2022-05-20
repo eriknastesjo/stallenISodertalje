@@ -4,7 +4,7 @@ import parkModel from '../../models/park';
 import { Typography, Base } from '../../styles';
 
 
-export default function ParkList() {
+export default function ParkList({navigation}) {
 
     const [parks, setParks] = useState([]);
 
@@ -16,7 +16,7 @@ export default function ParkList() {
     }, []);
 
 
-    // listToSort behöver skapas för att bli av med ﻿
+    // listToSort behövs här för att bli av med '﻿'
     // framför namn key så att det går att sortera!
 
     const listToSort: Array= [];
@@ -49,16 +49,16 @@ export default function ParkList() {
     }
 
     const listOfParks = listToSort
-        .map((listToSort, index) => {
+        .map((park, index) => {
             return <Button
                 color='#313131'
-                title={listToSort["namn"]}
+                title={park["namn"]}
                 key={index}
-                // onPress={() => {
-                //     navigation.navigate('Details', {
-                //         park: park
-                //     });
-                // }}
+                onPress={() => {
+                    navigation.navigate('Detaljer', {
+                        park: park
+                    });
+                }}
             />
         });
 
