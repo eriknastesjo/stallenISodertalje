@@ -1,5 +1,6 @@
-import { Text, View } from "react-native";
+import { Text, View, Button } from "react-native";
 import { Typography } from "../../styles";
+import * as Linking from 'expo-linking';
 
 export default function DogParkDetails({ route }) {
     const { dogPark } = route.params; // se i DogParkList funktionen listOfDogParks och vid 'Onpress'
@@ -7,7 +8,19 @@ export default function DogParkDetails({ route }) {
     return (
         <View>
             <Text style={Typography.boldCenter}>{dogPark["namn"]}</Text>
-            <Text>{dogPark["webbsida"]}</Text>
+            {dogPark["webbsida"] !== "" ?
+                dogPark["webbsida"] &&
+                <Button
+                    color='#313131'
+                    title={"Webbsida"}
+                    onPress={() => {
+                        Linking.openURL(dogPark["webbsida"])
+                    }}
+
+                />
+                :
+                <Text style={Typography.normalCenter}>Webbsida saknas</Text>
+            }
         </View>
     );
 };
