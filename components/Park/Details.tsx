@@ -8,12 +8,9 @@ export default function ParkDetails({ route }) {
 
     return (
         <View>
-            <Text style={Typography.boldCenter}>
-                {park["namn"]}
-            </Text>
-            <Text>
-                {park["beskrivning"]}
-            </Text>
+            <Text style={Typography.boldCenter}>{park["namn"]}</Text>
+            <Text>{park["beskrivning"]}</Text>
+            <Text>{park["webbsida"]}</Text>
         </View>
     );
 };
