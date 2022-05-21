@@ -19,7 +19,7 @@ export default function DogParkDetails({ route }) {
 
                 />
                 :
-                <Text style={Typography.normalCenter}>Webbsida saknas</Text>
+                <Text></Text>
             }
         </View>
     );

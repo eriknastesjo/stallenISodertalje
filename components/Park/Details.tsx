@@ -20,7 +20,7 @@ export default function ParkDetails({ route }) {
 
                 />
                 :
-                <Text style={Typography.normalCenter}>Webbsida saknas</Text>
+                <Text></Text>
             }
 
         </View>

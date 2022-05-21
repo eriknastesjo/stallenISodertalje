@@ -48,6 +48,8 @@ export default function ParkList({navigation}) {
         });
     }
 
+    console.log(listToSort);
+
     const listOfParks = listToSort
         .map((park, index) => {
             return <Button
