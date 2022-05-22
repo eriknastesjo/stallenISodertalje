@@ -24,8 +24,8 @@ export default function ParkList({navigation}) {
     for (let i = 0; i < parks.length; i++) {
         listToSort.push({
             "beskrivning": parks[i]["beskrivning"],
-            "nord-koordinat (wgs84)": parks[i]["nord-koordinat (wgs84)"],
-            "ost-koordinat (wgs84)": parks[i]["ost-koordinat (wgs84)"],
+            "latitude": parks[i]["nord-koordinat (wgs84)"],
+            "longitude": parks[i]["ost-koordinat (wgs84)"],
             "webbsida": parks[i]["webbsida"],
             "namn": parks[i]["﻿namn"],
 
@@ -48,7 +48,7 @@ export default function ParkList({navigation}) {
         });
     }
 
-    console.log(listToSort);
+    // console.log(listToSort);
 
     const listOfParks = listToSort
         .map((park, index) => {

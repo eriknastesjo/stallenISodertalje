@@ -1,8 +1,10 @@
 import * as Base from './base';
 import * as Typography from './typography';
+import * as Buttons from './buttons';
+import * as Images from './images';
 // import * as Forms from './forms';
 // import * as Table from './table';
 
 
-export { Base, Typography };
+export { Base, Buttons, Images, Typography };
 // export { Base, Header, Forms, Table, Typography };
