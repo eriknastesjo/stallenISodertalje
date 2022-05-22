@@ -8,13 +8,17 @@ export const container = {
 }
 
 export const content = {
-    // marginLeft: 40,
-    // marginRight: 40,
+    marginLeft: 40,
+    marginRight: 40,
 }
 
 export const centerContainer = {
     flex: 1,
     alignItems: "center",
+    backgroundColor: '#EAEAEA',
+}
+
+export const backgroundCol = {
     backgroundColor: '#EAEAEA',
 }
 

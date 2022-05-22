@@ -1,35 +1,48 @@
 export const header1 = {
-    backgroundColor: "#2C2A29",
-    color: '#FF9731',
-    fontSize: 29,
+    color: '#2F7E36',
+    fontSize: 40,
     fontFamily: "sans-serif",
+    // fontWeight: 'bold',
     textAlign: "center",
     marginBottom: 10,
-    paddingTop: 7,
-    paddingBottom: 7,
+    paddingTop: 25,
+    paddingBottom: 15,
 };
 
 export const header2 = {
-    backgroundColor: '#FF9731',
-    color: "#2C2A29",
-    fontSize: 22,
+    color: '#2F7E36',
+    fontSize: 30,
     fontFamily: "sans-serif",
+    // fontWeight: 'bold',
     textAlign: "center",
     marginBottom: 10,
-    paddingTop: 7,
-    paddingBottom: 7,
+    paddingTop: 25,
+    paddingBottom: 15,
 };
 
 export const normal = {
-    color: '#333',
+    color: '#1C1C1C',
     fontSize: 19,
     fontFamily: "sans-serif",
-    marginBottom: 10,
+    marginBottom: 20,
+};
+
+export const normalButton = {
+    color: '#1C1C1C',
+    textAlign: "center",
+    fontSize: 19,
+    fontFamily: "sans-serif",
+};
+
+export const smallButton = {
+    color: '#1C1C1C',
+    textAlign: "center",
+    fontSize: 17,
+    fontFamily: "sans-serif",
 };
 
 export const normalCenter = {
-    textAlign: "center",
-    color: '#333',
+    color: '#1C1C1C',
     fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 30,
@@ -37,7 +50,7 @@ export const normalCenter = {
 
 export const boldCenter = {
     textAlign: "center",
-    color: '#333',
+    color: '#1C1C1C',
     fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 5,
@@ -46,7 +59,7 @@ export const boldCenter = {
 
 export const boldCenter2 = {
     textAlign: "center",
-    color: '#333',
+    color: '#1C1C1C',
     fontSize: 19,
     fontFamily: "sans-serif",
     fontWeight: 'bold',

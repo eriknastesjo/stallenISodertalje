@@ -19,33 +19,43 @@ export default function DogParkList({ navigation }) {
     // listToSort behövs här för att bli av med '﻿'
     // framför namn key så att det går att sortera!
 
-    const listToSort: Array = [];
+    // const listToSort: Array = [];
 
-    for (let i = 0; i < dogparks.length; i++) {
-        listToSort.push({
-            "nord-koordinat (wgs84)": dogparks[i]["nord-koordinat (wgs84)"],
-            "ost-koordinat (wgs84)": dogparks[i]["ost-koordinat (wgs84)"],
-            "webbsida": dogparks[i]["webbsida"],
-            "namn": dogparks[i]["﻿namn"],
+    // for (let i = 0; i < dogparks.length; i++) {
+    //     listToSort.push({
+    //         "nord-koordinat (wgs84)": dogparks[i]["nord-koordinat (wgs84)"],
+    //         "ost-koordinat (wgs84)": dogparks[i]["ost-koordinat (wgs84)"],
+    //         "webbsida": dogparks[i]["webbsida"],
+    //         "namn": dogparks[i]["﻿namn"],
 
-        });
-    }
+    //     });
+    // }
 
-    if (listToSort) {
-        listToSort.sort((a, b) => {
-            let fa = a.namn.toLowerCase(),
-                fb = b.namn.toLowerCase();
-
-            if (fa < fb) {
-                return -1;
+    const listToSort = dogparks
+        .map((dogpark) => {
+            return {
+                "latitude": dogpark["nord-koordinat (wgs84)"],
+                "longitude": dogpark["ost-koordinat (wgs84)"],
+                "webbsida": dogpark["webbsida"],
+                "namn": dogpark["﻿namn"],
             }
-            if (fa > fb) {
-                return 1;
-            }
-
-            return 0;
         });
-    }
+
+
+    listToSort.sort((a, b) => {
+        let fa = a.namn.toLowerCase(),
+            fb = b.namn.toLowerCase();
+
+        if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+
+        return 0;
+    });
+
 
     const listOfDogParks = listToSort
         .map((dogPark, index) => {
