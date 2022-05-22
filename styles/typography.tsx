@@ -22,7 +22,7 @@ export const header2 = {
 
 export const normal = {
     color: '#333',
-    fontSize: 17,
+    fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 10,
 };
@@ -30,18 +30,28 @@ export const normal = {
 export const normalCenter = {
     textAlign: "center",
     color: '#333',
-    fontSize: 17,
+    fontSize: 19,
     fontFamily: "sans-serif",
-    marginBottom: 10,
+    marginBottom: 30,
 };
 
 export const boldCenter = {
     textAlign: "center",
     color: '#333',
-    fontSize: 17,
+    fontSize: 19,
     fontFamily: "sans-serif",
-    marginBottom: 10,
+    marginBottom: 5,
     fontWeight: 'bold'
+};
+
+export const boldCenter2 = {
+    textAlign: "center",
+    color: '#333',
+    fontSize: 19,
+    fontFamily: "sans-serif",
+    fontWeight: 'bold',
+    marginTop: 50,
+    marginBottom: 30
 };
 
 export const cursive = {
