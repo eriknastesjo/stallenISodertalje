@@ -1,6 +1,10 @@
-export const container = {
+export const base = {
     flex: 1,
     backgroundColor: '#62EE6F',
+}
+
+export const container = {
+    flex: 1,
 }
 
 export const content = {

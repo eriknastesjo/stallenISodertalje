@@ -24,7 +24,7 @@ const library = {
 
 export default function App() {
   return (
-    <SafeAreaView style={Base.container}>
+    <SafeAreaView style={Base.base}>
       <NavigationContainer>
         <Tab.Navigator screenOptions={({ route }) => ({
 

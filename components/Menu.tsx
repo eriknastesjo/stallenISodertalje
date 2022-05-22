@@ -18,26 +18,18 @@ export default function Menu({ navigation}) {
             <Text style={Typography.normalCenter}>vart vill ni gå idag?</Text>
 
             <View style={Base.rowContainer}>
-                <TouchableOpacity onPress={goToPark} style={Buttons.button}>
-                    <Image source={require("../assets/park.png")} style={Images.buttonImage} />
-                </TouchableOpacity>
+                <View style={Buttons.buttonContainer}>
+                    <TouchableOpacity onPress={goToPark} style={Buttons.button}>
+                        <Image source={require("../assets/park.png")} style={Images.buttonImage} />
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity onPress={goToDogPark} style={Buttons.button}>
-                    <Image source={require("../assets/hundrastgård.png")} style={Images.buttonImage} />
-                </TouchableOpacity>
+                <View style={Buttons.buttonContainer}>
+                    <TouchableOpacity onPress={goToDogPark} style={Buttons.button}>
+                        <Image source={require("../assets/hundrastgård.png")} style={Images.buttonImage} />
+                    </TouchableOpacity>
+                </View>
             </View>
-
-            {/* <Button
-                color='#313131'
-                title="Park"
-                onPress={goToPark}
-            /> */}
-
-            {/* <Button
-                color='#313131'
-                title="Hundrastgård"
-                onPress={goToDogPark}
-            /> */}
         </View>
     );
 };
