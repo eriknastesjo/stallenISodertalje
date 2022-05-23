@@ -45,23 +45,7 @@ export default function ParkList({navigation}) {
             }
         });
 
-
-    listToSort.sort((a, b) => {
-        let fa = a.namn.toLowerCase(),
-            fb = b.namn.toLowerCase();
-
-        if (fa < fb) {
-            return -1;
-        }
-        if (fa > fb) {
-            return 1;
-        }
-
-        return 0;
-    });
-
-
-    // console.log(listToSort);
+    sortList(listToSort);
 
     const listOfParks = listToSort
         .map((park, index) => {
@@ -77,10 +61,7 @@ export default function ParkList({navigation}) {
                         <Text style={Typography.normalButton}>{park.namn}</Text>
                     </TouchableOpacity>
                 </View>
-
-
         });
-
 
     return (
         <ScrollView style={Base.backgroundCol}>
@@ -90,3 +71,20 @@ export default function ParkList({navigation}) {
         </ScrollView>
     );
 };
+
+
+function sortList(listToSort: Array<any>) {
+    listToSort.sort((a, b) => {
+        let fa = a.namn.toLowerCase(),
+            fb = b.namn.toLowerCase();
+
+        if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+
+        return 0;
+    });
+}

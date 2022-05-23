@@ -1,7 +1,7 @@
 import { Text, View, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { Base, Typography, Buttons } from "../../styles";
 import * as Linking from 'expo-linking';
-import Map from "./Map";
+import Map from "../MapSingle";
 
 
 export default function ParkDetails({ route }) {
@@ -18,7 +18,7 @@ export default function ParkDetails({ route }) {
                 <Text style={Typography.header2}>{park.namn}</Text>
                 {
                     park.beskrivning !== "" &&
-                    <Text style={Typography.normal}>{park.beskrivning}</Text>
+                    <Text style={Typography.normalCenter}>{park.beskrivning}</Text>
                 }
                 {
                     park.webbsida !== "" &&

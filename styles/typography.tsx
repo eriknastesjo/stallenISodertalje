@@ -15,7 +15,6 @@ export const header2 = {
     fontFamily: "sans-serif",
     // fontWeight: 'bold',
     textAlign: "center",
-    marginBottom: 10,
     paddingTop: 25,
     paddingBottom: 15,
 };
@@ -43,6 +42,7 @@ export const smallButton = {
 
 export const normalCenter = {
     color: '#1C1C1C',
+    textAlign: "center",
     fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 30,

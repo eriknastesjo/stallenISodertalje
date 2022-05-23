@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Text, View, ScrollView, StyleSheet } from "react-native";
-import { Base, Typography } from "../../styles";
+import { Base, Typography } from "../styles";
 import MapView, { Marker } from 'react-native-maps';
 // import getCoordinates from '../../models/nominatim';
 import * as Location from 'expo-location';
@@ -8,7 +8,6 @@ import * as Location from 'expo-location';
 export default function Map(props) {
 
     const park = props.park;
-    // console.log(park);
 
     const [marker, setMarker] = useState(null);
     const [locationMarker, setLocationMarker] = useState(null);
@@ -17,27 +16,8 @@ export default function Map(props) {
 
     useEffect(() => {
         (async () => {
-            // const results = await getCoordinates(`${order.address}, ${order.city}`);
-            // parks.forEach((function () {
 
-            //     setMarker(<Marker       // ändra senare till att LÄGGA TILL så att det blir en array...
-            //         coordinate={{ latitude: park["latitude"], longitude: park["longitude"] }}
-            //         title={results[0].display_name}
-            //         identifier="there"
-            //     />);
-
-            //     setInitRegion({
-            //         latitude: park["latitude"],
-            //         longitude: park["longitude"],
-            //         latitudeDelta: 0.1,
-            //         longitudeDelta: 0.1,
-            //     })
-
-            // }));
-
-            // console.log("eeh?");
-
-            setMarker(<Marker       // ändra senare till att LÄGGA TILL så att det blir en array...
+            setMarker(<Marker
                 coordinate={{ latitude: parseFloat(park.latitude), longitude: parseFloat(park.longitude) }}
                 title={park.namn}
                 identifier="there"
@@ -48,8 +28,8 @@ export default function Map(props) {
             setInitRegion({
                 latitude: parseFloat(park.latitude),
                 longitude: parseFloat(park.longitude),
-                latitudeDelta: 0.05,
-                longitudeDelta: 0.05,
+                latitudeDelta: 0.02,
+                longitudeDelta: 0.02,
             })
         })();
     }, []);
