@@ -6,9 +6,14 @@ import { Typography, Base } from './styles';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Foundation } from '@expo/vector-icons';
+import { useState, useEffect } from 'react';
 
 import Home from './components/Home';
 import About from './components/About';
+import Auth from './components/Auth/Auth';
+import Logout from './components/Auth/Logout';
+import Profile from './components/Auth/Profile';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -16,19 +21,23 @@ const Tab = createBottomTabNavigator();
 const routeIcons = {
   "Hem": "home",
   "Om": "paw-outline",
+  "Logga in": "log-in",
 };
 const library = {
   "Hem": "foundation",
-  "Om": "ionicons"
+  "Om": "ionicons",
+  "Logga in": "ionicons",
 };
 
 export default function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+  const [profileName, setProfileName] = useState<String>("ägare");
+
   return (
     <SafeAreaView style={Base.base}>
       <NavigationContainer>
         <Tab.Navigator screenOptions={({ route }) => ({
-
-
 
           tabBarIcon: ({ focused, color, size }) => {
             let iconName = routeIcons[route.name] || "alert";
@@ -46,6 +55,23 @@ export default function App() {
         >
           <Tab.Screen name="Hem" component={Home} />
           <Tab.Screen name="Om" component={About} />
+          {isLoggedIn ?
+            <Tab.Screen name="Profil">
+              {() => <Profile
+                profileName={profileName}
+                setProfileame={setProfileName} />}
+            </Tab.Screen>
+            :
+            <Tab.Screen name="Logga in">
+              {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
+            </Tab.Screen>
+          }
+          {
+            isLoggedIn &&
+            <Tab.Screen name="Logga ut">
+              {() => <Logout setIsLoggedIn={setIsLoggedIn} />}
+            </Tab.Screen>
+          }
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />

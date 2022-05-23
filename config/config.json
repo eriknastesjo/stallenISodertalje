@@ -1,3 +1,5 @@
 {
+    "api_key": "2b3ab4fd8b88e8ea98a60eea50c84993",
+    "auth_url": "https://auth.emilfolino.se/",
     "base_url": "https://catalog.sodertalje.se/rowstore/dataset"
 }
