@@ -63,10 +63,8 @@ export default function Map(props) {
         })();
     }, []);
 
-
-
     return (
-            <MapView
+        <MapView
                 loadingEnabled={true}
                 loadingIndicatorColor='#63AF69'
                 style={styles.map}
