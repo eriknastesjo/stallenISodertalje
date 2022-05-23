@@ -13,3 +13,11 @@ export const heart = {
     width: 50,
     height: 50,
 }
+
+export const test = {
+    width: 110,
+    height: 110,
+    position: 'absolute',
+    top: -20,
+    right: -15,
+}

@@ -17,6 +17,8 @@ export default function Menu({ navigation}) {
             <Text style={Typography.boldCenter}>Hej ägare och hund,</Text>
             <Text style={Typography.normalCenter}>vart vill ni gå idag?</Text>
 
+            <Image source={require("../assets/profilePic.png")} style={Images.test} />
+
             <View style={Base.rowContainer}>
                 <View style={Buttons.buttonContainer}>
                     <TouchableOpacity onPress={goToPark} style={Buttons.button}>
