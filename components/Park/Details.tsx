@@ -7,10 +7,6 @@ import Map from "../MapSingle";
 export default function ParkDetails({ route }) {
     const { park } = route.params; // se i ParkList funktionen listOfParks och vid 'Onpress'
 
-    const parkInArray: Array = [park];
-
-    // const map = Map({ "parks": park });
-
     return (
         <View style={Base.container}>
 

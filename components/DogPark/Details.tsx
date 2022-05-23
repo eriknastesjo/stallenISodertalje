@@ -1,26 +1,36 @@
-import { Text, View, Button } from "react-native";
-import { Typography } from "../../styles";
+import { Text, View, Button, StyleSheet, TouchableOpacity } from "react-native";
+import { Base, Typography, Buttons } from "../../styles";
 import * as Linking from 'expo-linking';
+import Map from "../MapSingle";
+
 
 export default function DogParkDetails({ route }) {
-    const { dogPark } = route.params; // se i DogParkList funktionen listOfDogParks och vid 'Onpress'
+    const { dogPark } = route.params; // se i ParkList funktionen listOfParks och vid 'Onpress'
 
     return (
-        <View>
-            <Text style={Typography.boldCenter}>{dogPark["namn"]}</Text>
-            {dogPark["webbsida"] !== "" ?
-                dogPark["webbsida"] &&
-                <Button
-                    color='#313131'
-                    title={"Webbsida"}
-                    onPress={() => {
-                        Linking.openURL(dogPark["webbsida"])
-                    }}
+        <View style={Base.container}>
 
-                />
-                :
-                <Text></Text>
-            }
+            <View style={Base.content}>
+                <Text style={Typography.header2}>{dogPark.namn}</Text>
+                {
+                    dogPark.webbsida !== "" &&
+                    <View style={Buttons.buttonContainer}>
+                        <TouchableOpacity
+                            style={Buttons.button2}
+                            onPress={() => {
+                                Linking.openURL(dogPark.webbsida)
+                            }}
+                        >
+                            <Text style={Typography.smallButton}>Webbsida</Text>
+                        </TouchableOpacity>
+                    </View>
+                }
+            </View>
+
+            <View style={Base.mapContainer}>
+                <Map park={dogPark} />
+            </View>
+
         </View>
     );
 };

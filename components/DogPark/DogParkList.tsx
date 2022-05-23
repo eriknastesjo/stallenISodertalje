@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, SafeAreaView, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
-import dogParkModel from '../../models/dogPark';
-import { Typography, Base } from '../../styles';
+import dogParkModel from '../../models/park';
+import { Typography, Base, Buttons } from '../../styles';
 
 
 export default function DogParkList({ navigation }) {
@@ -14,22 +14,6 @@ export default function DogParkList({ navigation }) {
             setDogParks(await dogParkModel.getData());
         })();
     }, []);
-
-
-    // listToSort behövs här för att bli av med '﻿'
-    // framför namn key så att det går att sortera!
-
-    // const listToSort: Array = [];
-
-    // for (let i = 0; i < dogparks.length; i++) {
-    //     listToSort.push({
-    //         "nord-koordinat (wgs84)": dogparks[i]["nord-koordinat (wgs84)"],
-    //         "ost-koordinat (wgs84)": dogparks[i]["ost-koordinat (wgs84)"],
-    //         "webbsida": dogparks[i]["webbsida"],
-    //         "namn": dogparks[i]["﻿namn"],
-
-    //     });
-    // }
 
     const listToSort = dogparks
         .map((dogpark) => {
@@ -59,21 +43,23 @@ export default function DogParkList({ navigation }) {
 
     const listOfDogParks = listToSort
         .map((dogPark, index) => {
-            return <Button
-                color='#313131'
-                title={dogPark["namn"]}
-                key={index}
-                onPress={() => {
-                    navigation.navigate('Detaljer', {
-                        dogPark: dogPark
-                    });
-                }}
-            />
+            return <View style={Buttons.buttonContainer} key={index}>
+                <TouchableOpacity
+                    style={Buttons.button2}
+                    onPress={() => {
+                        navigation.navigate('Detaljer', {
+                            dogPark: dogPark
+                        });
+                    }}
+                >
+                    <Text style={Typography.normalButton}>{dogPark.namn}</Text>
+                </TouchableOpacity>
+            </View>
         });
 
     return (
         <ScrollView>
-            <Text style={Typography.boldCenter}>Hundrastgårdar</Text>
+            <Text style={Typography.header1}>Hundrastgårdar</Text>
             {listOfDogParks}
         </ScrollView>
     );

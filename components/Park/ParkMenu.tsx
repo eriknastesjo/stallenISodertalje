@@ -32,18 +32,6 @@ export default function Menu({ navigation }) {
                 </View>
             </View>
 
-
-            {/* <Button
-                color='#313131'
-                title="Lista"
-                onPress={goToList}
-            />
-
-            <Button
-                color='#313131'
-                title="Karta"
-                onPress={goToMap}
-            /> */}
         </View>
     );
 };
