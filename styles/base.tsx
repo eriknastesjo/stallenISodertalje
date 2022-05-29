@@ -1,6 +1,6 @@
 export const base = {
     flex: 1,
-    backgroundColor: '#62EE6F',
+    backgroundColor: '#50D05C',
 }
 
 export const container = {
