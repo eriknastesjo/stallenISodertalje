@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Text, View, ScrollView, StyleSheet, Image } from "react-native";
-import { Base, Typography, Images } from "../styles";
+import { Base, Typography, Images } from "../../styles";
 import MapView, { Marker } from 'react-native-maps';
 // import getCoordinates from '../../models/nominatim';
 import * as Location from 'expo-location';
-import parkModel from "../models/park";
+import parkModel from "../../models/park";
 
 export default function Map(props) {
 

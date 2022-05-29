@@ -24,6 +24,23 @@ export const normal = {
     fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 20,
+    lineHeight: 29,
+};
+
+export const normalMoreMargin = {
+    color: '#1C1C1C',
+    fontSize: 19,
+    fontFamily: "sans-serif",
+    marginBottom: 50,
+    lineHeight: 29,
+};
+
+export const link = {
+    color: '#1177BF',
+    fontSize: 19,
+    fontFamily: "sans-serif",
+    lineHeight: 29,
+    fontStyle: 'italic',
 };
 
 export const normalButton = {
@@ -57,6 +74,15 @@ export const boldCenter = {
     fontWeight: 'bold'
 };
 
+export const boldCenterParagraph = {
+    textAlign: "center",
+    color: '#1C1C1C',
+    fontSize: 19,
+    fontFamily: "sans-serif",
+    marginBottom: 15,
+    fontWeight: 'bold'
+};
+
 export const boldCenter2 = {
     textAlign: "center",
     color: '#1C1C1C',
@@ -67,10 +93,19 @@ export const boldCenter2 = {
     marginBottom: 30
 };
 
+export const cursiveCenter = {
+    textAlign: "center",
+    color: '#1C1C1C',
+    fontSize: 19,
+    fontFamily: "sans-serif",
+    marginBottom: 5,
+    fontStyle: 'italic',
+};
+
 export const cursive = {
     fontStyle: 'italic'
-}
+};
 
 export const bold = {
     fontWeight: 'bold'
-}
+};

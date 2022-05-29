@@ -1,7 +1,7 @@
 import { Text, View, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { Base, Typography, Buttons } from "../../styles";
 import * as Linking from 'expo-linking';
-import Map from "../MapSingle";
+import Map from "../Shared/MapSingle";
 
 
 export default function DogParkDetails({ route }) {

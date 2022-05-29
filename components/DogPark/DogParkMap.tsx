@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Base, Typography } from '../../styles';
-import Map from '../MapAll';
+import Map from '../Shared/MapAll';
 import dogParkModel from '../../models/dogPark';
 
 export default function ParkMap() {

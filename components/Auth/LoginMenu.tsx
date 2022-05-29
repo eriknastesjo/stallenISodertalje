@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-
 import { View, Text, Button } from "react-native";
+import { Typography, Base } from '../../styles';
 
 export default function LoginMenu({ navigation, setIsLoggedIn}) {
 
@@ -16,6 +15,7 @@ export default function LoginMenu({ navigation, setIsLoggedIn}) {
 
     return (
         <View>
+            <Text style={Typography.header1}>Logga in</Text>
             <Button
                 color='#A85D14'
                 title="Logga in"

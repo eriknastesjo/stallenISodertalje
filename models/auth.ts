@@ -19,7 +19,7 @@ const auth = {
             email: email,
             password: password,
         };
-        const response = await fetch(`${config.base_url}/auth/login`, {
+        const response = await fetch(`${config.auth_url}login`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -53,7 +53,7 @@ const auth = {
             email: email,
             password: password,
         };
-        const response = await fetch(`${config.base_url}/auth/register`, {
+        const response = await fetch(`${config.auth_url}register`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -61,7 +61,10 @@ const auth = {
             },
         });
 
+
         const result = await response.json();
+
+        console.log(result);
 
         // errors kommer med som property om login inte lyckas, då returner
         // vi istället ett flash meddelande.

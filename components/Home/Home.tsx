@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Menu from './Menu';
-import Park from './Park/Park'
-import DogPark from './DogPark/DogPark'
+import Park from '../Park/Park'
+import DogPark from '../DogPark/DogPark'
 
 
 const Stack = createNativeStackNavigator();

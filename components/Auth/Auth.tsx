@@ -12,7 +12,7 @@ export default function Deliveries(props) {
     // console.log(props);
     // console.log(props.setIsLoggedIn);
     return (
-        <Stack.Navigator initialRouteName="LoginMenu">
+        <Stack.Navigator initialRouteName="LoginMenu" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="LoginMenu" component={Choice}/>
             <Stack.Screen name="Login">
                 {(screenProps) => <Login {...screenProps} setIsLoggedIn={props.setIsLoggedIn} />}

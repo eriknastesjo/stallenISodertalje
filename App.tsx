@@ -1,15 +1,14 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Foundation } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography, Base } from './styles';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Foundation } from '@expo/vector-icons';
 import { useState, useEffect } from 'react';
 
-import Home from './components/Home';
-import About from './components/About';
+import Home from './components/Home/Home';
+import About from './components/About/About';
 import Auth from './components/Auth/Auth';
 import Logout from './components/Auth/Logout';
 import Profile from './components/Auth/Profile';
@@ -22,11 +21,15 @@ const routeIcons = {
   "Hem": "home",
   "Om": "paw-outline",
   "Logga in": "log-in",
+  "Logga ut": "log-out",
+  "Profil": "star",
 };
 const library = {
   "Hem": "foundation",
   "Om": "ionicons",
   "Logga in": "ionicons",
+  "Logga ut": "ionicons",
+  "Profil": "ionicons",
 };
 
 export default function App() {

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Base, Typography } from '../../styles';
 import parkModel from '../../models/park';
-import Map from '../MapAll';
+import Map from '../Shared/MapAll';
 
 export default function ParkMap() {
     const [parks, setParks] = useState([]);
