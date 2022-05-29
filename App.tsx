@@ -62,17 +62,12 @@ export default function App() {
             <Tab.Screen name="Profil">
               {() => <Profile
                 profileName={profileName}
-                setProfileame={setProfileName} />}
+                setProfileame={setProfileName}
+                setIsLoggedIn={setIsLoggedIn} />}
             </Tab.Screen>
             :
             <Tab.Screen name="Logga in">
               {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
-            </Tab.Screen>
-          }
-          {
-            isLoggedIn &&
-            <Tab.Screen name="Logga ut">
-              {() => <Logout setIsLoggedIn={setIsLoggedIn} />}
             </Tab.Screen>
           }
         </Tab.Navigator>
