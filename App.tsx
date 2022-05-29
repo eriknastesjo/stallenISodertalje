@@ -21,13 +21,13 @@ const Tab = createBottomTabNavigator();
 const routeIcons = {
   "Hem": "home",
   "Om": "paw-outline",
-  "Logga in": "log-in",
+  "Inlogg": "log-in",
   "Profil": "star",
 };
 const library = {
   "Hem": "foundation",
   "Om": "ionicons",
-  "Logga in": "ionicons",
+  "Inlogg": "ionicons",
   "Profil": "ionicons",
 };
 
@@ -75,7 +75,7 @@ export default function App() {
                 setIsLoggedIn={setIsLoggedIn} />}
             </Tab.Screen>
             :
-            <Tab.Screen name="Logga in">
+            <Tab.Screen name="Inlogg">
               {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
             </Tab.Screen>
           }
