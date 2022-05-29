@@ -10,8 +10,7 @@ import { useState, useEffect } from 'react';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Auth from './components/Auth/Auth';
-import Logout from './components/Auth/Logout';
-import Profile from './components/Auth/Profile';
+import Profile from './components/Profile/Profile';
 
 
 
@@ -36,6 +35,7 @@ export default function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
   const [profileName, setProfileName] = useState<String>("ägare");
+  const [dogName, setDogName] = useState<String>("hund");
 
   return (
     <SafeAreaView style={Base.base}>
@@ -52,17 +52,20 @@ export default function App() {
             return <Foundation name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: '#313131',
-          tabBarInactiveTintColor: '#646464',
+          tabBarInactiveTintColor: '#8A8A8A',
           headerShown: false,
         })}
         >
-          <Tab.Screen name="Hem" component={Home} />
-          <Tab.Screen name="Om" component={About} />
+          <Tab.Screen name="Hem">
+            {() => <Home profileName={profileName} dogName={dogName} />}
+          </Tab.Screen>
           {isLoggedIn ?
             <Tab.Screen name="Profil">
               {() => <Profile
                 profileName={profileName}
-                setProfileame={setProfileName}
+                setProfilename={setProfileName}
+                dogName={dogName}
+                setDogName={setDogName}
                 setIsLoggedIn={setIsLoggedIn} />}
             </Tab.Screen>
             :
@@ -70,6 +73,7 @@ export default function App() {
               {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
             </Tab.Screen>
           }
+          <Tab.Screen name="Om" component={About} />
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />

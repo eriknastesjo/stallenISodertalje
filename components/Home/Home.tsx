@@ -7,10 +7,12 @@ import DogPark from '../DogPark/DogPark'
 
 const Stack = createNativeStackNavigator();
 
-export default function Home(props) {
+export default function Home({profileName, dogName}) {
     return (
         <Stack.Navigator initialRouteName="Meny" screenOptions={{headerShown: false}}>
-            <Stack.Screen name="Meny" component={Menu} />
+            <Stack.Screen name="Meny">
+                {(screenProps) => <Menu {...screenProps} profileName={profileName} dogName={dogName} />}
+            </Stack.Screen>
             <Stack.Screen name="Park" component={Park} />
             <Stack.Screen name="Hundrastgård" component={DogPark} />
         </Stack.Navigator>

@@ -20,7 +20,7 @@ export const header2 = {
 };
 
 export const normal = {
-    color: '#1C1C1C',
+    color: '#3D3D3D',
     fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 20,
@@ -28,7 +28,7 @@ export const normal = {
 };
 
 export const normalMoreMargin = {
-    color: '#1C1C1C',
+    color: '#3D3D3D',
     fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 50,
@@ -44,30 +44,54 @@ export const link = {
 };
 
 export const normalButton = {
-    color: '#1C1C1C',
+    color: 'white',
+    textAlign: "center",
+    fontSize: 19,
+    fontFamily: "sans-serif",
+    padding: 5,
+};
+
+export const normalButtonSide = {
+    color: '#585858',
     textAlign: "center",
     fontSize: 19,
     fontFamily: "sans-serif",
 };
 
+export const boldButtonSide = {
+    textAlign: "center",
+    fontSize: 19,
+    fontFamily: "sans-serif",
+    fontWeight: 'bold',
+};
+
+export const boldButtonSideWhite = {
+    color: 'white',
+    textAlign: "center",
+    fontSize: 19,
+    fontFamily: "sans-serif",
+    fontWeight: 'bold',
+};
+
 export const smallButton = {
-    color: '#1C1C1C',
+    color: 'white',
     textAlign: "center",
     fontSize: 17,
     fontFamily: "sans-serif",
 };
 
 export const normalCenter = {
-    color: '#1C1C1C',
+    color: '#3D3D3D',
     textAlign: "center",
     fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 30,
+
 };
 
 export const boldCenter = {
     textAlign: "center",
-    color: '#1C1C1C',
+    color: '#3D3D3D',
     fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 5,
@@ -76,7 +100,7 @@ export const boldCenter = {
 
 export const boldCenterParagraph = {
     textAlign: "center",
-    color: '#1C1C1C',
+    color: '#3D3D3D',
     fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 15,
@@ -85,7 +109,7 @@ export const boldCenterParagraph = {
 
 export const boldCenter2 = {
     textAlign: "center",
-    color: '#1C1C1C',
+    color: '#3D3D3D',
     fontSize: 19,
     fontFamily: "sans-serif",
     fontWeight: 'bold',
@@ -95,7 +119,7 @@ export const boldCenter2 = {
 
 export const cursiveCenter = {
     textAlign: "center",
-    color: '#1C1C1C',
+    color: '#3D3D3D',
     fontSize: 19,
     fontFamily: "sans-serif",
     marginBottom: 5,

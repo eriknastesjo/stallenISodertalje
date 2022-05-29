@@ -8,6 +8,13 @@ export const buttonImageSmall = {
     height: 130,
 }
 
+export const buttonIconStart = {
+    width: 30,
+    height: 30,
+    marginLeft: 10,
+    marginRight: 20,
+}
+
 export const heart = {
     marginTop: 30,
     width: 50,
