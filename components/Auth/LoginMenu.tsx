@@ -1,32 +1,38 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { View, Text, Button } from "react-native";
-import { Typography, Base } from '../../styles';
+import { Ionicons, Foundation, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
+import { View, Text, Button, TouchableOpacity } from "react-native";
+import { Typography, Base, Buttons } from '../../styles';
 
 export default function LoginMenu({ navigation, setIsLoggedIn}) {
 
 
     function goToLogin() {
-        navigation.navigate("Login");
+        navigation.navigate("Logga in");
     }
 
     function goToRegister() {
-        navigation.navigate("Register");
+        navigation.navigate("Registrera");
     }
 
     return (
         <View>
-            <Text style={Typography.header1}>Logga in</Text>
-            <Button
-                color='#A85D14'
-                title="Logga in"
-                onPress={goToLogin}
-            />
+            <Text style={Typography.header1}>Inloggning</Text>
+            <Text></Text>
+            <View style={Buttons.buttonContainer}>
+                <TouchableOpacity onPress={goToLogin} style={Buttons.buttonProfile}>
+                    <Ionicons name="log-in-outline" size={27} color="white" />
+                    <Text style={Typography.boldButtonSideWhite}>    Logga in</Text>
+                    <View style={Buttons.buttonArrow}><AntDesign name="rightcircle" size={22} color="white" /></View>
+                </TouchableOpacity>
+            </View>
 
-            <Button
-                color='#A85D14'
-                title="Registrera"
-                onPress={goToRegister}
-            />
+            <View style={Buttons.buttonContainer}>
+                <TouchableOpacity onPress={goToRegister} style={Buttons.buttonProfile}>
+                    <AntDesign name="pluscircleo" size={23} color="white" />
+                    <Text style={Typography.boldButtonSideWhite}>    Registrera</Text>
+                    <View style={Buttons.buttonArrow}><AntDesign name="rightcircle" size={22} color="white" /></View>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };

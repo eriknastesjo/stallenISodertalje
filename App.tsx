@@ -22,14 +22,12 @@ const routeIcons = {
   "Hem": "home",
   "Om": "paw-outline",
   "Logga in": "log-in",
-  "Logga ut": "log-out",
   "Profil": "star",
 };
 const library = {
   "Hem": "foundation",
   "Om": "ionicons",
   "Logga in": "ionicons",
-  "Logga ut": "ionicons",
   "Profil": "ionicons",
 };
 

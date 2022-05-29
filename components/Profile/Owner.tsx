@@ -31,6 +31,7 @@ export default function Owner({ navigation, profileName, setProfilename }) {
                     setProfilename(content)
                 }}
                 placeholder="Skriv ditt namn här"
+                selectionColor={'#46A450'}
                 // value={delivery?.comment}
             />
             {/* <Button

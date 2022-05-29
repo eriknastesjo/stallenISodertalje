@@ -31,6 +31,7 @@ export default function Dog({ navigation, dogName, setDogName }) {
                     setDogName(content)
                 }}
                 placeholder="Skriv hundens namn här"
+                selectionColor={'#46A450'}
             // value={delivery?.comment}
             />
             {/* <Button

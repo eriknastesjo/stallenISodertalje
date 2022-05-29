@@ -1,11 +1,13 @@
-import { View, Text, TextInput, Button, ScrollView } from "react-native";
-import { Typography, Forms, Base } from '../../styles';
+import { Ionicons, Foundation, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
+import { View, Text, TextInput, Button, ScrollView, TouchableOpacity } from "react-native";
+import { Typography, Forms, Base, Buttons } from '../../styles';
 
 
 export default function AuthFields({ auth, setAuth, title, submit, navigation }) {
     return (
-        <View style={Base.base}>
-            <Text style={Typography.header2}>{title}</Text>
+        <View>
+            <Text></Text>
+            <Text></Text>
             <ScrollView style={Base.content}>
                 <Text style={Typography.label}>E-post</Text>
                 <TextInput
@@ -16,6 +18,7 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation })
                     value={auth?.email}
                     keyboardType="email-address"
                     autoCapitalize="none"
+                    selectionColor={'#46A450'}
                 />
                 <Text style={Typography.label}>Lösenord</Text>
                 <TextInput
@@ -26,23 +29,13 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation })
                     value={auth?.password}
                     secureTextEntry={true}
                     autoCapitalize="none"
+                    selectionColor={'#46A450'}
                 />
-                <Button
-                    title={title}
-                    color="#4D4948"
-                    onPress={() => {
-                        submit();
-                    }}
-                />
-                {title === "Logga in" &&
-                    <Button
-                        title="Registrera istället"
-                        color="#4D4948"
-                        onPress={() => {
-                            navigation.navigate("Register");
-                        }}
-                    />
-                    }
+                <View style={Buttons.buttonContainer}>
+                    <TouchableOpacity onPress={() => { submit(); }} style={Buttons.buttonProfileCenter}>
+                        <Text style={Typography.boldButtonSideWhite}>{title}</Text>
+                    </TouchableOpacity>
+                </View>
             </ScrollView>
         </View>
     );

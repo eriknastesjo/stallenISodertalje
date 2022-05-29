@@ -15,7 +15,7 @@ export default function Register({ navigation, setIsLoggedIn }) {
             // console.log(result);
             if (result.type === "success") {
                 console.log("SUCCESS");
-                navigation.navigate("Login");
+                navigation.navigate("Logga in");
             }
 
             // showMessage({
