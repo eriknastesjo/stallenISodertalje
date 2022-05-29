@@ -133,3 +133,12 @@ export const cursive = {
 export const bold = {
     fontWeight: 'bold'
 };
+
+
+export const label = {
+    color: '#3D3D3D',
+    fontSize: 17,
+    fontFamily: "sans-serif",
+    marginBottom: 0,
+    lineHeight: 29,
+};
