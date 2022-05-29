@@ -8,6 +8,7 @@ const auth = {
         if (token) {
             const twentyFourHours = 1000 * 60 * 60 * 24;
             const notExpired = (new Date().getTime() - token.date) < twentyFourHours;
+            console.log(token);
             return token && notExpired;
         }
         return false;

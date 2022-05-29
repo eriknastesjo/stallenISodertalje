@@ -7,6 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
 
+import authModel from './models/auth';
+
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Auth from './components/Auth/Auth';
@@ -37,6 +39,12 @@ export default function App() {
   const [profileName, setProfileName] = useState<String>("ägare");
   const [dogName, setDogName] = useState<String>("hund");
 
+  useEffect(() => {
+    (async function () {
+      setIsLoggedIn(await authModel.loggedIn());
+    })();
+  }, []);
+
   return (
     <SafeAreaView style={Base.base}>
       <NavigationContainer>
@@ -57,7 +65,7 @@ export default function App() {
         })}
         >
           <Tab.Screen name="Hem">
-            {() => <Home profileName={profileName} dogName={dogName} />}
+            {() => <Home profileName={profileName} dogName={dogName} isLoggedIn={isLoggedIn} />}
           </Tab.Screen>
           {isLoggedIn ?
             <Tab.Screen name="Profil">

@@ -21,7 +21,7 @@ export const heart = {
     height: 50,
 }
 
-export const test = {
+export const profilePic = {
     width: 110,
     height: 110,
     position: 'absolute',
