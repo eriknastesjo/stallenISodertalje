@@ -47,7 +47,6 @@ export default function App() {
     <SafeAreaView style={Base.base}>
       <NavigationContainer>
         <Tab.Navigator screenOptions={({ route }) => ({
-
           tabBarIcon: ({ focused, color, size }) => {
             let iconName = routeIcons[route.name] || "alert";
             let libraryName = library[route.name] || "ionicons";
@@ -60,7 +59,16 @@ export default function App() {
           tabBarActiveTintColor: '#313131',
           tabBarInactiveTintColor: '#8A8A8A',
           headerShown: false,
+
         })}
+          barStyle={{
+            backgroundColor: "white",
+            height: 70,
+            justifyContent: "center",
+            border: 0,
+            margin: 0,
+            padding: 0,
+          }}
         >
           <Tab.Screen name="Hem">
             {() => <Home profileName={profileName} dogName={dogName} isLoggedIn={isLoggedIn} />}

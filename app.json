@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splashImage.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0C5D14"
+      "backgroundColor": "#50D05C"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,8 +22,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/splashImageAdaptiveFront.png",
-        "backgroundColor": "#0C5D14"
+        "foregroundImage": "./assets/iconImage.png",
+        "backgroundColor": "#50D05C"
       }
     },
     "web": {
