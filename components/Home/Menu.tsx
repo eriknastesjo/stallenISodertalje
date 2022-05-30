@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity, Image } from 'react-native';
 import { Typography, Base, Buttons, Images } from '../../styles';
 
-export default function Menu({ profileName, dogName, isLoggedIn, navigation}) {
+export default function Menu({ artefact, isLoggedIn, navigation}) {
 
     function goToPark() {
         navigation.navigate("Park");
@@ -14,7 +14,7 @@ export default function Menu({ profileName, dogName, isLoggedIn, navigation}) {
     return (
         <View style={Base.centerContainer}>
             <Image source={require("../../assets/heart.png")} style={Images.heart} />
-            <Text style={Typography.boldCenter}>Hej {profileName} och {dogName},</Text>
+            <Text style={Typography.boldCenter}>Hej {artefact.ownerName} och {artefact.dogName},</Text>
             <Text style={Typography.normalCenter}>vart vill ni gå idag?</Text>
 
             {

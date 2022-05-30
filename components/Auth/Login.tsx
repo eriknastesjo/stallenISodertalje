@@ -3,8 +3,10 @@ import { useState } from 'react';
 import authModel from '../../models/auth';
 import AuthFields from './Authfields';
 
+import artefactsModel from '../../models/artefacts';
 
-export default function Login({ navigation, setIsLoggedIn }) {
+
+export default function Login({ navigation, setIsLoggedIn, setArtefact }) {
     const [auth, setAuth] = useState<Partial<Auth>>({});
 
     async function doLogin() {
@@ -13,6 +15,10 @@ export default function Login({ navigation, setIsLoggedIn }) {
 
             if (result.type === "success") {
                 setIsLoggedIn(true);
+                const loadArtefact = await artefactsModel.getArtefactByEmail()
+                if (loadArtefact !== null) {
+                    setArtefact( await artefactsModel.getArtefactByEmail());
+                }
             }
 
             // showMessage({

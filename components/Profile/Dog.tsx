@@ -1,18 +1,32 @@
 import { useState } from 'react';
 import { View, ScrollView, Text, TextInput, Button, TouchableOpacity } from "react-native";
 import { Base, Typography, Forms, Buttons } from '../../styles';
+import artefactsModel from '../../models/artefacts';
+
 // import ProductDropDown from './ProductDropDown';
 
 // import { showMessage } from 'react-native-flash-message';
 
 
-export default function Dog({ navigation, dogName, setDogName }) {
+export default function Dog({ navigation, artefact, setArtefact }) {
 
     const [currentName, setCurrentName] = useState<string>("");
 
-    function submit() {
-        setDogName(currentName);
-        // todo: spara i artefact också!!!!
+    async function submit() {
+        // // setDogName(currentName);
+        // setArtefact({ ...artefact, dogName: currentName });
+
+        // // todo: spara i artefact också!!!!
+        // navigation.navigate("ProfilMeny");
+
+        setArtefact({ ...artefact, dogName: currentName });
+
+        const newArtefact = {
+            "ownerName": artefact.ownerName,
+            "dogName": currentName,
+        }
+        await artefactsModel.setArtefact(newArtefact);
+
         navigation.navigate("ProfilMeny");
     }
 

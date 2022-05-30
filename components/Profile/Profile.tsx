@@ -14,23 +14,23 @@ export default function Profile(props) {
         <Stack.Navigator initialRouteName="ProfilMeny">
             <Stack.Screen name="ProfilMeny" options={{headerShown: false}}>
                 {(screenProps) => <ProfileEdit {...screenProps}
-                    profileName={props.profileName}
-                    dogName={props.dogName}
+                    artefact={props.artefact}
+                    setArtefact={props.setArtefact}
                     setIsLoggedIn={props.setIsLoggedIn}
                 />}
             </Stack.Screen>
             <Stack.Screen name="Ägare">
                 {(screenProps) =>
                     <Owner {...screenProps}
-                        profileName={props.profileName}
-                        setProfilename={props.setProfilename}
+                        artefact={props.artefact}
+                        setArtefact={props.setArtefact}
                         />}
             </Stack.Screen>
             <Stack.Screen name="Hund">
                 {(screenProps) =>
                     <Dog {...screenProps}
-                    dogName={props.dogName}
-                    setDogName={props.setDogName}
+                        artefact={props.artefact}
+                        setArtefact={props.setArtefact}
                     />}
             </Stack.Screen>
         </Stack.Navigator>

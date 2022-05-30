@@ -5,7 +5,7 @@ import Token from "../interfaces/token";
 import Artefact from "../interfaces/artefact";
 
 const artefactsModel = {
-    getArtefactByEmail: async function getArtefactByEmail(): Promise<Artefact|null> {
+    getArtefactByEmail: async function getArtefactByEmail(): Promise<any> { // ändra sen från any till egen interface
         const tokenObj = await storage.readTokenAndEmail();
 
         if (!tokenObj) {
@@ -26,15 +26,14 @@ const artefactsModel = {
 
         const result = await response.json();
 
-
         // Search for latest artefact that can be connected to email.
         // If no artefact can be found null will be returned.
-        result.data.forEach((element: { email: string; artefact: string }) => {
+        result.data.forEach((element: { email: string; artefact: string; id: number }) => {
             if (element.email = email) {
                 // Result is in string format so have to parse it to become object
                 const artefactStr = element.artefact;
-                const parsedArtefact = JSON.parse(artefactStr);
-                artefact = parsedArtefact;
+                artefact = JSON.parse(artefactStr);
+                artefact.id = element.id;
             }
         });
         return artefact;
@@ -44,13 +43,16 @@ const artefactsModel = {
         const tokenObj = await storage.readTokenAndEmail();
         let oldArtefact = await this.getArtefactByEmail();
 
+        console.log(oldArtefact);
+
         if (oldArtefact) {
-            console.log("UPDATING...");
             const data = {
-                id: 2026,
+                id: oldArtefact.id,
                 artefact: JSON.stringify(artefact),
                 api_key: config.api_key
             };
+
+            console.log(data);
 
             // console.log(data);
             await fetch(`${config.auth_url}/data`, {

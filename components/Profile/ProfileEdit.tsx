@@ -2,12 +2,18 @@ import { Ionicons, Foundation, AntDesign, SimpleLineIcons } from '@expo/vector-i
 import { View, Text, Button, TouchableOpacity, Image } from "react-native";
 import { Typography, Buttons, Images } from '../../styles';
 import AuthModel from '../../models/auth';
+
+import artefactsModel from '../../models/artefacts';
 // import { showMessage } from 'react-native-flash-message';
 
 export default function ProfileEdit(props) {
 
     function doLogout() {
         props.setIsLoggedIn(false);
+        props.setArtefact({
+            ownerName: "ägare",
+            dogName: "hund",
+        });
         AuthModel.logout();
         // showMessage({
         //     message: "Information",
@@ -25,15 +31,9 @@ export default function ProfileEdit(props) {
             {/* Hundägare */}
             <TouchableOpacity
                 style={Buttons.buttonProfile}
-                onPress={() => {
-                    props.navigation.navigate('Ägare', {
-                        profileName: props.profileName,
-                        setProfilename: props.setProfilename
-                    });
-                }}
-                >
+                onPress={() => {props.navigation.navigate('Ägare');}}>
                 <Image source={require("../../assets/heart.png")} style={Images.buttonIconStart} />
-                <Text style={Typography.boldButtonSideWhite}>{props.profileName}</Text>
+                <Text style={Typography.boldButtonSideWhite}>{props.artefact.ownerName}</Text>
                 <View style={Buttons.buttonArrow}><AntDesign name="rightcircle" size={22} color="white" /></View>
             </TouchableOpacity>
 
@@ -41,15 +41,9 @@ export default function ProfileEdit(props) {
             {/* Hund */}
             <TouchableOpacity
                 style={Buttons.buttonProfile}
-                onPress={() => {
-                    props.navigation.navigate('Hund', {
-                            dogName: props.dogName,
-                            setdogName: props.setdogName
-                        });
-                    }}
-                    >
+                onPress={() => {props.navigation.navigate('Hund');}}>
                 <Image source={require("../../assets/heart.png")} style={Images.buttonIconStart} />
-                <Text style={Typography.boldButtonSideWhite}>{props.dogName}</Text>
+                <Text style={Typography.boldButtonSideWhite}>{props.artefact.dogName}</Text>
                 <View style={Buttons.buttonArrow}><AntDesign name="rightcircle" size={22} color="white" /></View>
             </TouchableOpacity>
 

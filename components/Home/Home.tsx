@@ -7,13 +7,12 @@ import DogPark from '../DogPark/DogPark'
 
 const Stack = createNativeStackNavigator();
 
-export default function Home({profileName, dogName, isLoggedIn}) {
+export default function Home({artefact, isLoggedIn}) {
     return (
         <Stack.Navigator initialRouteName="Meny" screenOptions={{headerShown: false}}>
             <Stack.Screen name="Meny">
                 {(screenProps) => <Menu {...screenProps}
-                    profileName={profileName}
-                    dogName={dogName}
+                    artefact={artefact}
                     isLoggedIn={isLoggedIn}
                 />}
             </Stack.Screen>

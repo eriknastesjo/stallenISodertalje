@@ -10,6 +10,8 @@ import { useState, useEffect } from 'react';
 import authModel from './models/auth';
 import artefactsModel from './models/artefacts';
 
+import Artefact from './interfaces/artefact';
+
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Auth from './components/Auth/Auth';
@@ -35,15 +37,19 @@ const library = {
 export default function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
-  const [profileName, setProfileName] = useState<String>("ägare");
-  const [dogName, setDogName] = useState<String>("hund");
+  const [artefact, setArtefact] = useState<Partial<Artefact>>({
+    ownerName: "ägare",
+    dogName: "hund",
+  });
+
 
   useEffect(() => {
     (async function () {
       setIsLoggedIn(await authModel.loggedIn());
       const artefactObj = await artefactsModel.getArtefactByEmail();
+      console.log(artefactObj)
       if (artefactObj) {
-        setProfileName(artefactObj.ownerName);
+        setArtefact({ ...artefact, ownerName: artefactObj.ownerName, dogName:artefactObj.dogName });
       }
     })();
   }, []);
@@ -76,21 +82,19 @@ export default function App() {
           }}
         >
           <Tab.Screen name="Hem">
-            {() => <Home profileName={profileName} dogName={dogName} isLoggedIn={isLoggedIn} />}
+            {() => <Home artefact={artefact} isLoggedIn={isLoggedIn} />}
           </Tab.Screen>
           {isLoggedIn ?
             <Tab.Screen name="Profil">
               {() => <Profile
-                profileName={profileName}
-                setProfilename={setProfileName}
-                dogName={dogName}
-                setDogName={setDogName}
+                artefact={artefact}
+                setArtefact={setArtefact}
                 setIsLoggedIn={setIsLoggedIn}
               />}
             </Tab.Screen>
             :
             <Tab.Screen name="Inlogg">
-              {() => <Auth setIsLoggedIn={setIsLoggedIn}/>}
+              {() => <Auth setIsLoggedIn={setIsLoggedIn} setArtefact={setArtefact}/>}
             </Tab.Screen>
           }
           <Tab.Screen name="Om" component={About} />
@@ -99,4 +103,5 @@ export default function App() {
       <StatusBar style="auto" />
     </SafeAreaView>
   );
+
 }

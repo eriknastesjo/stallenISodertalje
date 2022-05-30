@@ -8,20 +8,21 @@ import artefactsModel from '../../models/artefacts';
 // import { showMessage } from 'react-native-flash-message';
 
 
-export default function Owner({ navigation, profileName, setProfilename }) {
+export default function Owner({ navigation, artefact, setArtefact, setProfilename }) {
 
     const [currentName, setCurrentName] = useState<string>("");
 
     async function submit() {
-        setProfilename(currentName);
+        setArtefact({ ...artefact, ownerName: currentName });
 
         const newArtefact = {
             "ownerName": currentName,
-            "dogName":"wuff",
+            "dogName": artefact.dogName,
         }
         await artefactsModel.setArtefact(newArtefact);
 
         navigation.navigate("ProfilMeny");
+
     }
 
     // console.log(setProfilename);
