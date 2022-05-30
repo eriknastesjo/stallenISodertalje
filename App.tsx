@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
 
 import authModel from './models/auth';
+import artefactsModel from './models/artefacts';
 
 import Home from './components/Home/Home';
 import About from './components/About/About';
@@ -40,6 +41,10 @@ export default function App() {
   useEffect(() => {
     (async function () {
       setIsLoggedIn(await authModel.loggedIn());
+      const artefactObj = await artefactsModel.getArtefactByEmail();
+      if (artefactObj) {
+        setProfileName(artefactObj.ownerName);
+      }
     })();
   }, []);
 
@@ -80,11 +85,12 @@ export default function App() {
                 setProfilename={setProfileName}
                 dogName={dogName}
                 setDogName={setDogName}
-                setIsLoggedIn={setIsLoggedIn} />}
+                setIsLoggedIn={setIsLoggedIn}
+              />}
             </Tab.Screen>
             :
             <Tab.Screen name="Inlogg">
-              {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
+              {() => <Auth setIsLoggedIn={setIsLoggedIn}/>}
             </Tab.Screen>
           }
           <Tab.Screen name="Om" component={About} />

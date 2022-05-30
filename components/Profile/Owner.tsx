@@ -1,14 +1,28 @@
 import { useState } from 'react';
-import { View, ScrollView, Text, TextInput, Button } from "react-native";
-import { Base, Typography, Forms } from '../../styles';
-// import ProductDropDown from './ProductDropDown';
+import { View, ScrollView, Text, TextInput, Button, TouchableOpacity } from "react-native";
+import { Base, Typography, Forms, Buttons } from '../../styles';
+
+import auth from '../../models/auth';
+import artefactsModel from '../../models/artefacts';
 
 // import { showMessage } from 'react-native-flash-message';
 
 
 export default function Owner({ navigation, profileName, setProfilename }) {
 
-    // const [currentProduct, setCurrentProduct] = useState<Product[]>([]);
+    const [currentName, setCurrentName] = useState<string>("");
+
+    async function submit() {
+        setProfilename(currentName);
+
+        const newArtefact = {
+            "ownerName": currentName,
+            "dogName":"wuff",
+        }
+        await artefactsModel.setArtefact(newArtefact);
+
+        navigation.navigate("ProfilMeny");
+    }
 
     // console.log(setProfilename);
 
@@ -28,12 +42,16 @@ export default function Owner({ navigation, profileName, setProfilename }) {
             <TextInput
                 style={Forms.input}
                 onChangeText={(content: string) => {
-                    setProfilename(content)
+                    setCurrentName(content);
                 }}
                 placeholder="Skriv ditt namn här"
                 selectionColor={'#46A450'}
                 // value={delivery?.comment}
             />
+            <TouchableOpacity onPress={() => { submit(); }} style={Buttons.buttonProfileCenter}>
+                <Text style={Typography.boldButtonSideWhite}>Spara</Text>
+            </TouchableOpacity>
+
             {/* <Button
                 title="Gör inleverans"
                 color='#A85D14'

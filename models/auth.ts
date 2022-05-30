@@ -4,15 +4,27 @@ import storage from "./storage";
 
 const auth = {
     loggedIn: async function loggedIn() {
-        const token = await storage.readToken();
+        const token = await storage.readTokenAndEmail();
         if (token) {
             const twentyFourHours = 1000 * 60 * 60 * 24;
             const notExpired = (new Date().getTime() - token.date) < twentyFourHours;
-            console.log(token);
+            // console.log(token);
             return token && notExpired;
         }
         return false;
-        // return token && notExpired;
+    },
+    getEmail: async function getEmail() {
+        const token = await storage.readTokenAndEmail();
+        if (token) {
+            return token.email;
+            // const twentyFourHours = 1000 * 60 * 60 * 24;
+            // const notExpired = (new Date().getTime() - token.date) < twentyFourHours;
+            // if (notExpired) {
+            //     return token.email;
+            // }
+            // return "";
+        }
+        return "";
     },
     login: async function login(email: string, password: string) {
         const data = {
@@ -20,7 +32,7 @@ const auth = {
             email: email,
             password: password,
         };
-        const response = await fetch(`${config.auth_url}login`, {
+        const response = await fetch(`${config.auth_url}/login`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -40,7 +52,7 @@ const auth = {
             };
         }
 
-        await storage.storeToken(result.data.token);
+        await storage.storeTokenAndEmail(result.data.token, result.data.user.email);
 
         return {
             title: "Lyckat",
@@ -54,7 +66,7 @@ const auth = {
             email: email,
             password: password,
         };
-        const response = await fetch(`${config.auth_url}register`, {
+        const response = await fetch(`${config.auth_url}/register`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -84,7 +96,7 @@ const auth = {
         };
     },
     logout: async function logout() {
-        await storage.deleteToken();
+        await storage.deleteTokenAndEmail();
     }
 };
 

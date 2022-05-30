@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { View, ScrollView, Text, TextInput, Button } from "react-native";
-import { Base, Typography, Forms } from '../../styles';
+import { View, ScrollView, Text, TextInput, Button, TouchableOpacity } from "react-native";
+import { Base, Typography, Forms, Buttons } from '../../styles';
 // import ProductDropDown from './ProductDropDown';
 
 // import { showMessage } from 'react-native-flash-message';
@@ -8,7 +8,13 @@ import { Base, Typography, Forms } from '../../styles';
 
 export default function Dog({ navigation, dogName, setDogName }) {
 
-    // const [currentProduct, setCurrentProduct] = useState<Product[]>([]);
+    const [currentName, setCurrentName] = useState<string>("");
+
+    function submit() {
+        setDogName(currentName);
+        // todo: spara i artefact också!!!!
+        navigation.navigate("ProfilMeny");
+    }
 
     // console.log(setProfilename);
 
@@ -28,12 +34,17 @@ export default function Dog({ navigation, dogName, setDogName }) {
             <TextInput
                 style={Forms.input}
                 onChangeText={(content: string) => {
-                    setDogName(content)
+                    setCurrentName(content)
                 }}
                 placeholder="Skriv hundens namn här"
                 selectionColor={'#46A450'}
             // value={delivery?.comment}
             />
+
+            <TouchableOpacity onPress={() => { submit(); }} style={Buttons.buttonProfileCenter}>
+                <Text style={Typography.boldButtonSideWhite}>Spara</Text>
+            </TouchableOpacity>
+
             {/* <Button
                 title="Gör inleverans"
                 color='#A85D14'

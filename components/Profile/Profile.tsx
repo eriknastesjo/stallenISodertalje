@@ -24,13 +24,13 @@ export default function Profile(props) {
                     <Owner {...screenProps}
                         profileName={props.profileName}
                         setProfilename={props.setProfilename}
-                    />}
+                        />}
             </Stack.Screen>
             <Stack.Screen name="Hund">
                 {(screenProps) =>
                     <Dog {...screenProps}
-                        dogName={props.dogName}
-                        setDogName={props.setDogName}
+                    dogName={props.dogName}
+                    setDogName={props.setDogName}
                     />}
             </Stack.Screen>
         </Stack.Navigator>

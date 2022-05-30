@@ -15,7 +15,7 @@ export default function Deliveries(props) {
         <Stack.Navigator initialRouteName="LoginMenu">
             <Stack.Screen name="LoginMenu" component={Choice} options={{ headerShown: false }}/>
             <Stack.Screen name="Logga in">
-                {(screenProps) => <Login {...screenProps} setIsLoggedIn={props.setIsLoggedIn} />}
+                {(screenProps) => <Login {...screenProps} setIsLoggedIn={props.setIsLoggedIn}/>}
             </Stack.Screen>
             <Stack.Screen name="Registrera" component={Register} />
         </Stack.Navigator>

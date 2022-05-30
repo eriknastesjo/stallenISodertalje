@@ -1,10 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const storage = {
-    storeToken: async function storeToken(token: string) {
+    storeTokenAndEmail: async function storeTokenAndEmail(token: string, email: string) {
         try {
             const tokenAndDate = {
                 token: token,
+                email: email,
                 date: new Date().getTime(),
             };
             const jsonValue = JSON.stringify(tokenAndDate);
@@ -14,7 +15,7 @@ const storage = {
             // saving error
         }
     },
-    readToken: async function readToken(): Promise<any> {
+    readTokenAndEmail: async function readTokenAndEmail(): Promise<any> {
         try {
             const jsonValue = await AsyncStorage.getItem('@token');
             return jsonValue != null ? JSON.parse(jsonValue) : null;
@@ -22,7 +23,7 @@ const storage = {
             // error reading value
         }
     },
-    deleteToken: async function deleteToken() {
+    deleteTokenAndEmail: async function deleteToken() {
         await AsyncStorage.removeItem('@token');
     }
 };

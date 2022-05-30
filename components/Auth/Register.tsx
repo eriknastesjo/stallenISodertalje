@@ -1,6 +1,6 @@
 import Auth from '../../interfaces/auth';
 import { useState } from 'react';
-import AuthModel from '../../models/auth';
+import authModel from '../../models/auth';
 import AuthFields from './Authfields';
 // import { showMessage } from 'react-native-flash-message';
 
@@ -10,7 +10,7 @@ export default function Register({ navigation, setIsLoggedIn }) {
 
     async function doRegister() {
         if (auth.email && auth.password) {
-            const result = await AuthModel.register(auth.email, auth.password);
+            const result = await authModel.register(auth.email, auth.password);
 
             // console.log(result);
             if (result.type === "success") {
