@@ -23,7 +23,7 @@ export default function Map(props) {
                 identifier="there"
             />);
 
-            console.log(park.namn);
+            // console.log(park.namn);
 
             setInitRegion({
                 latitude: parseFloat(park.latitude),

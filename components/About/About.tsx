@@ -42,7 +42,7 @@ export default function About() {
                 <Text style={Typography.header1}>Om appen</Text>
 
                 <Text style={Typography.normal}>
-                    Välkommen till <Text style={Typography.bold}>Hundliv i Södertälje</Text>. Här kan du hitta information om parker och hundrastgårdar i Södertäljes kommun. Du kan välja att leta i en listad vy där du ser alla namnen på platserna. Du kan också välja att se alla platserna i en kartvy.
+                    Välkommen till <Text style={Typography.bold}>Södertäljes hundliv</Text>. Här kan du hitta information om parker och hundrastgårdar i Södertäljes kommun. Du kan välja att leta i en listad vy där du ser alla namnen på platserna. Du kan också välja att se alla platserna i en kartvy.
                 </Text>
 
                 <Text style={Typography.normalMoreMargin}>

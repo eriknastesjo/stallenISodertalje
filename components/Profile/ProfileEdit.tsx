@@ -3,7 +3,7 @@ import { View, Text, Button, TouchableOpacity, Image } from "react-native";
 import { Typography, Buttons, Images } from '../../styles';
 import AuthModel from '../../models/auth';
 
-import artefactsModel from '../../models/artefacts';
+// import artefactsModel from '../../models/artefacts';
 // import { showMessage } from 'react-native-flash-message';
 
 export default function ProfileEdit(props) {
