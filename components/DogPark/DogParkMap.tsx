@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Base, Typography } from '../../styles';
-import Map from '../Shared/MapAll';
+import MapAll from '../Shared/MapAll';
 import dogParkModel from '../../models/dogPark';
 
 export default function ParkMap() {
@@ -29,7 +29,7 @@ export default function ParkMap() {
         <View style={Base.container}>
             <Text style={Typography.header2}>Hundrastgårdar</Text>
             <View style={Base.mapContainer}>
-                <Map parks={listOfParks} />
+                <MapAll parks={listOfParks} />
             </View>
 
         </View>

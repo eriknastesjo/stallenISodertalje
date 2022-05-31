@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, SafeAreaView, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
-import dogParkModel from '../../models/park';
+import dogParkModel from '../../models/dogPark';
 import { Typography, Base, Buttons } from '../../styles';
+import OrderedButtonsList from '../Shared/OrderedButtonsList';
 
 
 export default function DogParkList({ navigation }) {
@@ -26,41 +27,10 @@ export default function DogParkList({ navigation }) {
         });
 
 
-    listToSort.sort((a, b) => {
-        let fa = a.namn.toLowerCase(),
-            fb = b.namn.toLowerCase();
-
-        if (fa < fb) {
-            return -1;
-        }
-        if (fa > fb) {
-            return 1;
-        }
-
-        return 0;
-    });
-
-
-    const listOfDogParks = listToSort
-        .map((dogPark, index) => {
-            return <View style={Buttons.buttonContainer} key={index}>
-                <TouchableOpacity
-                    style={Buttons.button2}
-                    onPress={() => {
-                        navigation.navigate('Detaljer', {
-                            detailObj: dogPark
-                        });
-                    }}
-                >
-                    <Text style={Typography.normalButton}>{dogPark.namn}</Text>
-                </TouchableOpacity>
-            </View>
-        });
-
     return (
         <ScrollView>
             <Text style={Typography.header1}>Hundrastgårdar</Text>
-            {listOfDogParks}
+            <OrderedButtonsList navigation={navigation} listOfItems={listToSort}/>
         </ScrollView>
     );
 };

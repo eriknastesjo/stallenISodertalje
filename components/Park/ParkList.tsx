@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, Button, ScrollView, TouchableOpac
 import { useState, useEffect } from 'react';
 import parkModel from '../../models/park';
 import { Typography, Base, Buttons } from '../../styles';
-
+import OrderedButtonsList from '../Shared/OrderedButtonsList';
 
 export default function ParkList({navigation}) {
 
@@ -45,46 +45,10 @@ export default function ParkList({navigation}) {
             }
         });
 
-    sortList(listToSort);
-
-    const listOfParks = listToSort
-        .map((park, index) => {
-            return <View style={Buttons.buttonContainer} key={index}>
-                    <TouchableOpacity
-                    style={Buttons.button2}
-                    onPress={() => {
-                        navigation.navigate('Detaljer', {
-                            detailObj: park
-                        });
-                    }}
-                >
-                        <Text style={Typography.normalButton}>{park.namn}</Text>
-                    </TouchableOpacity>
-                </View>
-        });
-
     return (
         <ScrollView style={Base.backgroundCol}>
-            <View style={Base.centerContainer}></View>
             <Text style={Typography.header1}>Parker</Text>
-            {listOfParks}
+            <OrderedButtonsList navigation={navigation} listOfItems={listToSort} />
         </ScrollView>
     );
 };
-
-
-function sortList(listToSort: Array<any>) {
-    listToSort.sort((a, b) => {
-        let fa = a.namn.toLowerCase(),
-            fb = b.namn.toLowerCase();
-
-        if (fa < fb) {
-            return -1;
-        }
-        if (fa > fb) {
-            return 1;
-        }
-
-        return 0;
-    });
-}
