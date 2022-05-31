@@ -33,7 +33,7 @@ export default function ProfileEdit(props) {
             <TouchableOpacity
                 style={Buttons.buttonProfile}
                 onPress={() => {props.navigation.navigate('Ägare');}}>
-                <Image source={require("../../assets/heart.png")} style={Images.buttonIconStart} />
+                <Image source={require("../../assets/ownerIcon.png")} style={Images.buttonIconStart} />
                 <Text style={Typography.boldButtonSideWhite}>{props.artefact.ownerName}</Text>
                 <View style={Buttons.buttonArrow}><AntDesign name="rightcircle" size={22} color="white" /></View>
             </TouchableOpacity>
@@ -42,8 +42,8 @@ export default function ProfileEdit(props) {
             {/* Hund */}
             <TouchableOpacity
                 style={Buttons.buttonProfile}
-                onPress={() => {props.navigation.navigate('Hund');}}>
-                <Image source={require("../../assets/heart.png")} style={Images.buttonIconStart} />
+                onPress={() => { props.navigation.navigate('Hund'); }}>
+                <Image source={require("../../assets/dogIcon.png")} style={Images.buttonIconStart} />
                 <Text style={Typography.boldButtonSideWhite}>{props.artefact.dogName}</Text>
                 <View style={Buttons.buttonArrow}><AntDesign name="rightcircle" size={22} color="white" /></View>
             </TouchableOpacity>
