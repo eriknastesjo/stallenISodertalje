@@ -15,25 +15,6 @@ export default function ParkList({navigation}) {
         })();
     }, []);
 
-
-    // listToSort behövs här för att bli av med '﻿'
-    // framför namn key så att det går att sortera!
-
-    // const listToSort: Array= [];
-
-    // for (let i = 0; i < parks.length; i++) {
-    //     listToSort.push({
-    //         "beskrivning": parks[i]["beskrivning"],
-    //         "latitude": parks[i]["nord-koordinat (wgs84)"],
-    //         "longitude": parks[i]["ost-koordinat (wgs84)"],
-    //         "webbsida": parks[i]["webbsida"],
-    //         "namn": parks[i]["﻿namn"],
-
-    //     });
-    // }
-
-    // Obs! map är snyggare att använda än for loop (jämför ovan med nedan)!
-
     const listToSort = parks
         .map((park) => {
             return {
