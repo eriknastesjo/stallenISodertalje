@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { View, ScrollView, Text, TextInput, Button, TouchableOpacity } from "react-native";
 import { Base, Typography, Forms, Buttons } from '../../styles';
+import { showMessage } from 'react-native-flash-message';
 import artefactsModel from '../../models/artefacts';
 
 // import ProductDropDown from './ProductDropDown';
@@ -26,6 +27,11 @@ export default function Dog({ navigation, artefact, setArtefact }) {
             "dogName": currentName,
         }
         await artefactsModel.setArtefact(newArtefact);
+
+        showMessage({
+            message: `Duktig hund, ${currentName}!`,
+            type: "success",
+        });
 
         navigation.navigate("ProfilMeny");
     }

@@ -6,6 +6,7 @@ import { Typography, Base } from './styles';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
+import FlashMessage from "react-native-flash-message";
 
 import authModel from './models/auth';
 import artefactsModel from './models/artefacts';
@@ -33,6 +34,13 @@ const library = {
   "Inlogg": "ionicons",
   "Profil": "ionicons",
 };
+
+FlashMessage.setColorTheme({
+  success: "#038310",
+  info: "#1371C3",
+  warning: "#C66200",
+  danger: "#D23930",
+});
 
 export default function App() {
 
@@ -101,6 +109,7 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
+      <FlashMessage position="top" setColorTheme=""/>
     </SafeAreaView>
   );
 

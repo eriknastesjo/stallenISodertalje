@@ -1,3 +1,4 @@
+import { showMessage } from 'react-native-flash-message';
 import { Ionicons, Foundation, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { View, Text, Button, TouchableOpacity, Image } from "react-native";
 import { Typography, Buttons, Images } from '../../styles';
@@ -15,11 +16,11 @@ export default function ProfileEdit(props) {
             dogName: "hund",
         });
         AuthModel.logout();
-        // showMessage({
-        //     message: "Information",
-        //     description: "Du är utloggad",
-        //     type: "info",
-        // });
+        showMessage({
+            message: "Information",
+            description: "Du är utloggad",
+            type: "info",
+        });
     }
 
     return (

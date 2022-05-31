@@ -47,7 +47,7 @@ const auth = {
         if (Object.prototype.hasOwnProperty.call(result, 'errors')) {
             return {
                 title: "Misslyckat",
-                message: "Fel e-post eller lösenord",
+                message: "Fel e-post och/eller lösenord",
                 type: "danger",
             };
         }
@@ -55,7 +55,7 @@ const auth = {
         await storage.storeTokenAndEmail(result.data.token, result.data.user.email);
 
         return {
-            title: "Lyckat",
+            title: "Lyckat!",
             message: "Du är inloggad",
             type: result.data.type,
         };
@@ -90,7 +90,7 @@ const auth = {
         }
 
         return {
-            title: "Lyckat",
+            title: "Lyckat!",
             message: "Du är registrerad",
             type: "success",
         };

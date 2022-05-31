@@ -1,4 +1,5 @@
 import Auth from '../../interfaces/auth';
+import { showMessage } from 'react-native-flash-message';
 import { useState } from 'react';
 import authModel from '../../models/auth';
 import AuthFields from './Authfields';
@@ -21,17 +22,17 @@ export default function Login({ navigation, setIsLoggedIn, setArtefact }) {
                 }
             }
 
-            // showMessage({
-            //     message: result.title,
-            //     description: result.message,
-            //     type: result.type,
-            // });
+            showMessage({
+                message: result.title,
+                description: result.message,
+                type: result.type,
+            });
         } else {
-            // showMessage({
-            //     message: "Varning",
-            //     description: "E-post och/eller lösenord saknas",
-            //     type: "warning",
-            // });
+            showMessage({
+                message: "Varning",
+                description: "E-post och/eller lösenord saknas",
+                type: "warning",
+            });
         }
     }
 

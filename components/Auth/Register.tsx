@@ -1,8 +1,8 @@
 import Auth from '../../interfaces/auth';
+import { showMessage } from 'react-native-flash-message';
 import { useState } from 'react';
 import authModel from '../../models/auth';
 import AuthFields from './Authfields';
-// import { showMessage } from 'react-native-flash-message';
 
 export default function Register({ navigation, setIsLoggedIn }) {
     const [auth, setAuth] = useState<Partial<Auth>>({});
@@ -12,23 +12,23 @@ export default function Register({ navigation, setIsLoggedIn }) {
         if (auth.email && auth.password) {
             const result = await authModel.register(auth.email, auth.password);
 
+            showMessage({
+                message: result.title,
+                description: result.message,
+                type: result.type,
+            });
             // console.log(result);
             if (result.type === "success") {
                 console.log("SUCCESS");
                 navigation.navigate("Logga in");
             }
 
-            // showMessage({
-            //     message: result.title,
-            //     description: result.message,
-            //     type: result.type,
-            // });
         } else {
-            // showMessage({
-            //     message: "Varning",
-            //     description: "E-post och/eller lösenord saknas",
-            //     type: "warning",
-            // });
+            showMessage({
+                message: "Varning",
+                description: "E-post och/eller lösenord saknas",
+                type: "warning",
+            });
         }
     }
 
