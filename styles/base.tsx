@@ -23,7 +23,6 @@ export const backgroundCol = {
 }
 
 export const rowContainer = {
-    flex: 1,
     flexWrap: "wrap",
     flexDirection: 'row'
 }

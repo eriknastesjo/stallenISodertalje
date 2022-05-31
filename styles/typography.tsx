@@ -8,6 +8,16 @@ export const header1 = {
     paddingTop: 25,
     paddingBottom: 15,
 };
+export const header1NoMargin = {
+    color: '#2F7E36',
+    fontSize: 40,
+    fontFamily: "sans-serif",
+    // fontWeight: 'bold',
+    textAlign: "center",
+    marginBottom: 0,
+    paddingTop: 25,
+    // paddingBottom: 15,
+};
 
 export const header2 = {
     color: '#2F7E36',
@@ -17,6 +27,17 @@ export const header2 = {
     textAlign: "center",
     paddingTop: 25,
     paddingBottom: 15,
+};
+
+export const header3 = {
+    color: '#2F7E36',
+    fontSize: 25,
+    fontFamily: "sans-serif",
+    // fontWeight: 'bold',
+    textAlign: "center",
+    // paddingTop: 10,
+    // paddingBottom: 15,
+    marginBottom: 30,
 };
 
 export const normal = {

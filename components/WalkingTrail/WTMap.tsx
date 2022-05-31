@@ -10,7 +10,7 @@ export default function ParkMap() {
 
     useEffect(() => {
         (async function () {
-            setParks(await sodertaljeModel.getData("2cc90eb1-2c6a-444b-ab52-e4bcd22c7130"));
+            setParks(await sodertaljeModel.getData("f6b33e8d-19bd-4d2d-a59b-35c4df352a2c"));
         })();
     }, []);
 
@@ -28,7 +28,7 @@ export default function ParkMap() {
 
     return (
         <View style={Base.container}>
-            <Text style={Typography.header2}>Parker</Text>
+            <Text style={Typography.header2}>Vandringsleder</Text>
             <View style={Base.mapContainer}>
                 <MapAll parks={listOfParks}/>
             </View>

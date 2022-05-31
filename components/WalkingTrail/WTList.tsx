@@ -11,7 +11,7 @@ export default function ParkList({navigation}) {
 
     useEffect(() => {
         (async function () {
-            setParks(await sodertaljeModel.getData("2cc90eb1-2c6a-444b-ab52-e4bcd22c7130"));
+            setParks(await sodertaljeModel.getData("f6b33e8d-19bd-4d2d-a59b-35c4df352a2c"));
         })();
     }, []);
 
@@ -47,7 +47,8 @@ export default function ParkList({navigation}) {
 
     return (
         <ScrollView style={Base.backgroundCol}>
-            <Text style={Typography.header1}>Parker</Text>
+            <Text style={Typography.header1NoMargin}>Vandringsleder</Text>
+            <Text style={Typography.header3}>(Startpunkter)</Text>
             <OrderedButtonsList navigation={navigation} listOfItems={listToSort} />
         </ScrollView>
     );

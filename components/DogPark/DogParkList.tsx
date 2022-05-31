@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
-import dogParkModel from '../../models/dogPark';
+import sodertaljeModel from '../../models/sodertalje';
 import { Typography, Base, Buttons } from '../../styles';
 import OrderedButtonsList from '../Shared/OrderedButtonsList';
 
@@ -12,7 +12,7 @@ export default function DogParkList({ navigation }) {
 
     useEffect(() => {
         (async function () {
-            setDogParks(await dogParkModel.getData());
+            setDogParks(await sodertaljeModel.getData("1d83a1df-16ca-4bfd-8bc7-242747231b60"));
         })();
     }, []);
 

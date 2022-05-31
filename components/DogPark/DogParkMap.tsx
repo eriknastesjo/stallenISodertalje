@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Base, Typography } from '../../styles';
 import MapAll from '../Shared/MapAll';
-import dogParkModel from '../../models/dogPark';
+import sodertaljeModel from '../../models/sodertalje';
 
 export default function ParkMap() {
     const [parks, setParks] = useState([]);
@@ -10,7 +10,7 @@ export default function ParkMap() {
 
     useEffect(() => {
         (async function () {
-            setParks(await dogParkModel.getData());
+            setParks(await sodertaljeModel.getData("1d83a1df-16ca-4bfd-8bc7-242747231b60"));
         })();
     }, []);
 

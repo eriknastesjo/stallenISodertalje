@@ -11,6 +11,11 @@ export default function Menu({ artefact, isLoggedIn, navigation}) {
         navigation.navigate("Hundrastgård");
     }
 
+    function goToWalkingTrail() {
+        navigation.navigate("Vandringsled");
+    }
+
+
     return (
         <View style={Base.centerContainer}>
             <Image source={require("../../assets/heart.png")} style={Images.heart} />
@@ -22,7 +27,6 @@ export default function Menu({ artefact, isLoggedIn, navigation}) {
                 <Image source={require("../../assets/profilePic.png")} style={Images.profilePic} />
             }
 
-
             <View style={Base.rowContainer}>
                 <View style={Buttons.buttonContainer}>
                     <TouchableOpacity onPress={goToPark} style={Buttons.button}>
@@ -32,6 +36,18 @@ export default function Menu({ artefact, isLoggedIn, navigation}) {
 
                 <View style={Buttons.buttonContainer}>
                     <TouchableOpacity onPress={goToDogPark} style={Buttons.button}>
+                        <Image source={require("../../assets/hundrastgård.png")} style={Images.buttonImage} />
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <View style={Base.rowContainer}>
+                <View style={Buttons.buttonContainer}>
+                    <TouchableOpacity onPress={goToWalkingTrail} style={Buttons.button}>
+                        <Image source={require("../../assets/hundrastgård.png")} style={Images.buttonImage} />
+                    </TouchableOpacity>
+                </View>
+                <View style={Buttons.buttonContainer}>
+                    <TouchableOpacity onPress={goToWalkingTrail} style={Buttons.button}>
                         <Image source={require("../../assets/hundrastgård.png")} style={Images.buttonImage} />
                     </TouchableOpacity>
                 </View>
