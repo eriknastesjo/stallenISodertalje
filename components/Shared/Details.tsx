@@ -18,6 +18,10 @@ export default function Details({ route }) {
                     <Text style={Typography.normalCenter}>{detailObj.beskrivning}</Text>
                 }
                 {
+                    detailObj.information !== undefined && detailObj.information !== "" &&
+                    <Text style={Typography.normalCenter}>{detailObj.information}</Text>
+                }
+                {
                     detailObj.webbsida !== undefined && detailObj.webbsida !== "" &&
                     <View style={Buttons.buttonContainer}>
                         <TouchableOpacity

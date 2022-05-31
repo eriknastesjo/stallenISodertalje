@@ -15,6 +15,10 @@ export default function Menu({ artefact, isLoggedIn, navigation}) {
         navigation.navigate("Vandringsled");
     }
 
+    function goToNatureReserve() {
+        navigation.navigate("Naturreservat");
+    }
+
 
     return (
         <View style={Base.centerContainer}>
@@ -47,7 +51,7 @@ export default function Menu({ artefact, isLoggedIn, navigation}) {
                     </TouchableOpacity>
                 </View>
                 <View style={Buttons.buttonContainer}>
-                    <TouchableOpacity onPress={goToWalkingTrail} style={Buttons.button}>
+                    <TouchableOpacity onPress={goToNatureReserve} style={Buttons.button}>
                         <Image source={require("../../assets/hundrastgård.png")} style={Images.buttonImage} />
                     </TouchableOpacity>
                 </View>
