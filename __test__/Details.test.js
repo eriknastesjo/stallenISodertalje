@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react-native';
-import Details from '../components/Park/Details';
+import Details from '../components/Shared/Details';
 
 jest.useFakeTimers();   // inte säker på vad detta är men utan den blir det felmeddelande
 // ReferenceError: You are trying to `import` a file after the Jest environment has been torn down.
@@ -9,7 +9,7 @@ jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');  // för att 
 
 const route = {
     params: {
-        park : {
+        detailObj : {
             "beskrivning": "Beskrivning av riktigt fint ställe.",
             "latitude": "56.1940915",
             "longitude": "15.8402871",

@@ -6,7 +6,7 @@ import Map from "./MapSingle";
 
 export default function Details({ route }) {
     const { detailObj } = route.params; // se i ParkList funktionen listOfParks och vid 'Onpress'
-    console.log(detailObj);
+    // console.log(detailObj);
 
     return (
         <View style={Base.container}>
