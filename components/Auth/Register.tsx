@@ -12,7 +12,7 @@ export default function Register({ navigation, setIsLoggedIn, artefact, setArtef
 
 
     async function doRegister() {
-        if (auth.email && auth.password) {
+        if (auth.email && auth.password && auth.ownerName && auth.dogName) {
             const result = await authModel.register(auth.email, auth.password);
 
 
@@ -39,7 +39,7 @@ export default function Register({ navigation, setIsLoggedIn, artefact, setArtef
         } else {
             showMessage({
                 message: "Varning",
-                description: "E-post och/eller lösenord saknas",
+                description: "Alla fält måste vara ifyllda",
                 type: "warning",
             });
         }
