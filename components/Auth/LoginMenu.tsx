@@ -3,7 +3,7 @@ import { Ionicons, Foundation, AntDesign, SimpleLineIcons } from '@expo/vector-i
 import { View, Text, Button, TouchableOpacity } from "react-native";
 import { Typography, Base, Buttons } from '../../styles';
 
-export default function LoginMenu({ navigation, setIsLoggedIn}) {
+export default function LoginMenu({ navigation }) {
 
 
     function goToLogin() {

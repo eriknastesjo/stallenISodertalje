@@ -9,10 +9,10 @@ import parkModel from "../../models/park";
 export default function Map(props) {
 
     const parks = props.parks;
-    const markerImgURL = props.markerImgURL;
+    const markerImgURL = props.markerImgURL;    // är tänkt för att kunna skapa custom markers i framtiden
     let listOfMarks;
 
-    console.log(parks);
+    // console.log(parks);
 
     // const [markers, setAllMarkers] = useState(null); // hinner inte uppdateras innan kartan renderar markörer
     const [locationMarker, setLocationMarker] = useState(null);

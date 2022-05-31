@@ -6,15 +6,31 @@ jest.useFakeTimers();   // inte säker på vad detta är men utan den blir det f
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');  // för att slippa få felmeddelande från useFakeTimers
 
 const artefact = {
-    ownerName: "ägare",
-    dogName: "hund",
+    ownerName: "Erik",
+    dogName: "Voffe",
 };
 
 
 test('header should exist containing text "vart vill ni gå idag"', async () => {
-    const { getByText } = render(<Menu artefact={artefact} isLoggedIn='false'/>);
+    const { getByText } = render(<Menu artefact={artefact} isLoggedIn='false' />);
+
+    // // uncomment to see what is rendered in OrderList component:
+    // const { getByText, debug } = render(<Menu artefact={artefact} isLoggedIn='false' />);
+    // debug("Menu component");
 
     const header = await getByText('vart vill ni gå idag?');
+
+    expect(header).toBeDefined();
+});
+
+test('header should exist containing owner name and dog name', async () => {
+    const { getByText } = render(<Menu artefact={artefact} isLoggedIn='true' />);
+
+    // // uncomment to see what is rendered in OrderList component:
+    // const { getByText, debug } = render(<Menu artefact={artefact} isLoggedIn='true' />);
+    // debug("Menu component");
+
+    const header = await getByText('Hej Erik och Voffe,');
 
     expect(header).toBeDefined();
 });
