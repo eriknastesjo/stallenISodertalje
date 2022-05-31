@@ -54,7 +54,7 @@ export default function ParkList({navigation}) {
                     style={Buttons.button2}
                     onPress={() => {
                         navigation.navigate('Detaljer', {
-                            park: park
+                            detailObj: park
                         });
                     }}
                 >

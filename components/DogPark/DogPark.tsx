@@ -5,16 +5,16 @@ import { getStateFromPath } from '@react-navigation/native';
 import DogParkMenu from './DogParkMenu';
 import DogParkList from './DogParkList';
 import DogParkMap from './DogParkMap';
-import DogParkDetails from './Details';
 
+import Details from '../Shared/Details';
 
 const Stack = createNativeStackNavigator();
 
-export default function Home(props) {
+export default function DogPark() {
     return (
         <Stack.Navigator initialRouteName="Hundrastgård Meny">
             <Stack.Screen name="Hundrastgård Meny" component={DogParkMenu} options={{ title: "Hundrastgård" }} />
-            <Stack.Screen name="Detaljer" component={DogParkDetails} />
+            <Stack.Screen name="Detaljer" component={Details} />
             <Stack.Screen name="Lista" component={DogParkList} />
             <Stack.Screen name="Karta" component={DogParkMap} />
         </Stack.Navigator>

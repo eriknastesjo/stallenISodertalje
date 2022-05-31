@@ -48,7 +48,7 @@ export default function DogParkList({ navigation }) {
                     style={Buttons.button2}
                     onPress={() => {
                         navigation.navigate('Detaljer', {
-                            dogPark: dogPark
+                            detailObj: dogPark
                         });
                     }}
                 >
