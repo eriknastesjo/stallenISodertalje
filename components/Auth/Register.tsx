@@ -4,7 +4,10 @@ import { useState } from 'react';
 import authModel from '../../models/auth';
 import AuthFields from './Authfields';
 
-export default function Register({ navigation, setIsLoggedIn }) {
+import artefactsModel from '../../models/artefacts';
+
+
+export default function Register({ navigation, setIsLoggedIn, artefact, setArtefact }) {
     const [auth, setAuth] = useState<Partial<Auth>>({});
 
 
@@ -12,15 +15,25 @@ export default function Register({ navigation, setIsLoggedIn }) {
         if (auth.email && auth.password) {
             const result = await authModel.register(auth.email, auth.password);
 
+
             showMessage({
                 message: result.title,
                 description: result.message,
                 type: result.type,
             });
+
             // console.log(result);
             if (result.type === "success") {
                 console.log("SUCCESS");
-                navigation.navigate("Logga in");
+                await authModel.login(auth.email, auth.password);
+                setIsLoggedIn(true);
+                setArtefact({ ...artefact, ownerName: auth.ownerName, dogName: auth.dogName });
+
+                // await artefactsModel.setArtefact(artefact);  // artefact uppdateras inte i tid!
+                await artefactsModel.setArtefact({
+                        ownerName: auth.ownerName,
+                        dogName: auth.dogName,
+                    });
             }
 
         } else {

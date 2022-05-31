@@ -27,6 +27,7 @@ export default function Login({ navigation, setIsLoggedIn, setArtefact }) {
                 description: result.message,
                 type: result.type,
             });
+
         } else {
             showMessage({
                 message: "Varning",

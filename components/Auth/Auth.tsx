@@ -20,7 +20,13 @@ export default function Deliveries(props) {
                     setArtefact={props.setArtefact}
                 />}
             </Stack.Screen>
-            <Stack.Screen name="Registrera" component={Register} />
+            <Stack.Screen name="Registrera">
+                {(screenProps) => <Register {...screenProps}
+                    setIsLoggedIn={props.setIsLoggedIn}
+                    artefact={props.artefact}
+                    setArtefact={props.setArtefact}
+                />}
+            </Stack.Screen>
         </Stack.Navigator>
     );
 };

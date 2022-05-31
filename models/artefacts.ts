@@ -38,12 +38,12 @@ const artefactsModel = {
         });
         return artefact;
     },
-    setArtefact: async function setArtefact(artefact: Artefact): Promise<void> {
+    setArtefact: async function setArtefact(artefact: Partial<Artefact>): Promise<void> {
 
         const tokenObj = await storage.readTokenAndEmail();
         let oldArtefact = await this.getArtefactByEmail();
 
-        console.log(oldArtefact);
+        // console.log(oldArtefact);
 
         if (oldArtefact) {
             const data = {
@@ -52,9 +52,6 @@ const artefactsModel = {
                 api_key: config.api_key
             };
 
-            console.log(data);
-
-            // console.log(data);
             await fetch(`${config.auth_url}/data`, {
                 body: JSON.stringify(data),
                 headers: {
@@ -67,11 +64,11 @@ const artefactsModel = {
             return;
         }
 
-        console.log("CREATING...");
         const data = {
             artefact: JSON.stringify(artefact),
             api_key: config.api_key
         };
+
         await fetch(`${config.auth_url}/data`, {
             body: JSON.stringify(data),
             headers: {

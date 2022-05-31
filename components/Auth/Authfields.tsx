@@ -9,6 +9,28 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation })
             <Text></Text>
             <Text></Text>
             <ScrollView style={Base.content}>
+                {title === "Registrera dig" &&
+                    <View>
+                        <Text style={Typography.label}>Ditt namn</Text>
+                        <TextInput
+                            style={Forms.input}
+                            onChangeText={(content: string) => {
+                                setAuth({ ...auth, ownerName: content })
+                            }}
+                            value={auth?.ownerName}
+                            selectionColor={'#46A450'}
+                        />
+                        <Text style={Typography.label}>Hundens namn</Text>
+                        <TextInput
+                            style={Forms.input}
+                            onChangeText={(content: string) => {
+                                setAuth({ ...auth, dogName: content })
+                            }}
+                            value={auth?.dogName}
+                            selectionColor={'#46A450'}
+                        />
+                    </View>
+                }
                 <Text style={Typography.label}>E-post</Text>
                 <TextInput
                     style={Forms.input}

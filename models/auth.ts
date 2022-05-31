@@ -91,7 +91,7 @@ const auth = {
 
         return {
             title: "Lyckat!",
-            message: "Du är registrerad",
+            message: "Du är registrerad och inloggad",
             type: "success",
         };
     },

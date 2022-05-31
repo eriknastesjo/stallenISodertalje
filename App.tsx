@@ -102,7 +102,11 @@ export default function App() {
             </Tab.Screen>
             :
             <Tab.Screen name="Inlogg">
-              {() => <Auth setIsLoggedIn={setIsLoggedIn} setArtefact={setArtefact}/>}
+              {() => <Auth
+                setIsLoggedIn={setIsLoggedIn}
+                artefact={artefact}
+                setArtefact={setArtefact}
+              />}
             </Tab.Screen>
           }
           <Tab.Screen name="Om" component={About} />
