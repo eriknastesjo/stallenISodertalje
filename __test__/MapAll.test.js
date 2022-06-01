@@ -16,7 +16,7 @@ const data = [
         "namn": "Superparken",
     },
     {
-        "beskrivning": "Inte ett så fint ställe.",
+        "information": "Inte ett så fint ställe.",
         "latitude": "26.1940916",
         "longitude": "55.8402877",
         "namn": "Skurkparken",
