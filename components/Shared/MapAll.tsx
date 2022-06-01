@@ -65,7 +65,17 @@ export default function MapAll(props) {
 
     return (
         <View style={Base.container}>
-            <Text style={Typography.header2}>{props.title}</Text>
+            {/* <Text style={Typography.header2}>{props.title}</Text> */}
+            {props.subtitle !== undefined ?
+                <View>
+                    <Text style={Typography.header2NoMargin}>{props.title}</Text>
+                    <Text style={Typography.header3LessMargin}>{props.subtitle}</Text>
+                </View>
+                :
+                <View>
+                    <Text style={Typography.header2}>{props.title}</Text>
+                </View>
+            }
             <View style={Base.mapContainer}>
                 <MapView
                     loadingEnabled={true}

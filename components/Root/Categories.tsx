@@ -23,6 +23,7 @@ export default function Categories({ artefact, isLoggedIn, navigation}) {
         // navigation.navigate("Vandringsled");
         navigation.navigate('Vandringsled', {
             title: 'Vandringsleder',
+            subtitle: '(Startpunkter)',
             urlEnd: 'f6b33e8d-19bd-4d2d-a59b-35c4df352a2c',
         });
     }

@@ -17,8 +17,10 @@ import Details from '../Shared/Details';
 const Stack = createNativeStackNavigator();
 
 export default function Stacking({ route }) {
-    const { title, urlEnd } = route.params;
+    const { title, subtitle, urlEnd } = route.params;
     const [data, setData] = useState([]);
+
+    console.log(route.params);
 
     useEffect(() => {
         (async function () {
@@ -48,11 +50,13 @@ export default function Stacking({ route }) {
             <Stack.Screen name="Lista">{(props) => <List {...props}
                 listItems={refinedData}
                 title={title}
-            />}
+                subtitle={subtitle}
+                />}
             </Stack.Screen>
             <Stack.Screen name="Karta">{(props) => <MapAll {...props}
                 mapItems={refinedData}
                 title={title}
+                subtitle={subtitle}
             />}
             </Stack.Screen>
         </Stack.Navigator>

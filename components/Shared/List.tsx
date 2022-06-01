@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react';
 import { Typography, Base, Buttons } from '../../styles';
 
 
-export default function List({ navigation, listItems, title }) {
-
-    console.log("DONE IT!!!!!!!!");
+export default function List({ navigation, listItems, title, subtitle }) {
 
     // Get in alphabetical order
     listItems.sort((a, b) => {
@@ -42,7 +40,16 @@ export default function List({ navigation, listItems, title }) {
 
     return (
         <ScrollView style={Base.backgroundCol}>
-            <Text style={Typography.header1}>{title}</Text>
+            {subtitle !== undefined ?
+                <View>
+                    <Text style={Typography.header1NoMargin}>{title}</Text>
+                    <Text style={Typography.header3}>{subtitle}</Text>
+                </View>
+                :
+                <View>
+                    <Text style={Typography.header1}>{title}</Text>
+                </View>
+            }
             {listReturn}
         </ScrollView>
     );

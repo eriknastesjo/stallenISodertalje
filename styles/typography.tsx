@@ -29,6 +29,16 @@ export const header2 = {
     paddingBottom: 15,
 };
 
+export const header2NoMargin = {
+    color: '#2F7E36',
+    fontSize: 30,
+    fontFamily: "sans-serif",
+    // fontWeight: 'bold',
+    textAlign: "center",
+    paddingTop: 25,
+    // paddingBottom: 15,
+};
+
 export const header3 = {
     color: '#2F7E36',
     fontSize: 25,
@@ -38,6 +48,17 @@ export const header3 = {
     // paddingTop: 10,
     // paddingBottom: 15,
     marginBottom: 30,
+};
+
+export const header3LessMargin = {
+    color: '#2F7E36',
+    fontSize: 25,
+    fontFamily: "sans-serif",
+    // fontWeight: 'bold',
+    textAlign: "center",
+    // paddingTop: 10,
+    // paddingBottom: 15,
+    marginBottom: 15,
 };
 
 export const normal = {
