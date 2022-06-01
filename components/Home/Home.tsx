@@ -22,10 +22,9 @@ export default function Home({ artefact, isLoggedIn }) {
                 />}
             </Stack.Screen>
             <Stack.Screen name="Park" component={Stacking} />
-            {/* <Stack.Screen name="Park" component={Park} /> */}
-            <Stack.Screen name="Hundrastgård" component={DogPark} />
-            <Stack.Screen name="Vandringsled" component={WalkingTrail} />
-            <Stack.Screen name="Naturreservat" component={NatureReserve} />
+            <Stack.Screen name="Hundrastgård" component={Stacking} />
+            <Stack.Screen name="Vandringsled" component={Stacking} />
+            <Stack.Screen name="Naturreservat" component={Stacking} />
         </Stack.Navigator>
     );
 };
