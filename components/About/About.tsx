@@ -12,10 +12,16 @@ export default function About() {
         Linking.openURL("https://www.dataportal.se/en");
     }
     function linkParkData() {
-        Linking.openURL("https://www.dataportal.se/en/datasets/75_2259/parks#/");
+        Linking.openURL("https://www.dataportal.se/en/datasets/75_2259/parks");
     }
     function linkDogParkData() {
-        Linking.openURL("https://www.dataportal.se/en/datasets/75_2265/dog-exercise-area#/");
+        Linking.openURL("https://www.dataportal.se/en/datasets/75_2265/dog-exercise-area");
+    }
+    function linkWalkingTrails() {
+        Linking.openURL("https://www.dataportal.se/en/datasets/75_2204/walking-trails-starting-points");
+    }
+    function linkNatureReserve() {
+        Linking.openURL("https://www.dataportal.se/en/datasets/75_2140/nature-reserve");
     }
     function linkReactNative() {
         Linking.openURL("https://reactnative.dev/");
@@ -45,21 +51,26 @@ export default function About() {
                     Välkommen till <Text style={Typography.bold}>Södertäljes hundliv</Text>. Här kan du hitta information om parker och hundrastgårdar i Södertäljes kommun. Du kan välja att leta i en listad vy där du ser alla namnen på platserna. Du kan också välja att se alla platserna i en kartvy.
                 </Text>
 
-                <Text style={Typography.normalMoreMargin}>
+                <Text style={Typography.normal}>
                     Genom att logga in eller registrera dig som användare kan du kan skapa en profil. Då får du en lite mer personlig hälsning varje gång som du loggar in.
+                </Text>
+
+                <Text style={Typography.normalMoreMargin}>
+                    Nedan kan du läsa mer om hur appen är uppbyggd.
                 </Text>
 
 
                 <Text style={Typography.boldCenterParagraph}>Datakällor</Text>
-                <Text style={Typography.normal}>Information om platerna är hämtade från
+                <Text style={Typography.normal}>Information om platserna är hämtade från
                     <Text onPress={linkHomepage} style={Typography.link}> Södertäljes öppna data</Text>.
                     som ligger på
                     <Text onPress={linkDatPortal} style={Typography.link}> Sveriges dataportal</Text>.
                 </Text>
 
                 <Text>{'\u2B24    ' }<Text style={Typography.link} onPress={linkParkData}>Parkdata</Text></Text>
-
                 <Text>{'\u2B24    '}<Text style={Typography.link} onPress={linkDogParkData}>Hundrastgårdsdata</Text></Text>
+                <Text>{'\u2B24    '}<Text style={Typography.link} onPress={linkWalkingTrails}>Vandringsledsdata</Text></Text>
+                <Text>{'\u2B24    '}<Text style={Typography.link} onPress={linkNatureReserve}>Naturreservatsdata</Text></Text>
 
                 <Text style={Typography.normal}></Text>
 
@@ -71,17 +82,17 @@ export default function About() {
 
                 <Text style={Typography.cursiveCenter}>Komponenter</Text>
                 <Text style={Typography.normal}>
-                    Den största delen av koden finns uppdelade i olika <Text style={Typography.link} onPress={linkComponents}>komponenter</Text>. Komponent-filerna har i sin tur organiserats i olika kataloger. I katalogen "Park" finns exempelvis de filer som kör när användaren är inne land parkvyerna (t.ex. parkmenyn eller listan på parknamn). Vissa komponenter, exempelvis MapAll och MapSingle, används i flera vyer och ligger därför i en egen katalog "Shared".
+                    Den största delen av koden finns uppdelade i olika <Text style={Typography.link} onPress={linkComponents}>komponenter</Text>. Komponenter är "byggstenar" som skapar appen i React Native. Dessa har organiserats i olika kataloger. I katalogen "Root" finns det två filer som tillsammans utgör grundbulten för att visa olika platser i Södertälje, t.ex. parker och hundrastgårdar. De använder sig av återanvändbara komponenter i katalogen "Shared" vilket gör att platserna visas på samma sätt. För att hämta och implementera mer data från Södertäljes kommuns datakällor krävs alltså bara att man jobbar med de två filerna i katalogen "Root".
                 </Text>
 
                 <Text style={Typography.cursiveCenter}>Modeller</Text>
                 <Text style={Typography.normal}>
-                    Den kod som gör anrop mot Södertäljes databas-API kallar vi <Text style={Typography.link} onPress={linkModels}>modeller</Text> och har lagts i katalogen "models". Här finns också den kod som gör anrop mot auth-API:et som gör att användare som registrerar sig eller loggar in kan autentieras med <Text style={Typography.link} onPress={linkJwt}>JSON Web Tokens (JWT)</Text>.
+                    Den kod som gör anrop mot ett databas-API kallar vi <Text style={Typography.link} onPress={linkModels}>modell</Text>. I projektet har de lagts i katalogen "models". Genom att injicera en och samma modell med olika URL-ändelser så kan man hämta data med olika API: er så länge de kommer från samma databas. I detta projekt används det för att göra anrop mot flera olika API:er som Södertäljes kommun har publicerat. I katalogen "models" finns också den kod som gör anrop mot auth-API:et. Detta API möjligör att användare som registrerar sig eller loggar in kan autentieras med <Text style={Typography.link} onPress={linkJwt}>JSON Web Tokens (JWT)</Text>.
                 </Text>
 
                 <Text style={Typography.cursiveCenter}>Interfaces</Text>
                 <Text style={Typography.normal}>
-                    För att skapa mer struktur och skriva mer "typat" så används <Text style={Typography.link} onPress={linkInterfaces}>interfaces</Text>. Ett interface definierar vad som skall ingå i ett objekt. I detta projektet har interfaces skapats för att definiera egenskaper som ingår i de dataobjekt vi hämtar med olika API:er.
+                    För att skapa mer struktur och skriva mer "typat" så används <Text style={Typography.link} onPress={linkInterfaces}>interfaces</Text>. Ett interface definierar vad som skall ingå i ett objekt. I detta projektet har exempelvis interface för artefact skapats som definierar vad för slags information som användaren kan modifiera och spara (ägarnamn och hundnamn).
                 </Text>
 
                 <Text style={Typography.cursiveCenter}>Övrigt</Text>
