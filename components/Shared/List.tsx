@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, SafeAreaView, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
-import parkModel from '../../models/park';
+// import parkModel from '../../models/park';
 import { Typography, Base, Buttons } from '../../styles';
 
 
-export default function OrderedButtonsList({ navigation, listItems }) {
+export default function List({ navigation, listItems, title }) {
 
-    // console.log(listItems);
+    console.log("DONE IT!!!!!!!!");
 
     // Get in alphabetical order
     listItems.sort((a, b) => {
@@ -41,8 +41,9 @@ export default function OrderedButtonsList({ navigation, listItems }) {
         });
 
     return (
-        <View>
+        <ScrollView style={Base.backgroundCol}>
+            <Text style={Typography.header1}>{title}</Text>
             {listReturn}
-        </View>
+        </ScrollView>
     );
 };

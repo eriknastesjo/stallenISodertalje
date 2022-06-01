@@ -4,7 +4,11 @@ import { Typography, Base, Buttons, Images } from '../../styles';
 export default function Menu({ artefact, isLoggedIn, navigation}) {
 
     function goToPark() {
-        navigation.navigate("Park");
+        // navigation.navigate("Park");
+        navigation.navigate('Park', {
+            title: 'Parker',
+            urlEnd: '2cc90eb1-2c6a-444b-ab52-e4bcd22c7130',
+        });
     }
 
     function goToDogPark() {

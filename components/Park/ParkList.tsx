@@ -48,7 +48,7 @@ export default function ParkList({navigation}) {
     return (
         <ScrollView style={Base.backgroundCol}>
             <Text style={Typography.header1}>Parker</Text>
-            <OrderedButtonsList navigation={navigation} listOfItems={listToSort} />
+            <OrderedButtonsList navigation={navigation} listItems={listToSort} />
         </ScrollView>
     );
 };

@@ -7,9 +7,12 @@ import WalkingTrail from '../WalkingTrail/WalkingTrail'
 import NatureReserve from '../NatureReserve/NatureReserve';
 
 
+import Stacking from '../Shared/Stack';
+
+
 const Stack = createNativeStackNavigator();
 
-export default function Home({artefact, isLoggedIn}) {
+export default function Home({ artefact, isLoggedIn }) {
     return (
         <Stack.Navigator initialRouteName="Meny" screenOptions={{headerShown: false}}>
             <Stack.Screen name="Meny">
@@ -18,7 +21,8 @@ export default function Home({artefact, isLoggedIn}) {
                     isLoggedIn={isLoggedIn}
                 />}
             </Stack.Screen>
-            <Stack.Screen name="Park" component={Park} />
+            <Stack.Screen name="Park" component={Stacking} />
+            {/* <Stack.Screen name="Park" component={Park} /> */}
             <Stack.Screen name="Hundrastgård" component={DogPark} />
             <Stack.Screen name="Vandringsled" component={WalkingTrail} />
             <Stack.Screen name="Naturreservat" component={NatureReserve} />
