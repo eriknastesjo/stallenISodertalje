@@ -5,11 +5,12 @@ export const base = {
 
 export const container = {
     flex: 1,
+
 }
 
 export const content = {
-    marginLeft: 40,
-    marginRight: 40,
+    paddingLeft: 40,
+    paddingRight: 40,
 }
 
 export const centerContainer = {
@@ -20,6 +21,7 @@ export const centerContainer = {
 
 export const backgroundCol = {
     backgroundColor: '#EAEAEA',
+    flex: 1,
 }
 
 export const rowContainer = {

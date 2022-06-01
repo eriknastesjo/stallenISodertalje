@@ -82,7 +82,7 @@ export default function About() {
 
                 <Text style={Typography.cursiveCenter}>Komponenter</Text>
                 <Text style={Typography.normal}>
-                    Den största delen av koden finns uppdelade i olika <Text style={Typography.link} onPress={linkComponents}>komponenter</Text>. Komponenter är "byggstenar" som skapar appen i React Native. Dessa har organiserats i olika kataloger. I katalogen "Root" finns det två filer som tillsammans utgör grundbulten för att visa olika platser i Södertälje, t.ex. parker och hundrastgårdar. De använder sig av återanvändbara komponenter i katalogen "Shared" vilket gör att platserna visas på samma sätt. För att hämta och implementera mer data från Södertäljes kommuns datakällor krävs alltså bara att man jobbar med de två filerna i katalogen "Root".
+                    Den största delen av koden finns uppdelade i olika <Text style={Typography.link} onPress={linkComponents}>komponenter</Text>. Komponenter är "byggstenar" som skapar appen i React Native. Dessa har organiserats i olika kataloger. I katalogen "Root" finns det två filer som tillsammans utgör grundbulten för att visa olika platser i Södertälje, t.ex. parker och hundrastgårdar. De använder sig av återanvändbara komponenter i katalogen "Shared" vilket gör att platserna visas på samma sätt. För att hämta och implementera mer data från Södertäljes kommuns datakällor krävs alltså bara att man lägger till några rader inom de två filerna i katalogen "Root".
                 </Text>
 
                 <Text style={Typography.cursiveCenter}>Modeller</Text>

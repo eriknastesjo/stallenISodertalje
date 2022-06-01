@@ -1,7 +1,7 @@
 import { showMessage } from 'react-native-flash-message';
 import { Ionicons, Foundation, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { View, Text, Button, TouchableOpacity, Image } from "react-native";
-import { Typography, Buttons, Images } from '../../styles';
+import { Typography, Buttons, Images, Base } from '../../styles';
 import AuthModel from '../../models/auth';
 
 // import artefactsModel from '../../models/artefacts';
@@ -24,7 +24,7 @@ export default function ProfileEdit(props) {
     }
 
     return (
-        <View>
+        <View style={Base.backgroundCol}>
             <Text style={Typography.header1}>Profil</Text>
 
             <Text></Text>
