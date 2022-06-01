@@ -13,7 +13,7 @@ import artefactsModel from './models/artefacts';
 
 import Artefact from './interfaces/artefact';
 
-import Root from './components/Base/Root';
+import Root from './components/Root/Root';
 import About from './components/About/About';
 import Auth from './components/Auth/Auth';
 import Profile from './components/Profile/Profile';
