@@ -64,12 +64,12 @@ export default function Categories({ artefact, isLoggedIn, navigation}) {
             <View style={Base.rowContainer}>
                 <View style={Buttons.buttonContainer}>
                     <TouchableOpacity onPress={goToWalkingTrail} style={Buttons.button}>
-                        <Image source={require("../../assets/hundrastgård.png")} style={Images.buttonImage} />
+                        <Image source={require("../../assets/vandringsled.png")} style={Images.buttonImage} />
                     </TouchableOpacity>
                 </View>
                 <View style={Buttons.buttonContainer}>
                     <TouchableOpacity onPress={goToNatureReserve} style={Buttons.button}>
-                        <Image source={require("../../assets/hundrastgård.png")} style={Images.buttonImage} />
+                        <Image source={require("../../assets/naturreservat.png")} style={Images.buttonImage} />
                     </TouchableOpacity>
                 </View>
             </View>
