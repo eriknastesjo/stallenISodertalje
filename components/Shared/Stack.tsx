@@ -7,7 +7,7 @@ import sodertaljeModel from '../../models/sodertalje';
 
 import ListOrMap from './ListOrMap';
 import List from './List';
-import MapAll2 from './MapAll2';
+import MapAll2 from './MapAll';
 import Details from '../Shared/Details';
 
 

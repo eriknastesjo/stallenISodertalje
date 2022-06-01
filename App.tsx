@@ -13,7 +13,7 @@ import artefactsModel from './models/artefacts';
 
 import Artefact from './interfaces/artefact';
 
-import Home from './components/Home/Home';
+import Root from './components/Base/Root';
 import About from './components/About/About';
 import Auth from './components/Auth/Auth';
 import Profile from './components/Profile/Profile';
@@ -90,7 +90,7 @@ export default function App() {
           }}
         >
           <Tab.Screen name="Hem">
-            {() => <Home artefact={artefact} isLoggedIn={isLoggedIn} />}
+            {() => <Root artefact={artefact} isLoggedIn={isLoggedIn} />}
           </Tab.Screen>
           {isLoggedIn ?
             <Tab.Screen name="Profil">

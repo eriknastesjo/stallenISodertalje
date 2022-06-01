@@ -6,13 +6,13 @@ import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 // import parkModel from "../../models/park";
 
-export default function Map(props) {
+export default function MapAll2(props) {
 
-    const parks = props.parks;
+    const mapItems = props.mapItems;
     const markerImgURL = props.markerImgURL;    // är tänkt för att kunna skapa custom markers i framtiden
     let listOfMarks;
 
-    // console.log(parks);
+    // console.log(mapItems);
 
     // const [markers, setAllMarkers] = useState(null); // hinner inte uppdateras innan kartan renderar markörer
     const [locationMarker, setLocationMarker] = useState(null);
@@ -20,11 +20,11 @@ export default function Map(props) {
     const [initRegion, setInitRegion] = useState(null);
 
 
-    listOfMarks = parks
-        .map((park, index) => {
+    listOfMarks = mapItems
+        .map((mapItem, index) => {
             return <Marker
-                coordinate={{ latitude: parseFloat(park["latitude"]), longitude: parseFloat(park["longitude"]) }}
-                title={park["namn"]}
+                coordinate={{ latitude: parseFloat(mapItem["latitude"]), longitude: parseFloat(mapItem["longitude"]) }}
+                title={mapItem["namn"]}
                 identifier={"there"}
                 key={index}
             />
@@ -64,16 +64,20 @@ export default function Map(props) {
     }, []);
 
     return (
-        <MapView
-                loadingEnabled={true}
-                loadingIndicatorColor='#63AF69'
-                style={styles.map}
-                initialRegion={initRegion}
-            >
-                {listOfMarks}
-                {locationMarker}
-
-            </MapView>
+        <View style={Base.container}>
+            <Text style={Typography.header2}>{props.title}</Text>
+            <View style={Base.mapContainer}>
+                <MapView
+                    loadingEnabled={true}
+                    loadingIndicatorColor='#63AF69'
+                    style={styles.map}
+                    initialRegion={initRegion}
+                >
+                    {listOfMarks}
+                    {locationMarker}
+                </MapView>
+            </View>
+        </View>
     );
 };
 

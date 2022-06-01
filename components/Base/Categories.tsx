@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity, Image } from 'react-native';
 import { Typography, Base, Buttons, Images } from '../../styles';
 
-export default function Menu({ artefact, isLoggedIn, navigation}) {
+export default function Categories({ artefact, isLoggedIn, navigation}) {
 
     function goToPark() {
         // navigation.navigate("Park");
