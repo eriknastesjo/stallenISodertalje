@@ -62,6 +62,7 @@ export default function App() {
     })();
   }, []);
 
+
   return (
     <SafeAreaView style={Base.base}>
       <NavigationContainer>
@@ -78,17 +79,17 @@ export default function App() {
           tabBarActiveTintColor: '#313131',
           tabBarInactiveTintColor: '#8A8A8A',
           headerShown: false,
-
-        })}
-          barStyle={{
-            backgroundColor: "white",
-            height: 70,
-            justifyContent: "center",
-            border: 0,
-            margin: 0,
-            padding: 0,
-          }}
-        >
+          tabBarItemStyle: {
+            marginTop: 5,
+          },
+          tabBarStyle: {
+            height: 57,
+          },
+          tabBarLabelStyle: {
+            fontSize: 13,
+            marginBottom: 7,
+          },
+        })}>
           <Tab.Screen name="Hem">
             {() => <Root artefact={artefact} isLoggedIn={isLoggedIn} />}
           </Tab.Screen>
