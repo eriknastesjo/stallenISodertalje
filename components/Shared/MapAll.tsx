@@ -6,7 +6,7 @@ import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 // import parkModel from "../../models/park";
 
-export default function MapAll2(props) {
+export default function MapAll(props) {
 
     const mapItems = props.mapItems;
     const markerImgURL = props.markerImgURL;    // är tänkt för att kunna skapa custom markers i framtiden

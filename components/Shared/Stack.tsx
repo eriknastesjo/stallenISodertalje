@@ -7,7 +7,7 @@ import sodertaljeModel from '../../models/sodertalje';
 
 import ListOrMap from './ListOrMap';
 import List from './List';
-import MapAll2 from './MapAll';
+import MapAll from './MapAll';
 import Details from '../Shared/Details';
 
 
@@ -50,7 +50,7 @@ export default function Stacking({ route }) {
                 title={title}
             />}
             </Stack.Screen>
-            <Stack.Screen name="Karta">{(props) => <MapAll2 {...props}
+            <Stack.Screen name="Karta">{(props) => <MapAll {...props}
                 mapItems={refinedData}
                 title={title}
             />}
