@@ -23,21 +23,21 @@ export default function About() {
     function linkNatureReserve() {
         Linking.openURL("https://www.dataportal.se/en/datasets/75_2140/nature-reserve");
     }
-    function linkReactNative() {
-        Linking.openURL("https://reactnative.dev/");
-    }
-    function linkComponents() {
-        Linking.openURL("https://reactnative.dev/docs/components-and-apis#basic-components");
-    }
-    function linkModels() {
-        Linking.openURL("https://en.wikipedia.org/wiki/Programming_model");
-    }
-    function linkJwt() {
-        Linking.openURL("https://jwt.io/");
-    }
-    function linkInterfaces() {
-        Linking.openURL("https://www.typescriptlang.org/docs/handbook/interfaces.html");
-    }
+    // function linkReactNative() {
+    //     Linking.openURL("https://reactnative.dev/");
+    // }
+    // function linkComponents() {
+    //     Linking.openURL("https://reactnative.dev/docs/components-and-apis#basic-components");
+    // }
+    // function linkModels() {
+    //     Linking.openURL("https://en.wikipedia.org/wiki/Programming_model");
+    // }
+    // function linkJwt() {
+    //     Linking.openURL("https://jwt.io/");
+    // }
+    // function linkInterfaces() {
+    //     Linking.openURL("https://www.typescriptlang.org/docs/handbook/interfaces.html");
+    // }
 
 
 
@@ -54,28 +54,27 @@ export default function About() {
                 <Text style={Typography.normal}>
                     Genom att logga in eller registrera dig som användare kan du kan skapa en profil. Då får du en lite mer personlig hälsning varje gång som du loggar in.
                 </Text>
-
+{/*
                 <Text style={Typography.normalMoreMargin}>
                     Nedan kan du läsa mer om hur appen är uppbyggd.
-                </Text>
+                </Text> */}
 
 
                 <Text style={Typography.boldCenterParagraph}>Datakällor</Text>
                 <Text style={Typography.normal}>Information om platserna är hämtade från
-                    <Text onPress={linkHomepage} style={Typography.link}> Södertäljes öppna data</Text>.
-                    som ligger på
+                    <Text onPress={linkHomepage} style={Typography.link}> Södertäljes öppna data</Text> som ligger på
                     <Text onPress={linkDatPortal} style={Typography.link}> Sveriges dataportal</Text>.
                 </Text>
 
-                <Text>{'\u2B24    ' }<Text style={Typography.link} onPress={linkParkData}>Parkdata</Text></Text>
+                {/* <Text>{'\u2B24    ' }<Text style={Typography.link} onPress={linkParkData}>Parkdata</Text></Text>
                 <Text>{'\u2B24    '}<Text style={Typography.link} onPress={linkDogParkData}>Hundrastgårdsdata</Text></Text>
                 <Text>{'\u2B24    '}<Text style={Typography.link} onPress={linkWalkingTrails}>Vandringsledsdata</Text></Text>
-                <Text>{'\u2B24    '}<Text style={Typography.link} onPress={linkNatureReserve}>Naturreservatsdata</Text></Text>
+                <Text>{'\u2B24    '}<Text style={Typography.link} onPress={linkNatureReserve}>Naturreservatsdata</Text></Text> */}
 
-                <Text style={Typography.normal}></Text>
+                {/* <Text style={Typography.normal}></Text> */}
 
 
-                <Text style={Typography.boldCenterParagraph}>Dokumentation</Text>
+                {/* <Text style={Typography.boldCenterParagraph}>Dokumentation</Text>
                 <Text style={Typography.normal}>
                     Appen är skapad med ramverket <Text style={Typography.link} onPress={linkReactNative}>React Native</Text> som möjligör exportering till både iOS och Android. Koden är skriven i Typescript.
                 </Text>
@@ -98,7 +97,7 @@ export default function About() {
                 <Text style={Typography.cursiveCenter}>Övrigt</Text>
                 <Text style={Typography.normalMoreMargin}>
                     De bilder som har använts i detta projektet finns i katalogen "assets". Filer som är ansvariga för att ge appens utseende (t.ex. marginaler och fontstorlek) finns i katalogen "styles".
-                </Text>
+                </Text> */}
 
             </View>
         </ScrollView>

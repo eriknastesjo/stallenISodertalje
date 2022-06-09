@@ -3,7 +3,11 @@ import { Typography, Base, Buttons, Images } from '../../styles';
 import { FlatGrid } from 'react-native-super-grid';
 
 
-export default function Categories({ categories, artefact, isLoggedIn, navigation }) {
+export default function Categories({ categories, navigation, name }) {
+
+    function goToProfile() {
+        navigation.navigate("Profil");
+    }
 
     const onPress = (categoryObj) => () => {
         navigation.navigate(categoryObj.stackName, {
@@ -26,13 +30,23 @@ export default function Categories({ categories, artefact, isLoggedIn, navigatio
         <View style={Base.centerContainer}>
 
             <Image source={require("../../assets/heart.png")} style={Images.heart} />
-            <Text style={Typography.boldCenter}>Hej {artefact.ownerName} och {artefact.dogName},</Text>
-            <Text style={Typography.normalCenter}>vart vill ni gå idag?</Text>
+            {name === "" ?
+                <Text style={Typography.boldCenter}>Hej södertäljare,</Text>
+            :
+                <Text style={Typography.boldCenter}>Hej {name},</Text>
+            }
+            {/* <Text style={Typography.boldCenter}>Platser i Södertälje</Text> */}
+            <Text style={Typography.normalCenter}>Vart vill du gå idag?</Text>
 
-            {
+
+            <TouchableOpacity style={Images.profilePicContainer} onPress={() => { goToProfile(); }}>
+                <Image source={require("../../assets/profilePic.png")} style={Images.profilePic} />
+            </TouchableOpacity>
+
+            {/* {
                 isLoggedIn &&
                 <Image source={require("../../assets/profilePic.png")} style={Images.profilePic} />
-            }
+            } */}
 
             <FlatGrid
                 itemDimension={140}

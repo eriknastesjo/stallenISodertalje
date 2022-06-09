@@ -22,10 +22,13 @@ export const heart = {
     height: 50,
 }
 
-export const profilePic = {
-    width: 110,
-    height: 110,
+export const profilePicContainer = {
     position: 'absolute',
     top: -20,
     right: -15,
+}
+
+export const profilePic = {
+    width: 110,
+    height: 110,
 }

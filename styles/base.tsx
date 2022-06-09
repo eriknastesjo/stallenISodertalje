@@ -29,6 +29,12 @@ export const rowContainer = {
     flexDirection: 'row'
 }
 
+export const rowContainerCenter = {
+    flexDirection: 'row',
+    justifyContent: "center",
+    gap: 10,
+}
+
 export const mapContainer = {
     flex: 1,
     justifyContent: "flex-end",

@@ -8,16 +8,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
 import FlashMessage from "react-native-flash-message";
 
-import authModel from './models/auth';
-import artefactsModel from './models/artefacts';
+// import authModel from './models/auth';
+// import artefactsModel from './models/artefacts';
+import storage from './models/storage';
 
-import Artefact from './interfaces/artefact';
+// import Artefact from './interfaces/artefact';
 import Category from './interfaces/category';
 
 import Root from './components/Root/Root';
 import About from './components/About/About';
 import Auth from './components/Auth/Auth';
-import Profile from './components/Profile/Profile';
+// import Profile from './components/Profile/Profile';
+// import Personalize from './components/Personalize/Personalize';
 
 
 const categories: Array<Partial<Category>> = [
@@ -96,21 +98,25 @@ FlashMessage.setColorTheme({
 
 export default function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
-  const [artefact, setArtefact] = useState<Partial<Artefact>>({
-    ownerName: "ägare",
-    dogName: "hund",
-  });
+  // const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+  const [name, setName] = useState<string>("");
 
+
+  // useEffect(() => {
+  //   (async function () {
+  //     setIsLoggedIn(await authModel.loggedIn());
+  //     const artefactObj = await artefactsModel.getArtefactByEmail();
+  //     console.log(artefactObj)
+  //     if (artefactObj) {
+  //       setArtefact({ ...artefact, ownerName: artefactObj.ownerName, dogName:artefactObj.dogName });
+  //     }
+  //   })();
+  // }, []);
 
   useEffect(() => {
     (async function () {
-      setIsLoggedIn(await authModel.loggedIn());
-      const artefactObj = await artefactsModel.getArtefactByEmail();
-      console.log(artefactObj)
-      if (artefactObj) {
-        setArtefact({ ...artefact, ownerName: artefactObj.ownerName, dogName:artefactObj.dogName });
-      }
+      const name = await storage.getName();
+      if (name) { setName(name); }
     })();
   }, []);
 
@@ -142,9 +148,12 @@ export default function App() {
           },
         })}>
           <Tab.Screen name="Hem">
-            {() => <Root categories={categories} artefact={artefact} isLoggedIn={isLoggedIn} />}
+            {() => <Root categories={categories} name={name} setName={setName}/>}
           </Tab.Screen>
-          {isLoggedIn ?
+          {/* <Tab.Screen name="Profil">
+            {() => <Personalize name={name} setName={setName}/>}
+          </Tab.Screen> */}
+          {/* {isLoggedIn ?
             <Tab.Screen name="Profil">
               {() => <Profile
                 artefact={artefact}
@@ -160,7 +169,7 @@ export default function App() {
                 setArtefact={setArtefact}
               />}
             </Tab.Screen>
-          }
+          } */}
           <Tab.Screen name="Om" component={About} />
         </Tab.Navigator>
       </NavigationContainer>

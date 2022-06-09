@@ -1,6 +1,21 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const storage = {
+    setName: async function storeName(name:string) {
+        try {
+            await AsyncStorage.setItem('@name', name);
+        } catch (e) {
+            // saving error
+        }
+    },
+    getName: async function getName(): Promise<any> {
+        try {
+            const jsonValue = await AsyncStorage.getItem('@name');
+            return jsonValue != null ? jsonValue : null;
+        } catch (e) {
+            // error reading value
+        }
+    },
     storeTokenAndEmail: async function storeTokenAndEmail(token: string, email: string) {
         try {
             const tokenAndDate = {

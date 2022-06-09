@@ -2,11 +2,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Categories from './Categories';
 import Stacking from '../Shared/Stack';
+import Personalize from '../Personalize/Personalize';
 
 
 const Stack = createNativeStackNavigator();
 
-export default function Root({ categories, artefact, isLoggedIn }) {
+export default function Root({ categories, name, setName }) {
 
     const listCategories = categories
         .map((categoryObj, index) => {
@@ -14,12 +15,17 @@ export default function Root({ categories, artefact, isLoggedIn }) {
         });
 
     return (
-        <Stack.Navigator initialRouteName="Meny" screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName="Meny" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Meny">
                 {(screenProps) => <Categories {...screenProps}
                     categories={categories}
-                    artefact={artefact}
-                    isLoggedIn={isLoggedIn}
+                    name={name}
+                />}
+            </Stack.Screen>
+            <Stack.Screen name="Profil" options={{ headerShown: true }}>
+                {(screenProps) => <Personalize {...screenProps}
+                    name={name}
+                    setName={setName}
                 />}
             </Stack.Screen>
             {listCategories}
