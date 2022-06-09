@@ -4,6 +4,9 @@ export const buttonContainer = {
 }
 
 export const button = {
+    width: 160,
+    height: 160,
+    justifyContent: "center",
     backgroundColor: '#FAFAFA',
     borderRadius: 8,
     padding: 10,
@@ -27,6 +30,10 @@ export const button = {
 }
 
 export const buttonGrid = {
+    flex: 1,
+    justifyContent: "center",
+    width: 170,
+    height: 170,
     backgroundColor: '#FAFAFA',
     borderRadius: 8,
     padding: 10,

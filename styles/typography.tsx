@@ -140,6 +140,16 @@ export const boldCenter = {
     fontWeight: 'bold'
 };
 
+export const boldCenterButton = {
+    textAlign: "center",
+    color: '#313131',
+    fontSize: 16.5,
+    letterSpacing: 0.5,
+    fontFamily: "sans-serif",
+    marginBottom: 5,
+    fontWeight: 'bold'
+};
+
 export const boldCenterParagraph = {
     textAlign: "center",
     color: '#3D3D3D',

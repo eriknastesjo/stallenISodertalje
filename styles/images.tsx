@@ -1,11 +1,12 @@
 export const buttonImage = {
     width: 148,
-    height: 148,
+    height: 100,
 }
 
 export const buttonImageSmall = {
-    width: 130,
-    height: 130,
+    width: 100,
+    height: 90,
+    alignSelf: 'center',
 }
 
 export const buttonIconStart = {

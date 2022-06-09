@@ -22,12 +22,14 @@ export default function ListOrMap({ navigation }) {
                 <View style={Buttons.buttonContainer}>
                     <TouchableOpacity onPress={goToList} style={Buttons.button}>
                         <Image source={require("../../assets/lista.png")} style={Images.buttonImageSmall} />
+                        <Text style={Typography.boldCenterButton}>Lista</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={Buttons.buttonContainer}>
                     <TouchableOpacity onPress={goToMap} style={Buttons.button}>
                         <Image source={require("../../assets/karta.png")} style={Images.buttonImageSmall} />
+                        <Text style={Typography.boldCenterButton}>Karta</Text>
                     </TouchableOpacity>
                 </View>
             </View>

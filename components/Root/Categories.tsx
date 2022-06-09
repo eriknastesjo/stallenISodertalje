@@ -18,6 +18,7 @@ export default function Categories({ categories, artefact, isLoggedIn, navigatio
             console.log(categoryObj.imgUrl);
             return <TouchableOpacity onPress={onPress(categoryObj)} style={Buttons.buttonGrid} key={index}>
                 <Image source={categoryObj.imgUrl} style={Images.buttonImage} />
+                <Text style={Typography.boldCenterButton}>{categoryObj.title}</Text>
             </TouchableOpacity>
         });
 
