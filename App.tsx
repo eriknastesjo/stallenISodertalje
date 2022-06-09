@@ -12,6 +12,7 @@ import authModel from './models/auth';
 import artefactsModel from './models/artefacts';
 
 import Artefact from './interfaces/artefact';
+import Category from './interfaces/category';
 
 import Root from './components/Root/Root';
 import About from './components/About/About';
@@ -19,7 +20,7 @@ import Auth from './components/Auth/Auth';
 import Profile from './components/Profile/Profile';
 
 
-const categories = [
+const categories: Array<Partial<Category>> = [
   {
     stackName: "Park",
     title: "Parker",

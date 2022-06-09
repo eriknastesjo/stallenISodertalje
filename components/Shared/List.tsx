@@ -1,3 +1,4 @@
+import { Ionicons, Foundation, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View, SafeAreaView, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
 // import parkModel from '../../models/park';
@@ -33,7 +34,8 @@ export default function List({ navigation, listItems, title, subtitle }) {
                         });
                     }}
                 >
-                    <Text style={Typography.normalButton}>{listItem.namn}</Text>
+                    <Text style={Typography.normalButton}>   {listItem.namn}</Text>
+                    <View style={Buttons.buttonArrow2}><AntDesign name="rightcircle" size={20} color="#9AE9A1" /></View>
                 </TouchableOpacity>
             </View>
         });

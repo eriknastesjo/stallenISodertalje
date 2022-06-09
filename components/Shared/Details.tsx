@@ -33,7 +33,7 @@ export default function Details({ route }) {
                     detailObj.webbsida !== undefined && detailObj.webbsida !== "" &&
                     <View style={Buttons.buttonContainer}>
                         <TouchableOpacity
-                            style={Buttons.button2}
+                            style={Buttons.buttonCenter}
                             onPress={() => {
                                 Linking.openURL(detailObj.webbsida)
                             }}
