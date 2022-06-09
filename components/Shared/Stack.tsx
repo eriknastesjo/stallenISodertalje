@@ -20,7 +20,8 @@ export default function Stacking({ route }) {
     const { title, subtitle, urlEnd } = route.params;
     const [data, setData] = useState([]);
 
-    console.log(route.params);
+    // console.log(route.params);
+    console.log("STACKEN");
 
     useEffect(() => {
         (async function () {

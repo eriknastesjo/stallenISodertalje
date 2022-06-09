@@ -26,6 +26,13 @@ const artefactsModel = {
 
         const result = await response.json();
 
+        // console.log(result);
+
+        // dvs om t.ex. jwt token har expired!
+        if (result.data === undefined) {
+            return null;
+        }
+
         // Search for latest artefact that can be connected to email.
         // If no artefact can be found null will be returned.
         result.data.forEach((element: { email: string; artefact: string; id: number }) => {

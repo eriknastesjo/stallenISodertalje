@@ -1,44 +1,29 @@
 import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity, Image } from 'react-native';
 import { Typography, Base, Buttons, Images } from '../../styles';
+import { FlatGrid } from 'react-native-super-grid';
 
-export default function Categories({ artefact, isLoggedIn, navigation}) {
 
-    function goToPark() {
-        // navigation.navigate("Park");
-        navigation.navigate('Park', {
-            title: 'Parker',
-            urlEnd: '2cc90eb1-2c6a-444b-ab52-e4bcd22c7130',
+export default function Categories({ categories, artefact, isLoggedIn, navigation }) {
+
+    const onPress = (categoryObj) => () => {
+        navigation.navigate(categoryObj.stackName, {
+            title: categoryObj.title,
+            subtitle: categoryObj.subtitle,
+            urlEnd: categoryObj.urlEnd,
         });
-    }
+    };
 
-    function goToDogPark() {
-        // navigation.navigate("Hundrastgård");
-        navigation.navigate('Hundrastgård', {
-            title: 'Hundrastgårdar',
-            urlEnd: '1d83a1df-16ca-4bfd-8bc7-242747231b60',
+    const listCategories = categories
+        .map((categoryObj, index) => {
+            console.log(categoryObj.imgUrl);
+            return <TouchableOpacity onPress={onPress(categoryObj)} style={Buttons.buttonGrid} key={index}>
+                <Image source={categoryObj.imgUrl} style={Images.buttonImage} />
+            </TouchableOpacity>
         });
-    }
-
-    function goToWalkingTrail() {
-        // navigation.navigate("Vandringsled");
-        navigation.navigate('Vandringsled', {
-            title: 'Vandringsleder',
-            subtitle: '(Startpunkter)',
-            urlEnd: 'f6b33e8d-19bd-4d2d-a59b-35c4df352a2c',
-        });
-    }
-
-    function goToNatureReserve() {
-        // navigation.navigate("Naturreservat");
-        navigation.navigate('Naturreservat', {
-            title: 'Naturreservat',
-            urlEnd: '57743863-81ce-461a-9887-791b492f4522',
-        });
-    }
-
 
     return (
         <View style={Base.centerContainer}>
+
             <Image source={require("../../assets/heart.png")} style={Images.heart} />
             <Text style={Typography.boldCenter}>Hej {artefact.ownerName} och {artefact.dogName},</Text>
             <Text style={Typography.normalCenter}>vart vill ni gå idag?</Text>
@@ -48,31 +33,15 @@ export default function Categories({ artefact, isLoggedIn, navigation}) {
                 <Image source={require("../../assets/profilePic.png")} style={Images.profilePic} />
             }
 
-            <View style={Base.rowContainer}>
-                <View style={Buttons.buttonContainer}>
-                    <TouchableOpacity onPress={goToPark} style={Buttons.button}>
-                        <Image source={require("../../assets/park.png")} style={Images.buttonImage} />
-                    </TouchableOpacity>
-                </View>
-
-                <View style={Buttons.buttonContainer}>
-                    <TouchableOpacity onPress={goToDogPark} style={Buttons.button}>
-                        <Image source={require("../../assets/hundrastgård.png")} style={Images.buttonImage} />
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <View style={Base.rowContainer}>
-                <View style={Buttons.buttonContainer}>
-                    <TouchableOpacity onPress={goToWalkingTrail} style={Buttons.button}>
-                        <Image source={require("../../assets/vandringsled.png")} style={Images.buttonImage} />
-                    </TouchableOpacity>
-                </View>
-                <View style={Buttons.buttonContainer}>
-                    <TouchableOpacity onPress={goToNatureReserve} style={Buttons.button}>
-                        <Image source={require("../../assets/naturreservat.png")} style={Images.buttonImage} />
-                    </TouchableOpacity>
-                </View>
-            </View>
+            <FlatGrid
+                itemDimension={140}
+                data={listCategories}
+                spacing={18}
+                style={Buttons.gridContainer}
+                renderItem={({ item }) => (<View style={Buttons.buttonContainer}>
+                    {item}
+                </View>)}
+            />
         </View>
     );
 };

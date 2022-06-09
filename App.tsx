@@ -19,6 +19,33 @@ import Auth from './components/Auth/Auth';
 import Profile from './components/Profile/Profile';
 
 
+const categories = [
+  {
+    stackName: "Park",
+    title: "Parker",
+    imgUrl: require("./assets/park.png"),
+    urlEnd: '2cc90eb1-2c6a-444b-ab52-e4bcd22c7130'
+  },
+  {
+    stackName: "DogPark",
+    title: "Hundrastgårdar",
+    imgUrl: require("./assets/hundrastgård.png"),
+    urlEnd: '1d83a1df-16ca-4bfd-8bc7-242747231b60'
+  },
+  {
+    stackName: "WalkingTrail",
+    title: "Vandringsled",
+    subtitle: '(Startpunkter)',
+    imgUrl: require("./assets/vandringsled.png"),
+    urlEnd: 'f6b33e8d-19bd-4d2d-a59b-35c4df352a2c'
+  },
+  {
+    stackName: "NatureReserve",
+    title: "Naturreservat",
+    imgUrl: require("./assets/naturreservat.png"),
+    urlEnd: '57743863-81ce-461a-9887-791b492f4522'
+  }
+]
 
 const Tab = createBottomTabNavigator();
 // https://icons.expo.fyi/ sortera på ionicons eller importera bibliotek
@@ -62,7 +89,6 @@ export default function App() {
     })();
   }, []);
 
-
   return (
     <SafeAreaView style={Base.base}>
       <NavigationContainer>
@@ -91,7 +117,7 @@ export default function App() {
           },
         })}>
           <Tab.Screen name="Hem">
-            {() => <Root artefact={artefact} isLoggedIn={isLoggedIn} />}
+            {() => <Root categories={categories} artefact={artefact} isLoggedIn={isLoggedIn} />}
           </Tab.Screen>
           {isLoggedIn ?
             <Tab.Screen name="Profil">
