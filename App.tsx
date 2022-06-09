@@ -44,6 +44,30 @@ const categories = [
     title: "Naturreservat",
     imgUrl: require("./assets/naturreservat.png"),
     urlEnd: '57743863-81ce-461a-9887-791b492f4522'
+  },
+  {
+    stackName: "BirdTower",
+    title: "Fågeltorn",
+    imgUrl: require("./assets/naturreservat.png"),
+    urlEnd: 'adf0ed85-2614-4f0e-a1d1-531900361a9c'
+  },
+  {
+    stackName: "TouristAttraction",
+    title: "Turistattraktion",
+    imgUrl: require("./assets/naturreservat.png"),
+    urlEnd: '33f5afd7-9a53-46cb-9842-adadc9769c34'
+  },
+  {
+    stackName: "ExerciseAreas",
+    title: "Träningsområden",
+    imgUrl: require("./assets/naturreservat.png"),
+    urlEnd: '1e7197b0-93d6-49ea-878f-489eff759ba7'
+  },
+  {
+    stackName: "Playground",
+    title: "Lekplatser",
+    imgUrl: require("./assets/naturreservat.png"),
+    urlEnd: '8861938c-e603-422f-b5b9-b49c09c15b9f'
   }
 ]
 

@@ -21,7 +21,6 @@ export default function Stacking({ route }) {
     const [data, setData] = useState([]);
 
     // console.log(route.params);
-    console.log("STACKEN");
 
     useEffect(() => {
         (async function () {
@@ -35,6 +34,8 @@ export default function Stacking({ route }) {
             return {
                 "beskrivning": dataItem["beskrivning"],
                 "information": dataItem["information"],
+                "informatiom": dataItem["informatiom"],
+                "vägbeskrivning": dataItem["vägbeskrivning"],
                 "latitude": dataItem["nord-koordinat (wgs84)"],
                 "longitude": dataItem["ost-koordinat (wgs84)"],
                 "webbsida": dataItem["webbsida"],
