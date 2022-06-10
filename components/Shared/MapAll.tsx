@@ -5,6 +5,7 @@ import MapView, { Marker } from 'react-native-maps';
 // import getCoordinates from '../../models/nominatim';
 import * as Location from 'expo-location';
 // import parkModel from "../../models/park";
+import { useRef } from "react";
 
 export default function MapAll(props) {
 
@@ -12,23 +13,27 @@ export default function MapAll(props) {
     const markerImgURL = props.markerImgURL;    // är tänkt för att kunna skapa custom markers i framtiden
     let listOfMarks;
 
-    // console.log(mapItems);
+    const mapRef = useRef<MapView>(null);
 
     // const [markers, setAllMarkers] = useState(null); // hinner inte uppdateras innan kartan renderar markörer
     const [locationMarker, setLocationMarker] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [initRegion, setInitRegion] = useState(null);
 
+    let listOfMarkId: Array<string> = [];
 
     listOfMarks = mapItems
         .map((mapItem, index) => {
+            listOfMarkId.push('m' + index.toString());
             return <Marker
                 coordinate={{ latitude: parseFloat(mapItem["latitude"]), longitude: parseFloat(mapItem["longitude"]) }}
                 title={mapItem["namn"]}
-                identifier={"there"}
+                identifier={'m' + index.toString()}
                 key={index}
             />
         });
+
+    // console.log(listOfMarkId);
 
     useEffect(() => {
         (async () => {
@@ -57,11 +62,14 @@ export default function MapAll(props) {
                     latitude: currentLocation.coords.latitude,
                     longitude: currentLocation.coords.longitude
                 }}
-                title="Min plats"
+                title="Här är du"
                 identifier="here"
+                pinColor="blue"
             />);
         })();
     }, []);
+
+    // console.log(listOfMarks);
 
     return (
         <View style={Base.container}>
@@ -78,10 +86,16 @@ export default function MapAll(props) {
             }
             <View style={Base.mapContainer}>
                 <MapView
+                    ref={mapRef}
                     loadingEnabled={true}
                     loadingIndicatorColor='#63AF69'
                     style={styles.map}
                     initialRegion={initRegion}
+                    onMapLoaded={() => {
+                        mapRef?.current?.fitToSuppliedMarkers(listOfMarkId), {
+                            animated: true
+                        }
+                    }}
                 >
                     {listOfMarks}
                     {locationMarker}
