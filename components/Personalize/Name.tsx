@@ -9,8 +9,6 @@ import storage from '../../models/storage';
 // import auth from '../../models/auth';
 // import artefactsModel from '../../models/artefacts';
 
-// import { showMessage } from 'react-native-flash-message';
-
 
 export default function Name({navigation,setName}) {
 
@@ -21,10 +19,10 @@ export default function Name({navigation,setName}) {
 
         await storage.setName(currentName);
 
-        showMessage({
-            message: `Hej ${currentName}!`,
-            type: "success",
-        });
+        // showMessage({
+        //     message: `Hej ${currentName}!`,
+        //     type: "success",
+        // });
 
         navigation.navigate("Menyval");
 

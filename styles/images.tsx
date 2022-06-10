@@ -27,8 +27,30 @@ export const profilePicContainer = {
     top: -20,
     right: -15,
 }
-
-export const profilePic = {
+export const profilePicBackg = {
+    position: 'absolute',
+    top: 0,
+    right: 0,
     width: 110,
     height: 110,
+}
+export const profilePicBackg2 = {
+    position: 'absolute',
+    top: -2,
+    right: -2,
+    width: 110,
+    height: 110,
+}
+
+export const profilePic = {
+    width: 60,
+    height: 60,
+    marginRight: 26,
+    marginTop: 29,
+}
+
+export const profilePic2 = {
+    width: 70,
+    height: 70,
+    margin: 20,
 }

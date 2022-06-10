@@ -3,7 +3,7 @@ import { Typography, Base, Buttons, Images } from '../../styles';
 import { FlatGrid } from 'react-native-super-grid';
 
 
-export default function Categories({ categories, navigation, name }) {
+export default function Categories({ categories, navigation, name, profilepics, picNum }) {
 
     function goToProfile() {
         navigation.navigate("Profil");
@@ -40,7 +40,8 @@ export default function Categories({ categories, navigation, name }) {
 
 
             <TouchableOpacity style={Images.profilePicContainer} onPress={() => { goToProfile(); }}>
-                <Image source={require("../../assets/profilePic.png")} style={Images.profilePic} />
+                <Image source={require("../../assets/profilePicBackg.png")} style={Images.profilePicBackg} />
+                <Image source={profilepics[picNum]} style={Images.profilePic} />
             </TouchableOpacity>
 
             {/* {

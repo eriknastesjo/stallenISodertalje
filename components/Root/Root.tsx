@@ -7,9 +7,9 @@ import Personalize from '../Personalize/Personalize';
 
 const Stack = createNativeStackNavigator();
 
-export default function Root({ categories, name, setName }) {
+export default function Root(props) {
 
-    const listCategories = categories
+    const listCategories = props.categories
         .map((categoryObj, index) => {
             return <Stack.Screen name={categoryObj.stackName} component={Stacking} key={index}/>
         });
@@ -18,14 +18,19 @@ export default function Root({ categories, name, setName }) {
         <Stack.Navigator initialRouteName="Meny" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Meny">
                 {(screenProps) => <Categories {...screenProps}
-                    categories={categories}
-                    name={name}
+                    categories={props.categories}
+                    name={props.name}
+                    picNum={props.picNum}
+                    profilepics={props.profilepics}
                 />}
             </Stack.Screen>
             <Stack.Screen name="Profil" options={{ headerShown: true }}>
                 {(screenProps) => <Personalize {...screenProps}
-                    name={name}
-                    setName={setName}
+                    name={props.name}
+                    setName={props.setName}
+                    picNum={props.picNum}
+                    setPicNum={props.setPicNum}
+                    profilepics={props.profilepics}
                 />}
             </Stack.Screen>
             {listCategories}

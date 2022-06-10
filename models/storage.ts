@@ -16,6 +16,21 @@ const storage = {
             // error reading value
         }
     },
+    setPicNum: async function setPicNum(picNum:string) {
+        try {
+            await AsyncStorage.setItem('@picNum', picNum);
+        } catch (e) {
+            // saving error
+        }
+    },
+    getPicNum: async function getPicNum(): Promise<any> {
+        try {
+            const jsonValue = await AsyncStorage.getItem('@picNum');
+            return jsonValue != null ? parseInt(jsonValue) : null;
+        } catch (e) {
+            // error reading value
+        }
+    },
     storeTokenAndEmail: async function storeTokenAndEmail(token: string, email: string) {
         try {
             const tokenAndDate = {

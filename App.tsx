@@ -72,7 +72,20 @@ const categories: Array<Partial<Category>> = [
     imgUrl: require("./assets/noIcon.png"),
     urlEnd: '8861938c-e603-422f-b5b9-b49c09c15b9f'
   }
-]
+];
+
+
+const profilepics: Array<NodeRequire> = [
+  require("./assets/dogIcon.png"),
+  require("./assets/dogTestIcon.png"),
+  require("./assets/dogIcon.png"),
+  require("./assets/dogIcon.png"),
+  require("./assets/dogIcon.png"),
+  require("./assets/dogIcon.png"),
+  require("./assets/dogIcon.png"),
+  require("./assets/dogIcon.png"),
+  require("./assets/dogIcon.png"),
+];
 
 const Tab = createBottomTabNavigator();
 // https://icons.expo.fyi/ sortera på ionicons eller importera bibliotek
@@ -98,25 +111,15 @@ FlashMessage.setColorTheme({
 
 export default function App() {
 
-  // const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
   const [name, setName] = useState<string>("");
-
-
-  // useEffect(() => {
-  //   (async function () {
-  //     setIsLoggedIn(await authModel.loggedIn());
-  //     const artefactObj = await artefactsModel.getArtefactByEmail();
-  //     console.log(artefactObj)
-  //     if (artefactObj) {
-  //       setArtefact({ ...artefact, ownerName: artefactObj.ownerName, dogName:artefactObj.dogName });
-  //     }
-  //   })();
-  // }, []);
+  const [picNum, setPicNum] = useState<number>(0);
 
   useEffect(() => {
     (async function () {
       const name = await storage.getName();
+      const pic = await storage.getPicNum();
       if (name) { setName(name); }
+      if (pic) { setPicNum(pic); }
     })();
   }, []);
 
@@ -148,28 +151,15 @@ export default function App() {
           },
         })}>
           <Tab.Screen name="Hem">
-            {() => <Root categories={categories} name={name} setName={setName}/>}
+            {() => <Root
+              categories={categories}
+              name={name}
+              setName={setName}
+              profilepics={profilepics}
+              picNum={picNum}
+              setPicNum={setPicNum}
+            />}
           </Tab.Screen>
-          {/* <Tab.Screen name="Profil">
-            {() => <Personalize name={name} setName={setName}/>}
-          </Tab.Screen> */}
-          {/* {isLoggedIn ?
-            <Tab.Screen name="Profil">
-              {() => <Profile
-                artefact={artefact}
-                setArtefact={setArtefact}
-                setIsLoggedIn={setIsLoggedIn}
-              />}
-            </Tab.Screen>
-            :
-            <Tab.Screen name="Inlogg">
-              {() => <Auth
-                setIsLoggedIn={setIsLoggedIn}
-                artefact={artefact}
-                setArtefact={setArtefact}
-              />}
-            </Tab.Screen>
-          } */}
           <Tab.Screen name="Om" component={About} />
         </Tab.Navigator>
       </NavigationContainer>
