@@ -38,11 +38,11 @@ const categories: Array<Partial<Category>> = [
     urlEnd: '8861938c-e603-422f-b5b9-b49c09c15b9f'
   },
   {
-    stackName: "DogPark",
-    titleSing: "Hundrastgård",
-    title: "Hundrastgårdar",
-    imgUrl: require("./assets/hundrastgård.png"),
-    urlEnd: '1d83a1df-16ca-4bfd-8bc7-242747231b60'
+    stackName: "NatureReserve",
+    titleSing: "Naturreservat",
+    title: "Naturreservat",
+    imgUrl: require("./assets/naturreservat.png"),
+    urlEnd: '57743863-81ce-461a-9887-791b492f4522'
   },
   {
     stackName: "WalkingTrail",
@@ -53,11 +53,11 @@ const categories: Array<Partial<Category>> = [
     urlEnd: 'f6b33e8d-19bd-4d2d-a59b-35c4df352a2c'
   },
   {
-    stackName: "NatureReserve",
-    titleSing: "Naturreservat",
-    title: "Naturreservat",
-    imgUrl: require("./assets/naturreservat.png"),
-    urlEnd: '57743863-81ce-461a-9887-791b492f4522'
+    stackName: "DogPark",
+    titleSing: "Hundrastgård",
+    title: "Hundrastgårdar",
+    imgUrl: require("./assets/hundrastgård.png"),
+    urlEnd: '1d83a1df-16ca-4bfd-8bc7-242747231b60'
   },
   {
     stackName: "BirdTower",

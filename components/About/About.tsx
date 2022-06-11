@@ -61,7 +61,7 @@ export default function About() {
 
 
                 <Text style={Typography.boldCenterParagraph}>Ytterligare info</Text>
-                <Text style={Typography.normal}>Appen är skapad av Erik Nästesjö Todd. Information om platserna är hämtade från
+                <Text style={Typography.normal}>Appen är skapad av Erik Nästesjö Todd. Information om platserna hämtas från
                     <Text onPress={linkHomepage} style={Typography.link}> Södertäljes öppna data</Text> som ligger på
                     <Text onPress={linkDatPortal} style={Typography.link}> Sveriges dataportal</Text>.
                 </Text>
