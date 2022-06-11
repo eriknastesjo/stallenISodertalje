@@ -22,7 +22,7 @@ export default function Categories({ categories, navigation, name, profilepics, 
             console.log(categoryObj.imgUrl);
             return <TouchableOpacity onPress={onPress(categoryObj)} style={Buttons.buttonGrid} key={index}>
                 <Image source={categoryObj.imgUrl} style={Images.buttonImage} />
-                <Text style={Typography.boldCenterButton}>{categoryObj.title}</Text>
+                <Text style={Typography.boldCenterButton}>{categoryObj.titleSing}</Text>
             </TouchableOpacity>
         });
 
@@ -36,7 +36,7 @@ export default function Categories({ categories, navigation, name, profilepics, 
                 <Text style={Typography.boldCenter}>Hej {name},</Text>
             }
             {/* <Text style={Typography.boldCenter}>Platser i Södertälje</Text> */}
-            <Text style={Typography.normalCenter}>Vart vill du gå idag?</Text>
+            <Text style={Typography.normalCenterLessMargin}>Vart vill du gå idag?</Text>
 
 
             <TouchableOpacity style={Images.profilePicContainer} onPress={() => { goToProfile(); }}>

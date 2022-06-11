@@ -1,4 +1,4 @@
-import { Ionicons, Foundation } from '@expo/vector-icons';
+import { Ionicons, Foundation, FontAwesome5 } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -25,18 +25,28 @@ import Auth from './components/Auth/Auth';
 const categories: Array<Partial<Category>> = [
   {
     stackName: "Park",
+    titleSing: "Park",
     title: "Parker",
     imgUrl: require("./assets/park.png"),
     urlEnd: '2cc90eb1-2c6a-444b-ab52-e4bcd22c7130'
   },
   {
+    stackName: "Playground",
+    titleSing: "Lekplats",
+    title: "Lekplatser",
+    imgUrl: require("./assets/lekplats.png"),
+    urlEnd: '8861938c-e603-422f-b5b9-b49c09c15b9f'
+  },
+  {
     stackName: "DogPark",
+    titleSing: "Hundrastgård",
     title: "Hundrastgårdar",
     imgUrl: require("./assets/hundrastgård.png"),
     urlEnd: '1d83a1df-16ca-4bfd-8bc7-242747231b60'
   },
   {
     stackName: "WalkingTrail",
+    titleSing: "Vandringsled",
     title: "Vandringsleder",
     subtitle: '(Startpunkter)',
     imgUrl: require("./assets/vandringsled.png"),
@@ -44,47 +54,46 @@ const categories: Array<Partial<Category>> = [
   },
   {
     stackName: "NatureReserve",
+    titleSing: "Naturreservat",
     title: "Naturreservat",
     imgUrl: require("./assets/naturreservat.png"),
     urlEnd: '57743863-81ce-461a-9887-791b492f4522'
   },
   {
     stackName: "BirdTower",
+    titleSing: "Fågeltorn",
     title: "Fågeltorn",
-    imgUrl: require("./assets/noIcon.png"),
+    imgUrl: require("./assets/fågeltorn.png"),
     urlEnd: 'adf0ed85-2614-4f0e-a1d1-531900361a9c'
   },
   {
     stackName: "TouristAttraction",
+    titleSing: "Turistattraktion",
     title: "Turistattraktioner",
-    imgUrl: require("./assets/noIcon.png"),
+    imgUrl: require("./assets/turistattraktion.png"),
     urlEnd: '33f5afd7-9a53-46cb-9842-adadc9769c34'
   },
   {
     stackName: "ExerciseAreas",
+    titleSing: "Träningsområde",
     title: "Träningsområden",
-    imgUrl: require("./assets/noIcon.png"),
+    imgUrl: require("./assets/träningsområden.png"),
     urlEnd: '1e7197b0-93d6-49ea-878f-489eff759ba7'
   },
-  {
-    stackName: "Playground",
-    title: "Lekplatser",
-    imgUrl: require("./assets/noIcon.png"),
-    urlEnd: '8861938c-e603-422f-b5b9-b49c09c15b9f'
-  }
+
 ];
 
 
 const profilepics: Array<NodeRequire> = [
+  require("./assets/defaultIcon.png"),
   require("./assets/dogIcon.png"),
-  require("./assets/dogTestIcon.png"),
-  require("./assets/dogIcon.png"),
-  require("./assets/dogIcon.png"),
-  require("./assets/dogIcon.png"),
-  require("./assets/dogIcon.png"),
-  require("./assets/dogIcon.png"),
-  require("./assets/dogIcon.png"),
-  require("./assets/dogIcon.png"),
+  require("./assets/catIcon.png"),
+  require("./assets/chickenIcon.png"),
+  require("./assets/pigIcon.png"),
+  require("./assets/hourseIcon.png"),
+  require("./assets/sheepIcon.png"),
+  require("./assets/balloonIcon.png"),
+  require("./assets/flowerIcon.png"),
 ];
 
 const Tab = createBottomTabNavigator();
@@ -96,7 +105,7 @@ const routeIcons = {
   "Profil": "star",
 };
 const library = {
-  "Hem": "foundation",
+  "Hem": "FontAwesome5",
   "Om": "ionicons",
   "Inlogg": "ionicons",
   "Profil": "ionicons",
@@ -132,15 +141,18 @@ export default function App() {
             let libraryName = library[route.name] || "ionicons";
 
             if (libraryName === "ionicons") {
-              return <Ionicons name={iconName} size={size} color={color} />;
+              return <Ionicons name={iconName} size={22} color={color} />;
             }
-            return <Foundation name={iconName} size={size} color={color} />;
+            if (libraryName === "FontAwesome5") {
+              return <FontAwesome5 name={iconName} size={22} color={color} />;
+            }
+            return <Foundation name={iconName} size={22} color={color} />;
           },
           tabBarActiveTintColor: '#313131',
           tabBarInactiveTintColor: '#8A8A8A',
           headerShown: false,
           tabBarItemStyle: {
-            marginTop: 5,
+            marginTop: 8,
           },
           tabBarStyle: {
             height: 57,

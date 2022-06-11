@@ -11,13 +11,14 @@ export const buttonImageSmall = {
 
 export const buttonIconStart = {
     width: 40,
-    height: 30,
+    height: 40,
     marginLeft: 10,
     marginRight: 20,
 }
 
 export const heart = {
     marginTop: 30,
+    marginBottom: 10,
     width: 50,
     height: 50,
 }
@@ -37,7 +38,7 @@ export const profilePicBackg = {
 export const profilePicBackg2 = {
     position: 'absolute',
     top: -2,
-    right: -2,
+    right: 0,
     width: 110,
     height: 110,
 }

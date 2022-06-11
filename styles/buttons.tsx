@@ -60,7 +60,7 @@ export const button2 = {
     backgroundColor: '#398440',
     // backgroundColor: '#FAFAFA',
     borderRadius: 8,
-    padding: 10,
+    padding: 12,
     marginBottom: 20,
     marginLeft: 20,
     marginRight: 20,
@@ -113,7 +113,7 @@ export const gridContainer = {
 export const buttonProfile = {
     backgroundColor: '#46A450',
     borderRadius: 8,
-    padding: 17,
+    padding: 14,
     marginBottom: 20,
     marginLeft: 20,
     marginRight: 20,

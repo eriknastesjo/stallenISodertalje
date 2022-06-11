@@ -131,6 +131,15 @@ export const normalCenter = {
 
 };
 
+export const normalCenterLessMargin = {
+    color: '#3D3D3D',
+    textAlign: "center",
+    fontSize: 19,
+    fontFamily: "sans-serif",
+    marginBottom: 10,
+
+};
+
 export const boldCenter = {
     textAlign: "center",
     color: '#3D3D3D',
