@@ -22,7 +22,7 @@ export default function Categories({ categories, navigation, name, profilepics, 
             console.log(categoryObj.imgUrl);
             return <TouchableOpacity onPress={onPress(categoryObj)} style={Buttons.buttonGrid} key={index}>
                 <Image source={categoryObj.imgUrl} style={Images.buttonImage} />
-                <Text style={Typography.boldCenterButton}>{categoryObj.titleSing}</Text>
+                <Text style={Typography.boldCenterButton}>{categoryObj.stackName}</Text>
             </TouchableOpacity>
         });
 

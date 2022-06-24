@@ -25,57 +25,49 @@ import Auth from './components/Auth/Auth';
 const categories: Array<Partial<Category>> = [
   {
     stackName: "Park",
-    titleSing: "Park",
     title: "Parker",
     imgUrl: require("./assets/park.png"),
     urlEnd: '2cc90eb1-2c6a-444b-ab52-e4bcd22c7130'
   },
   {
-    stackName: "Playground",
-    titleSing: "Lekplats",
+    stackName: "Lekplats",
     title: "Lekplatser",
     imgUrl: require("./assets/lekplats.png"),
     urlEnd: '8861938c-e603-422f-b5b9-b49c09c15b9f'
   },
   {
-    stackName: "NatureReserve",
-    titleSing: "Naturreservat",
+    stackName: "Naturreservat",
     title: "Naturreservat",
     imgUrl: require("./assets/naturreservat.png"),
     urlEnd: '57743863-81ce-461a-9887-791b492f4522'
   },
   {
-    stackName: "WalkingTrail",
-    titleSing: "Vandringsled",
+    stackName: "Vandringsled",
     title: "Vandringsleder",
     subtitle: '(Startpunkter)',
     imgUrl: require("./assets/vandringsled.png"),
     urlEnd: 'f6b33e8d-19bd-4d2d-a59b-35c4df352a2c'
   },
   {
-    stackName: "DogPark",
-    titleSing: "Hundrastgård",
+    stackName: "Hundrastgård",
     title: "Hundrastgårdar",
     imgUrl: require("./assets/hundrastgård.png"),
     urlEnd: '1d83a1df-16ca-4bfd-8bc7-242747231b60'
   },
   {
-    stackName: "BirdTower",
-    titleSing: "Fågeltorn",
+    stackName: "Fågeltorn",
     title: "Fågeltorn",
     imgUrl: require("./assets/fågeltorn.png"),
     urlEnd: 'adf0ed85-2614-4f0e-a1d1-531900361a9c'
   },
   {
-    stackName: "TouristAttraction",
-    titleSing: "Turistattraktion",
+    stackName: "Turistattraktion",
     title: "Turistattraktioner",
     imgUrl: require("./assets/turistattraktion.png"),
     urlEnd: '33f5afd7-9a53-46cb-9842-adadc9769c34'
   },
   {
-    stackName: "ExerciseAreas",
-    titleSing: "Träningsområde",
+    stackName: "Träningsområde",
     title: "Träningsområden",
     imgUrl: require("./assets/träningsområden.png"),
     urlEnd: '1e7197b0-93d6-49ea-878f-489eff759ba7'
