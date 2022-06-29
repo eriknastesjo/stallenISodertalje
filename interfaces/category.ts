@@ -4,4 +4,5 @@ export default interface Category {
     subtitle: string,
     imgUrl: NodeRequire,
     urlEnd: string,
+    dataType: string,
 }

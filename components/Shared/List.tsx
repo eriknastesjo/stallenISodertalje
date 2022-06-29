@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { Typography, Base, Buttons } from '../../styles';
 
 
-export default function List({ navigation, listItems, title, subtitle }) {
+export default function List({ navigation, listItems, title, subtitle, dataType }) {
 
     // Get in alphabetical order
     listItems.sort((a, b) => {
@@ -30,7 +30,8 @@ export default function List({ navigation, listItems, title, subtitle }) {
                     style={Buttons.button2}
                     onPress={() => {
                         navigation.navigate('Detaljer', {
-                            detailObj: listItem
+                            detailObj: listItem,
+                            dataType: dataType
                         });
                     }}
                 >

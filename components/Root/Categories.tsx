@@ -10,16 +10,18 @@ export default function Categories({ categories, navigation, name, profilepics, 
     }
 
     const onPress = (categoryObj) => () => {
+        // console.log(categoryObj);
         navigation.navigate(categoryObj.stackName, {
             title: categoryObj.title,
             subtitle: categoryObj.subtitle,
             urlEnd: categoryObj.urlEnd,
+            dataType: categoryObj.dataType,
         });
     };
 
     const listCategories = categories
         .map((categoryObj, index) => {
-            console.log(categoryObj.imgUrl);
+            // console.log(categoryObj.imgUrl);
             return <TouchableOpacity onPress={onPress(categoryObj)} style={Buttons.buttonGrid} key={index}>
                 <Image source={categoryObj.imgUrl} style={Images.buttonImage} />
                 <Text style={Typography.boldCenterButton}>{categoryObj.stackName}</Text>

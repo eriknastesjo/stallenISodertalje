@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
 import FlashMessage from "react-native-flash-message";
 
+
 // import authModel from './models/auth';
 // import artefactsModel from './models/artefacts';
 import storage from './models/storage';
@@ -27,50 +28,78 @@ const categories: Array<Partial<Category>> = [
     stackName: "Park",
     title: "Parker",
     imgUrl: require("./assets/park.png"),
-    urlEnd: '2cc90eb1-2c6a-444b-ab52-e4bcd22c7130'
+    urlEnd: '/rowstore/dataset/2cc90eb1-2c6a-444b-ab52-e4bcd22c7130',
+    dataType: 'json'
   },
   {
     stackName: "Lekplats",
     title: "Lekplatser",
     imgUrl: require("./assets/lekplats.png"),
-    urlEnd: '8861938c-e603-422f-b5b9-b49c09c15b9f'
+    urlEnd: '/rowstore/dataset/8861938c-e603-422f-b5b9-b49c09c15b9f'
   },
   {
     stackName: "Naturreservat",
     title: "Naturreservat",
     imgUrl: require("./assets/naturreservat.png"),
-    urlEnd: '57743863-81ce-461a-9887-791b492f4522'
+    urlEnd: '/rowstore/dataset/57743863-81ce-461a-9887-791b492f4522',
+    dataType: 'json'
   },
   {
     stackName: "Vandringsled",
     title: "Vandringsleder",
     subtitle: '(Startpunkter)',
     imgUrl: require("./assets/vandringsled.png"),
-    urlEnd: 'f6b33e8d-19bd-4d2d-a59b-35c4df352a2c'
+    urlEnd: '/rowstore/dataset/f6b33e8d-19bd-4d2d-a59b-35c4df352a2c',
+    dataType: 'json'
   },
   {
     stackName: "Hundrastgård",
     title: "Hundrastgårdar",
     imgUrl: require("./assets/hundrastgård.png"),
-    urlEnd: '1d83a1df-16ca-4bfd-8bc7-242747231b60'
+    urlEnd: '/rowstore/dataset/1d83a1df-16ca-4bfd-8bc7-242747231b60',
+    dataType: 'json'
   },
   {
     stackName: "Fågeltorn",
     title: "Fågeltorn",
     imgUrl: require("./assets/fågeltorn.png"),
-    urlEnd: 'adf0ed85-2614-4f0e-a1d1-531900361a9c'
+    urlEnd: '/rowstore/dataset/adf0ed85-2614-4f0e-a1d1-531900361a9c',
+    dataType: 'json'
   },
   {
     stackName: "Turistattraktion",
     title: "Turistattraktioner",
     imgUrl: require("./assets/turistattraktion.png"),
-    urlEnd: '33f5afd7-9a53-46cb-9842-adadc9769c34'
+    urlEnd: '/rowstore/dataset/33f5afd7-9a53-46cb-9842-adadc9769c34',
+    dataType: 'json'
   },
   {
     stackName: "Träningsområde",
     title: "Träningsområden",
     imgUrl: require("./assets/träningsområden.png"),
-    urlEnd: '1e7197b0-93d6-49ea-878f-489eff759ba7'
+    urlEnd: '/rowstore/dataset/1e7197b0-93d6-49ea-878f-489eff759ba7',
+    dataType: 'json'
+  },
+  {
+    stackName: "Vandringsled2",
+    title: "Vandringsleder2",
+    imgUrl: require("./assets/noIcon.png"),
+    urlEnd: '/store/1/resource/486',
+    dataType: "geoJson"
+  },
+  {
+    stackName: "Parkeringar",
+    title: "Parkeringar",
+    imgUrl: require("./assets/noIcon.png"),
+    urlEnd: '/rowstore/dataset/2f4c70e4-3932-4473-b94e-9858543efa8c',
+    dataType: "json"
+  },
+  {
+    stackName: "Excercice",
+    title: "Escercice",
+    imgUrl: require("./assets/noIcon.png"),
+    urlEnd: '/store/1/resource/659',
+    dataType: "geoJson"
   },
 
 ];

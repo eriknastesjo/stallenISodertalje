@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { Text, View, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { Base, Typography, Buttons } from "../../styles";
 import * as Linking from 'expo-linking';
@@ -5,7 +6,8 @@ import Map from "./MapSingle";
 
 
 export default function Details({ route }) {
-    const { detailObj } = route.params; // se i ParkList funktionen listOfParks och vid 'Onpress'
+    const { detailObj, dataType } = route.params; // se i ParkList funktionen listOfParks och vid 'Onpress'
+
     // console.log(detailObj);
 
     return (

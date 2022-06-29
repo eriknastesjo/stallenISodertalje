@@ -203,3 +203,28 @@ export const label = {
     marginBottom: 0,
     lineHeight: 29,
 };
+
+export const mapLabel = {
+    backgroundColor: 'white',
+    fontSize: 14,
+    fontWeight: 'bold',
+    fontFamily: "sans-serif",
+    paddingVertical: 3,
+    paddingHorizontal: 8,
+
+    textAlign: "center",
+    alignSelf: 'center',
+
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: "blue",
+
+    // shadowOffset: { width: 0, height: 10 },
+    // shadowColor: 'black',
+    // shadowOpacity: 1,
+    // elevation: 200,
+    // shadowRadius: 10,
+    // // background color must be set
+    // // backgroundColor: "#0000" // invisible color
+    // zIndex: 999,
+};

@@ -1,39 +1,151 @@
-import { useState, useEffect } from "react";
-import { Text, View, ScrollView, StyleSheet, Image } from "react-native";
-import { Base, Typography, Images } from "../../styles";
-import MapView, { Marker } from 'react-native-maps';
+import { useState, useEffect, useRef } from "react";
+import { Text, View, ScrollView, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Base, Typography, Images, Buttons } from "../../styles";
+import MapView, { Marker, Geojson } from 'react-native-maps';
+import * as Linking from 'expo-linking';
 // import getCoordinates from '../../models/nominatim';
 import * as Location from 'expo-location';
 // import parkModel from "../../models/park";
-import { useRef } from "react";
 
 export default function MapAll(props) {
 
-    const mapItems = props.mapItems;
-    const markerImgURL = props.markerImgURL;    // är tänkt för att kunna skapa custom markers i framtiden
-    let listOfMarks;
+    const { mapItems, dataType, fitCoordinates } = props;
+    let listOfMapItems;
+
+    const [title, setTitle] = useState(props.title);
+    const [description, setDescription] = useState("Tryck på en markör eller slinga för att se detaljer.");
+    const [webbpage, setWebpage] = useState("");
+
+    const [allIndiviualColors, setAllIndiviualColors] = useState(["black"]);
+    const [allIndiviualColorsOriginal, setAllIndiviualColorsOriginal] = useState(["black"]);
+    const colorPalette = ["#0000FF", "#FF0000", "#E500FF", "#00955F", "#000000", "#6400A1", "#1EB81C"];
+    // const colorPaletteOriginal = colorPalette;
+
+    const colorPaletteLength = colorPalette.length;
+    // let colorIndex = -1;
+
+    const [allIndiviualWidths, setAllIndiviualWidths] = useState([2]);
+    const [allIndiviualWidthsOriginal, setAllIndiviualWidthsOriginal] = useState([2]);
+
+    const [textMarker, settextMarker] = useState(null);
 
     const mapRef = useRef<MapView>(null);
 
-    // const [markers, setAllMarkers] = useState(null); // hinner inte uppdateras innan kartan renderar markörer
     const [locationMarker, setLocationMarker] = useState(null);
-    const [errorMessage, setErrorMessage] = useState(null);
     const [initRegion, setInitRegion] = useState(null);
 
     let listOfMarkId: Array<string> = [];
 
-    listOfMarks = mapItems
-        .map((mapItem, index) => {
-            listOfMarkId.push('m' + index.toString());
-            return <Marker
-                coordinate={{ latitude: parseFloat(mapItem["latitude"]), longitude: parseFloat(mapItem["longitude"]) }}
-                title={mapItem["namn"]}
-                identifier={'m' + index.toString()}
-                key={index}
-            />
-        });
+
+    console.log(fitCoordinates);
+
+    if (dataType === "json") {
+        listOfMapItems = mapItems
+            .map((mapItem, index) => {
+                listOfMarkId.push('m' + index.toString());
+                return <Marker
+                    coordinate={{ latitude: parseFloat(mapItem["latitude"]), longitude: parseFloat(mapItem["longitude"]) }}
+                    title={mapItem["namn"]}
+                    identifier={'m' + index.toString()}
+                    key={index}
+                    onPress={() => {
+                        updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
+                    }}/>
+            });
+    }
+
+    if (dataType === "geoJson") {
+        console.log("DOING GEOJSON");
+
+        // CREATE COLOR STATE
+        useEffect(() => {
+            let colorArray = []
+            const mapItemsLength = mapItems.length;
+            for (let i = 0; i < mapItemsLength; i++) {
+                colorArray.push(colorPalette[i % colorPaletteLength]);
+            }
+            setAllIndiviualColors(colorArray);
+            setAllIndiviualColorsOriginal([...colorArray]);
+        }, []);
+
+        // CREATE STROKE WIDTH STATE
+        useEffect(() => {
+            let widthArray = []
+            const mapItemsLength = mapItems.length;
+            for (let i = 0; i < mapItemsLength; i++) {
+                widthArray.push(2);
+            }
+            setAllIndiviualWidths(widthArray);
+            setAllIndiviualWidthsOriginal([...widthArray]);
+        }, []);
+
+        listOfMapItems = mapItems
+            .map((mapItem, index) => {
+                // console.log(mapItem.geoJson.features[0].geometry.coordinates[0]);
+                // console.log(mapItem['namn']);
+                return <Geojson
+                    geojson={mapItem.geoJson}
+                    strokeWidth={allIndiviualWidths[index]}
+                    // strokeWidth={5}
+                    strokeColor={allIndiviualColors[index]}
+                    // lineDashPattern={[1, 4]}
+                    tappable={true}
+                    key={index}
+                    onPress={(data: any) => {
+                        // console.log(data);
+                        // console.log(mapItem.geoJson.features[0].geometry.coordinates[0][1])
+                        updateTextMarker(
+                            mapItem.geoJson.features[0].geometry.coordinates[0][1],
+                            mapItem.geoJson.features[0].geometry.coordinates[0][0],
+                            mapItem['namn']
+                        );
+                        // console.log("helluuu?");
+                        updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
+                        updateGeoStyle(index);
+                    }}
+                />
+            });
+    }
 
     // console.log(listOfMarkId);
+
+    // console.log(listOfMapItems[0]);
+
+    function updateGeoStyle(index: number) {
+        // let newColArray = [... allIndiviualColorsOriginal];
+        // newColArray[index] = 'blue';
+        // setAllIndiviualColors(newColArray);
+        // console.log("eeh");
+        let newWidthArray = [... allIndiviualWidthsOriginal];
+        newWidthArray[index] = 4;
+        setAllIndiviualWidths(newWidthArray);
+    }
+
+    function updateTextMarker(lat: number, lng: number, name: string) {
+        console.log("updating");
+        settextMarker(<Marker
+            coordinate={{ latitude: parseFloat(lat), longitude: parseFloat(lng) }}
+            identifier="textMarker"
+        >
+            {/* <Text style={Typography.mapLabel}>
+                {name}
+            </Text> */}
+        </Marker>
+        );
+    };
+
+    function updateDetails (title: string, description: string, webpage: string) {
+        // console.log("PRESSED");
+        // console.log(title);
+        setTitle(title);
+        setDescription(description);
+        // console.log(webbpage);
+        setWebpage(webpage);
+    };
+
+
+    // console.log(listOfMarkId);
+    // console.log(listOfMapItems);
 
     useEffect(() => {
         (async () => {
@@ -69,21 +181,30 @@ export default function MapAll(props) {
         })();
     }, []);
 
-    // console.log(listOfMarks);
-
+    // console.log(listOfMapItems[4]);
     return (
         <View style={Base.container}>
             {/* <Text style={Typography.header2}>{props.title}</Text> */}
-            {props.subtitle !== undefined ?
-                <View>
-                    <Text style={Typography.header2NoMargin}>{props.title}</Text>
-                    <Text style={Typography.header3LessMargin}>{props.subtitle}</Text>
-                </View>
-                :
-                <View>
-                    <Text style={Typography.header2}>{props.title}</Text>
-                </View>
-            }
+            <View style={Base.content}>
+                <Text style={Typography.header2}>{title}</Text>
+                {
+                    description !== "" && description !== undefined &&
+                    <Text style={Typography.normalCenter}>{description}</Text>
+                }
+                {
+                    webbpage !== "" && webbpage !== undefined &&
+                    <View style={Buttons.buttonContainer}>
+                        <TouchableOpacity
+                            style={Buttons.buttonCenter}
+                            onPress={() => {
+                                Linking.openURL(webbpage)
+                            }}
+                        >
+                            <Text style={Typography.smallButton}>Webbsida</Text>
+                        </TouchableOpacity>
+                    </View>
+                }
+            </View>
             <View style={Base.mapContainer}>
                 <MapView
                     ref={mapRef}
@@ -92,13 +213,23 @@ export default function MapAll(props) {
                     style={styles.map}
                     initialRegion={initRegion}
                     onMapLoaded={() => {
-                        mapRef?.current?.fitToSuppliedMarkers(listOfMarkId), {
-                            animated: true
+                        if (fitCoordinates) {
+                            mapRef?.current?.fitToCoordinates(fitCoordinates), {
+                                animated: true
+                            }
+                        } else {
+                            mapRef?.current?.fitToSuppliedMarkers(listOfMarkId), {
+                                animated: true
+                            }
                         }
+
                     }}
                 >
-                    {listOfMarks}
+                    {listOfMapItems}
+                    {textMarker}
+
                     {locationMarker}
+
                 </MapView>
             </View>
         </View>

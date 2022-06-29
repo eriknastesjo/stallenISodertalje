@@ -40,3 +40,10 @@ export const mapContainer = {
     justifyContent: "flex-end",
     alignItems: "center",
 }
+
+export const geoJson = {
+    color: "#50D05C",
+    weight: 20,
+    opacity: 0.65
+}
+
