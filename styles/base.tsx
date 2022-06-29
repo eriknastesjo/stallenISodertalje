@@ -47,9 +47,75 @@ export const geoJson = {
     opacity: 0.65
 }
 
-export const overflowHidden = {
-    overflow: 'hidden',
-    transition: 'height 2s',
-    minHeight: 100,
+export const titleOverMapHolder = {
+    position: "absolute",
+    top: 30,
+
+    backgroundColor: "white",
+    // fontSize: 20,
+    // fontWeight: 'bold',
+    // fontFamily: "sans-serif",
+    paddingVertical: 4,
+    paddingHorizontal: 5,
+
+    // textAlign: "center",
+    // alignSelf: 'center',
+
+    shadowOffset: { width: 0, height: 20 },
+    shadowColor: 'black',
+    shadowOpacity: 1,
+    elevation: 2,
+    shadowRadius: 5,
+    // background color must be set
+    // backgroundColor: "#0000" // invisible color
+    zIndex: 999,
 }
 
+export const titleOverMapText = {
+
+    fontSize: 23,
+    fontWeight: 'bold',
+    fontFamily: "sans-serif",
+    letterSpacing: 1,
+
+    textAlign: "center",
+    alignSelf: 'center',
+}
+
+export const arrowLeft = {
+    position: "absolute",
+    top: 10,
+    left: -30,
+
+    width: 0,
+    height: 0,
+    backgroundColor: "transparent",
+    borderStyle: "solid",
+    borderLeftWidth: 20,
+    borderRightWidth: 20,
+    borderBottomWidth: 20,
+    borderLeftColor: "transparent",
+    borderRightColor: "transparent",
+    borderBottomColor: "white",
+
+    transform: [{ rotate: "-90deg" }],
+}
+
+export const arrowRight = {
+    position: "absolute",
+    top: 10,
+    right: -30,
+
+    width: 0,
+    height: 0,
+    backgroundColor: "transparent",
+    borderStyle: "solid",
+    borderLeftWidth: 20,
+    borderRightWidth: 20,
+    borderBottomWidth: 20,
+    borderLeftColor: "transparent",
+    borderRightColor: "transparent",
+    borderBottomColor: "white",
+
+    transform: [{ rotate: "90deg" }],
+}

@@ -99,6 +99,7 @@ export default function MapAll(props) {
                         //     mapItem['namn']
                         // );
                         // console.log("helluuu?");
+                        console.log(data);
                         updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
                         updateGeoStyle(index);
                     }}
@@ -202,13 +203,11 @@ export default function MapAll(props) {
         <View style={Base.container}>
             {/* <Text style={Typography.header2}>{props.title}</Text> */}
             <View style={Base.content}>
-                <View style={Base.overflowHidden}>
-                    <Text style={Typography.header2}>{title}</Text>
-                    {
-                        description !== "" && description !== undefined &&
-                        <Text style={Typography.normalCenter}>{description}</Text>
-                    }
-                </View>
+                <Text style={Typography.header2}>{title}</Text>
+                {
+                    description !== "" && description !== undefined &&
+                    <Text style={Typography.normalCenter}>{description}</Text>
+                }
                 {
                     webbpage !== "" && webbpage !== undefined &&
                     <View style={Buttons.buttonContainer}>
@@ -250,6 +249,13 @@ export default function MapAll(props) {
                     {locationMarker}
 
                 </MapView>
+
+                <View style={Base.titleOverMapHolder}>
+                    <View style={Base.arrowLeft}></View>
+                    <Text style={Base.titleOverMapText}>Måsnareleden</Text>
+                    <View style={Base.arrowRight}></View>
+                </View>
+
             </View>
         </View>
     );

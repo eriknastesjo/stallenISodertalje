@@ -122,6 +122,12 @@ export default function Map(props) {
                 }
             }}
             // onPress={e => console.log(e.nativeEvent)}
+            // onPress={(e) => {
+            //     console.log("onPress...");
+            // }}
+            // onPoiClick={(e) => {
+            //     console.log("on Point Of Interest..."); // <------ add this
+            // }}
         >
             {mapItemRender}
             {locationMarker}
