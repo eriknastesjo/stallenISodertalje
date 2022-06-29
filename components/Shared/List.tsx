@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { Typography, Base, Buttons } from '../../styles';
 
 
-export default function List({ navigation, listItems, title, subtitle, dataType }) {
+export default function List({ navigation, listItems, listItemsCompl, title, subtitle, urlEndJson, urlEndGeo, urlEndCompl, fitCoordinates }) {
 
     // Get in alphabetical order
     listItems.sort((a, b) => {
@@ -30,8 +30,17 @@ export default function List({ navigation, listItems, title, subtitle, dataType 
                     style={Buttons.button2}
                     onPress={() => {
                         navigation.navigate('Detaljer', {
-                            detailObj: listItem,
-                            dataType: dataType
+                            // mapItems: listItems,
+                            mapItemFocused: listItem,
+                            // mapItemsCompl: listItemsCompl,
+                            // fitCoordinates: fitCoordinates,
+
+                            // lägg till senare om vi utvecklar till att se alla positioner även i MapSingle mode typ...
+                            // Dock just nu blir kanske lite knökigt med massa markörer överallt även om man centrerar på en av dem
+                            // så blir det inte tydligt om inte man får upp pratbubbla med platsnamn ovanför
+                            urlEndJson: urlEndJson,
+                            urlEndGeo: urlEndGeo,
+                            urlEndCompl: urlEndCompl
                         });
                     }}
                 >

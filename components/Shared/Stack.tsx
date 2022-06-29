@@ -16,9 +16,9 @@ import Details from '../Shared/Details';
 const Stack = createNativeStackNavigator();
 
 export default function Stacking({ route }) {
-    const { title, subtitle, urlEnd, dataType } = route.params;
+    const { title, subtitle, urlEndJson, urlEndGeo, urlEndCompl, dataType } = route.params;
     const [data, setData] = useState([]);
-    const [geodata, setGeodata] = useState([]);
+    const [dataComl, setdataComl] = useState([]);
 
     let fitCoordinates:any;
 
@@ -26,23 +26,26 @@ export default function Stacking({ route }) {
 
     useEffect(() => {
 
-
-        if (dataType === "json") {
+        if (urlEndJson) {
             (async function () {
-                setData(await sodertaljeModel.getJsonData(urlEnd));
+                setData(await sodertaljeModel.getJsonData(urlEndJson));
             })();
         }
 
-        if (dataType === "geoJson") {
+        if (urlEndGeo) {
             (async function () {
-                const result = await sodertaljeModel.getGeoJsonData(urlEnd)
+                const result = await sodertaljeModel.getGeoJsonData(urlEndGeo)
                 setData(result);
             })();
         }
 
+        if (urlEndCompl) {
+            (async function () {
+                setdataComl(await sodertaljeModel.getJsonData(urlEndCompl));
+            })();
+        }
+
     }, []);
-
-
 
 
     // TODO:
@@ -52,16 +55,19 @@ export default function Stacking({ route }) {
     // 2. TA MED NEDAN I REFINEDDATA TYP "geoKoordinationer" OCH "geoNamn" (fyll eventuellt på med fler detaljer senare)
     // 3. FIXA I LIST SÅ ATT DEN KAN LÄSA AV GEONAMN OCH LISTA DEM (kanske inte behövs med ?? i ListorMap?)
     // 4. HITTA TVÅ YTTRE KOORDINATIONER SÅ ATT KARTAN KAN ANPASSA SIG I BÖRJAN (FITTOCOORDINATES)
+    // 5. FIXA I MAPSINGLE SÅ ATT DEN KAN LÄSA AV GEONAMN OCH GEOKOORDINATIONER
+    // 6. HA "COMPLEMENTARY JSON" SÅ ATT MAN KAN FÅ IN DET I VANDRINGSLEDER (startpunkter) OCH MOTIONSSPÅR (paring)
 
     // ---- BEHÖVER FIXAS ----
-    // 5. FIXA I MAPSINGLE SÅ ATT DEN KAN LÄSA AV GEONAMN OCH GEOKOORDINATIONER
-    // 6. LÄGG TILL + SYMBOL FÖR ATT VISA/DÖLJA INFO I MAPVIEW (STATE I APP SOM SPARAS I TOKEN SÅ ATT MAN INTE MÅSTE STÄLLA IN VARJE GÅNG)
-    // 7. HA "COMPLEMENTARY JSON" SÅ ATT MAN KAN FÅ IN DET I VANDRINGSLEDER (startpunkter) OCH MOTIONSSPÅR (paring)
+    // 7. (PROVA FÖRST NR 8) LÄGG TILL + SYMBOL FÖR ATT VISA/DÖLJA INFO I MAPVIEW (STATE I APP SOM SPARAS I TOKEN SÅ ATT MAN INTE MÅSTE STÄLLA IN VARJE GÅNG)
+    // 8. FÖRSÖK FÅ MJUKARE ÖVERGÅNG MED OVERFLOW HIDDEN + TRANSITION ANIM ... (TVEKSAMT DOCK OM DET FAKTISKT GÅR)
+    // 9. BILDER
+    // 10. ORDNA MED CATEGORIES I APP.tsx
 
 
     let refinedData:Array<any> = [];
 
-    if (dataType === "json") {
+    if (urlEndJson) {
         refinedData = data
             .map((dataItem) => {
                 return {
@@ -78,24 +84,45 @@ export default function Stacking({ route }) {
             });
     }
 
-
-    if (dataType === "geoJson") {
+    if (urlEndGeo) {
         fitCoordinates = calculateFitCoordinatesGeoJson(data);
         refinedData = data
-            .map((dataItem) => {
-                // console.log(dataItem.features[0].properties.Namn);
-                return {
-                    // "beskrivning": dataItem["beskrivning"]
-                    //     ?? dataItem["information"]
-                    //     ?? dataItem["informatiom"]
-                    //     ?? dataItem["vägbeskrivning"],
+        .map((dataItem) => {
+            // console.log(dataItem.features[0].properties.Namn);
+            return {
+                // "beskrivning": dataItem["beskrivning"]
+                //     ?? dataItem["information"]
+                //     ?? dataItem["informatiom"]
+                //     ?? dataItem["vägbeskrivning"],
 
-                    // "webbsida": dataItem["webbsida"],
-                    "namn": dataItem.features[0].properties.Namn,
-                    "geoJson": dataItem
+                // "webbsida": dataItem["webbsida"],
+                "namn": dataItem.features[0].properties.Namn,
+                "geoJson": dataItem
+            }
+        });
+    }
+
+    let refinedDataCompl: Array<any> = [];
+
+    if (urlEndCompl) {
+        console.log("REFINING COMPL DATA!!");
+        refinedDataCompl = dataComl
+            .map((dataItem) => {
+                return {
+                    "beskrivning": dataItem["beskrivning"]
+                        ?? dataItem["information"]
+                        ?? dataItem["informatiom"]
+                        ?? dataItem["vägbeskrivning"],
+
+                    "latitude": dataItem["nord-koordinat (wgs84)"],
+                    "longitude": dataItem["ost-koordinat (wgs84)"],
+                    "webbsida": dataItem["webbsida"],
+                    "namn": dataItem["﻿namn"]
                 }
             });
     }
+
+    console.log(refinedDataCompl);
 
     return (
         <Stack.Navigator initialRouteName="ListOrMap" >
@@ -103,16 +130,23 @@ export default function Stacking({ route }) {
             <Stack.Screen name="Detaljer" component={Details} />
             <Stack.Screen name="Lista">{(props) => <List {...props}
                 listItems={refinedData}
+                listItemsCompl={refinedDataCompl}
                 title={title}
                 subtitle={subtitle}
-                dataType={dataType}
+                urlEndJson={urlEndJson}
+                urlEndGeo={urlEndGeo}
+                urlEndCompl={urlEndCompl}
+                fitCoordinates={fitCoordinates}
                 />}
             </Stack.Screen>
             <Stack.Screen name="Karta">{(props) => <MapAll {...props}
                 mapItems={refinedData}
+                mapItemsCompl={refinedDataCompl}
                 title={title}
                 subtitle={subtitle}
-                dataType={dataType}
+                urlEndJson={urlEndJson}
+                urlEndGeo={urlEndGeo}
+                urlEndCompl={urlEndCompl}
                 fitCoordinates={fitCoordinates}
             />}
             </Stack.Screen>

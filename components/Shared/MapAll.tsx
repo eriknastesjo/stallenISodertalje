@@ -9,8 +9,9 @@ import * as Location from 'expo-location';
 
 export default function MapAll(props) {
 
-    const { mapItems, dataType, fitCoordinates } = props;
+    const { mapItems, mapItemsCompl, urlEndJson, urlEndGeo, urlEndCompl, fitCoordinates } = props;
     let listOfMapItems;
+    let listOfMapItemsCompl;
 
     const [title, setTitle] = useState(props.title);
     const [description, setDescription] = useState("Tryck på en markör eller slinga för att se detaljer.");
@@ -39,7 +40,7 @@ export default function MapAll(props) {
 
     console.log(fitCoordinates);
 
-    if (dataType === "json") {
+    if (urlEndJson) {
         listOfMapItems = mapItems
             .map((mapItem, index) => {
                 listOfMarkId.push('m' + index.toString());
@@ -54,7 +55,7 @@ export default function MapAll(props) {
             });
     }
 
-    if (dataType === "geoJson") {
+    if (urlEndGeo) {
         console.log("DOING GEOJSON");
 
         // CREATE COLOR STATE
@@ -92,18 +93,33 @@ export default function MapAll(props) {
                     tappable={true}
                     key={index}
                     onPress={(data: any) => {
-                        // console.log(data);
-                        // console.log(mapItem.geoJson.features[0].geometry.coordinates[0][1])
-                        updateTextMarker(
-                            mapItem.geoJson.features[0].geometry.coordinates[0][1],
-                            mapItem.geoJson.features[0].geometry.coordinates[0][0],
-                            mapItem['namn']
-                        );
+                        // updateTextMarker(
+                        //     mapItem.geoJson.features[0].geometry.coordinates[0][1],
+                        //     mapItem.geoJson.features[0].geometry.coordinates[0][0],
+                        //     mapItem['namn']
+                        // );
                         // console.log("helluuu?");
                         updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
                         updateGeoStyle(index);
                     }}
                 />
+            });
+    }
+
+    console.log(mapItemsCompl);
+
+    if (urlEndCompl) {
+        listOfMapItemsCompl = mapItemsCompl
+            .map((mapItem, index) => {
+                // listOfMarkId.push('m' + index.toString());
+                return <Marker
+                    coordinate={{ latitude: parseFloat(mapItem["latitude"]), longitude: parseFloat(mapItem["longitude"]) }}
+                    title={mapItem["namn"]}
+                    identifier={'m' + index.toString()}
+                    key={index}
+                    onPress={() => {
+                        updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
+                    }} />
             });
     }
 
@@ -186,11 +202,13 @@ export default function MapAll(props) {
         <View style={Base.container}>
             {/* <Text style={Typography.header2}>{props.title}</Text> */}
             <View style={Base.content}>
-                <Text style={Typography.header2}>{title}</Text>
-                {
-                    description !== "" && description !== undefined &&
-                    <Text style={Typography.normalCenter}>{description}</Text>
-                }
+                <View style={Base.overflowHidden}>
+                    <Text style={Typography.header2}>{title}</Text>
+                    {
+                        description !== "" && description !== undefined &&
+                        <Text style={Typography.normalCenter}>{description}</Text>
+                    }
+                </View>
                 {
                     webbpage !== "" && webbpage !== undefined &&
                     <View style={Buttons.buttonContainer}>
@@ -226,7 +244,8 @@ export default function MapAll(props) {
                     }}
                 >
                     {listOfMapItems}
-                    {textMarker}
+                    {listOfMapItemsCompl}
+                    {/* {textMarker} */}
 
                     {locationMarker}
 

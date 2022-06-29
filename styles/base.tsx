@@ -47,3 +47,9 @@ export const geoJson = {
     opacity: 0.65
 }
 
+export const overflowHidden = {
+    overflow: 'hidden',
+    transition: 'height 2s',
+    minHeight: 100,
+}
+

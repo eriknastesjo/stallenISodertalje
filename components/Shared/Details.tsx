@@ -6,38 +6,26 @@ import Map from "./MapSingle";
 
 
 export default function Details({ route }) {
-    const { detailObj, dataType } = route.params; // se i ParkList funktionen listOfParks och vid 'Onpress'
+    const { mapItemFocused, urlEndJson, urlEndGeo, urlEndCompl } = route.params; // se i ParkList funktionen listOfParks och vid 'Onpress'
 
-    // console.log(detailObj);
+    // console.log(mapItemFocused);
 
     return (
         <View style={Base.container}>
 
             <View style={Base.content}>
-                <Text style={Typography.header2}>{detailObj.namn}</Text>
+                <Text style={Typography.header2}>{mapItemFocused.namn}</Text>
                 {
-                    detailObj.beskrivning !== undefined && detailObj.beskrivning !== "" &&
-                    <Text style={Typography.normalCenter}>{detailObj.beskrivning}</Text>
+                    mapItemFocused.beskrivning !== undefined && mapItemFocused.beskrivning !== "" &&
+                    <Text style={Typography.normalCenter}>{mapItemFocused.beskrivning}</Text>
                 }
                 {
-                    detailObj.information !== undefined && detailObj.information !== "" &&
-                    <Text style={Typography.normalCenter}>{detailObj.information}</Text>
-                }
-                {
-                    detailObj.informatiom !== undefined && detailObj.informatiom !== "" &&
-                    <Text style={Typography.normalCenter}>{detailObj.informatiom}</Text>
-                }
-                {
-                    detailObj.vägbeskrivning !== undefined && detailObj.vägbeskrivning !== "" &&
-                    <Text style={Typography.normalCenter}>{detailObj.vägbeskrivning}</Text>
-                }
-                {
-                    detailObj.webbsida !== undefined && detailObj.webbsida !== "" &&
+                    mapItemFocused.webbsida !== undefined && mapItemFocused.webbsida !== "" &&
                     <View style={Buttons.buttonContainer}>
                         <TouchableOpacity
                             style={Buttons.buttonCenter}
                             onPress={() => {
-                                Linking.openURL(detailObj.webbsida)
+                                Linking.openURL(mapItemFocused.webbsida)
                             }}
                         >
                             <Text style={Typography.smallButton}>Webbsida</Text>
@@ -47,9 +35,14 @@ export default function Details({ route }) {
             </View>
 
             <View style={Base.mapContainer}>
-                <Map park={detailObj} />
+                <Map mapItem={mapItemFocused}
+                    urlEndJson={urlEndJson}
+                    urlEndGeo={urlEndGeo}
+                    urlEndCompl={urlEndCompl}
+                />
             </View>
 
         </View>
     );
+
 };

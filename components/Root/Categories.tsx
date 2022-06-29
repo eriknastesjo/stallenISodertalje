@@ -13,8 +13,9 @@ export default function Categories({ categories, navigation, name, profilepics, 
         // console.log(categoryObj);
         navigation.navigate(categoryObj.stackName, {
             title: categoryObj.title,
-            subtitle: categoryObj.subtitle,
-            urlEnd: categoryObj.urlEnd,
+            urlEndJson: categoryObj.urlEndJson,
+            urlEndGeo: categoryObj.urlEndGeo,
+            urlEndCompl: categoryObj.urlEndCompl,
             dataType: categoryObj.dataType,
         });
     };

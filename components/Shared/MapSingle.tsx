@@ -8,79 +8,78 @@ import geoData from "./testGeoData.json";
 
 export default function Map(props) {
 
-    const park = props.park;
+    const { mapItem, urlEndJson, urlEndGeo } = props;
 
+    let mapItemRender;
+    let textMarker;
+    let fitCoordinates: any;
 
-    const [marker, setMarker] = useState(null);
+    // const [marker, setMarker] = useState(null);
     const [locationMarker, setLocationMarker] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [initRegion, setInitRegion] = useState(null);
 
     const [strokeColor, setStrokeColor] = useState("red");
 
-    const [textMarker, settextMarker] = useState(null);
-
     const mapRef = useRef<MapView>(null);
 
-    let listOfMarkId: Array<string> = [];
 
 
-    // let listOfLatLng:any;    // FIXA SEN FÖR ATT FÅ TILL FIT TO COORD
-    // const testPathLength = testPath.features.length;
-    // for (let i = 0; i < testPathLength; i++) {
-    //     console.log(i);
-    //     listOfLatLng = testPath.features[i].geometry.coordinates.map((mapItem) => {
-    //         console.log("a");
-    //         return {
-    //             // latitude: mapItem[1],
-    //             // longitude: mapItem[0]
-    //         }
-    //     })
-    // }
+    if (urlEndJson) {
+        mapItemRender = <Marker
+            coordinate={{ latitude: parseFloat(mapItem.latitude), longitude: parseFloat(mapItem.longitude) }}
+            title={mapItem.namn}
+            identifier="there"
+        />;
 
-    // console.log(listOfLatLng);
+        useEffect(() => {
+            (async () => {
+                setInitRegion({
+                    latitude: parseFloat(mapItem.latitude),
+                    longitude: parseFloat(mapItem.longitude),
+                    latitudeDelta: 0.02,
+                    longitudeDelta: 0.02,
+                })
+            })();
+        }, []);
 
+    }
 
-    // let listOfLatLng = testPath.features.map((mapItem) => {
-    //     console.log(mapItem.geometry.coordinates)
-    //     return {
-    //         mapItem.geometry.coordinates.map((mapItemm) => {
+    if (urlEndGeo) {
+        // todo: sätt textMarker också!!!
+        fitCoordinates = calculateFitCoordinatesGeoJson(mapItem)
+        // console.log(mapItem);
+        mapItemRender = <Geojson
+            geojson={mapItem.geoJson}
+            strokeWidth={4}
+            strokeColor={"red"}
+            tappable={true}
+        />
 
-    //         })
+        textMarker= <Marker
+            coordinate={{
+                latitude: mapItem.geoJson.features[0].geometry.coordinates[0][1],
+                longitude: mapItem.geoJson.features[0].geometry.coordinates[0][0]
+            }}
+            title={"Endast en ungefärlig startpunkt!"}
+            identifier="textMarker"
+        >
+            {/* <Text style={Typography.mapLabel}>
+                {name}
+            </Text> */}
+        </Marker>
 
-    //             latitude: mapItem.[1],
-    //             longitude: mapItem[0]
-    //         }
-    //     });
-
-    // let listOfLatLng = mapItemsTest.map((mapItem) => {
-    //     console.log(mapItem)
-    //     return {
-    //             latitude: mapItem[1],
-    //             longitude: mapItem[0]
-    //         }
-    //     });
-
-    useEffect(() => {
-        (async () => {
-
-            setMarker(<Marker
-                coordinate={{ latitude: parseFloat(park.latitude), longitude: parseFloat(park.longitude) }}
-                title={park.namn}
-                identifier="there"
-            />
-            );
-
-            // todo: set textMarker instead if geoJson!!
-
-            setInitRegion({
-                latitude: parseFloat(park.latitude),
-                longitude: parseFloat(park.longitude),
-                latitudeDelta: 0.02,
-                longitudeDelta: 0.02,
-            })
-        })();
-    }, []);
+        useEffect(() => {
+            (async () => {
+                setInitRegion({
+                    latitude: 59.19554,
+                    longitude: 17.62525,
+                    latitudeDelta: 0.1,
+                    longitudeDelta: 0.1,
+                })
+            })();
+        }, []);
+    }
 
     useEffect(() => {
         (async () => {
@@ -114,36 +113,46 @@ export default function Map(props) {
             loadingIndicatorColor='#63AF69'
             style={styles.map}
             initialRegion={initRegion}
-            // onMapLoaded={() => {
-            //     // mapRef?.current?.fitToSuppliedMarkers(listOfMarkId), {
-            //     //     animated: true
-            //     // }
-            //     mapRef?.current?.fitToCoordinates(listOfLatLng), {   // todo: vänta med detta. Kanske komma på ett generellt sätt att räkna ut passande referenskoordinatorer för både markörer och slingor i sodertalje modell?
-            //         animated: true
-            //     }
-            // }}
-            onPress={e => console.log(e.nativeEvent)}   // todo: kanske kan denna användas snarare för att ta bort textMarkören? (även i MapAll)
+            onMapLoaded={() => {
+                // mapRef?.current?.fitToSuppliedMarkers(listOfMarkId), {
+                //     animated: true
+                // }
+                mapRef?.current?.fitToCoordinates(fitCoordinates), {
+                    animated: true
+                }
+            }}
+            // onPress={e => console.log(e.nativeEvent)}
         >
-            {marker}
+            {mapItemRender}
             {locationMarker}
             {textMarker}
 
-            {/* <Geojson
-                geojson={testPath}  // todo: istället för denna - ersätt med referens till riktigt geoJsonobjekt!
-                strokeWidth={4}
-                strokeColor={strokeColor}
-                tappable={true}
-                // onPress={(data: any) => {    // Tror inte att onPress behövs i MapSingle!
-                //     // console.log(data.feature.properties.Namn);
-                //     // console.log(data.coordinates[0].latitude);
-                //     // console.log(data.coordinates[0].longitude);
-                //     console.log(data);
-                //     updateTextMarker(data.coordinates[0].latitude, data.coordinates[0].longitude, data.feature.properties.Namn);
-                //     updateStrokeColor();
-                // }}
-            /> */}
         </MapView>
     );
+
+    function calculateFitCoordinatesGeoJson(geoJsonHolder: any) {
+
+        if (geoJsonHolder.length != 0) {
+
+            let allCoordinates: Array<Array<number>> = [];
+
+            const geoJsonLength = geoJsonHolder.geoJson.features.length;
+            for (let j = 0; j < geoJsonLength; j++) {
+                allCoordinates.push(...geoJsonHolder.geoJson.features[j].geometry.coordinates);
+            }
+
+            const lowestLat = allCoordinates.reduce((a, b) => a[1] < b[1] ? a : b)[1];
+            const highestLat = allCoordinates.reduce((a, b) => a[1] > b[1] ? a : b)[1];
+
+            const lowestLng = allCoordinates.reduce((a, b) => a[0] < b[0] ? a : b)[0];
+            const highestLng = allCoordinates.reduce((a, b) => a[0] > b[0] ? a : b)[0];
+
+            return [{ latitude: lowestLat, longitude: lowestLng }, { latitude: highestLat, longitude: highestLng }]
+
+        }
+
+    }
+
 };
 
 
