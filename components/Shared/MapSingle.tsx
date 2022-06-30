@@ -28,7 +28,8 @@ export default function Map(props) {
     if (urlEndJson) {
         mapItemRender = <Marker
             coordinate={{ latitude: parseFloat(mapItem.latitude), longitude: parseFloat(mapItem.longitude) }}
-            title={mapItem.namn}
+            // title={mapItem.namn}
+            title={"❤️️"}
             identifier="there"
         />;
 

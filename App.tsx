@@ -46,7 +46,8 @@ const categories: Array<Partial<Category>> = [
     stackName: "Vandringsled",
     title: "Vandringsleder",
     imgUrl: require("./assets/vandringsled.png"),
-    urlEndJson: '/rowstore/dataset/f6b33e8d-19bd-4d2d-a59b-35c4df352a2c',
+    urlEndGeo: '/store/1/resource/486',
+    urlEndCompl: '/rowstore/dataset/f6b33e8d-19bd-4d2d-a59b-35c4df352a2c',
   },
   {
     stackName: "Hundrastgård",
@@ -73,26 +74,42 @@ const categories: Array<Partial<Category>> = [
     urlEndJson: '/rowstore/dataset/1e7197b0-93d6-49ea-878f-489eff759ba7',
   },
   {
-    stackName: "Vandringsled2",
-    title: "Vandringsleder2",
-    imgUrl: require("./assets/noIcon.png"),
-    urlEndGeo: '/store/1/resource/486',
-    urlEndCompl: '/rowstore/dataset/f6b33e8d-19bd-4d2d-a59b-35c4df352a2c',
-  },
-  {
-    stackName: "Parkeringar",
-    title: "Parkeringar",
-    imgUrl: require("./assets/noIcon.png"),
-    urlEndJson: '/rowstore/dataset/2f4c70e4-3932-4473-b94e-9858543efa8c',
-  },
-  {
-    stackName: "Excercice",
-    title: "Escercice",
+      stackName: "Motionsspår",
+    title: "Motionsspår",
     imgUrl: require("./assets/noIcon.png"),
     urlEndGeo: '/store/1/resource/659',
     urlEndCompl: '/rowstore/dataset/2f4c70e4-3932-4473-b94e-9858543efa8c',
   },
-
+  {
+    stackName: "Badplats",
+    title: "Badplatser",
+    imgUrl: require("./assets/noIcon.png"),
+    urlEndJson: '/rowstore/dataset/07676184-5591-4222-8b9d-18bfc7d78f2b',
+  },
+  {
+    stackName: "Återvinning",
+    title: "Återvinning",
+    imgUrl: require("./assets/noIcon.png"),
+    urlEndJson: '/rowstore/dataset/785a36e3-41bc-4726-a043-befbe60628b9',
+  },
+  {
+    stackName: "Träningshall",
+    title: "Träningshallar",
+    imgUrl: require("./assets/noIcon.png"),
+    urlEndJson: '/rowstore/dataset/c0ba78ec-b6ec-4d88-b064-4b337c431103',
+  },
+  {
+    stackName: "Hotell",
+    title: "Hotell",
+    imgUrl: require("./assets/noIcon.png"),
+    urlEndJson: '/rowstore/dataset/3ef1e5df-9e40-4682-8054-cca1c218ea69',
+  },
+  {
+    stackName: "Vintersport",
+    title: "Vintersport",
+    imgUrl: require("./assets/noIcon.png"),
+    urlEndJson: '/rowstore/dataset/6608ab30-b250-4463-aaff-4e5b448ca9d2',
+  },
 ];
 
 

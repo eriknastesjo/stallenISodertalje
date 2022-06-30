@@ -7,6 +7,8 @@ const sodertaljeModel = {
         const response = await fetch(`${config.base_url}/${urlEnd}`);
         const result = await response.json();
 
+        // console.log(result.results);
+
         return result.results;
     },
     getGeoJsonData: async function getGeoJsonData(urlEnd: string): Promise<any> {

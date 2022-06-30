@@ -9,13 +9,14 @@ import * as Location from 'expo-location';
 
 export default function MapAll(props) {
 
-    const { mapItems, mapItemsCompl, urlEndJson, urlEndGeo, urlEndCompl, fitCoordinates } = props;
+    const { title, mapItems, mapItemsCompl, urlEndJson, urlEndGeo, urlEndCompl, fitCoordinates } = props;
     let listOfMapItems;
     let listOfMapItemsCompl;
 
-    const [title, setTitle] = useState(props.title);
-    const [description, setDescription] = useState("Tryck på en markör eller slinga för att se detaljer.");
-    const [webbpage, setWebpage] = useState("");
+    const [hoveringTitle, setHoveringTitle] = useState(null);
+    // const [title, setTitle] = useState(props.title);
+    // const [description, setDescription] = useState("Tryck på en markör eller slinga för att se detaljer.");
+    // const [webbpage, setWebpage] = useState("");
 
     const [allIndiviualColors, setAllIndiviualColors] = useState(["black"]);
     const [allIndiviualColorsOriginal, setAllIndiviualColorsOriginal] = useState(["black"]);
@@ -38,22 +39,50 @@ export default function MapAll(props) {
     let listOfMarkId: Array<string> = [];
 
 
-    console.log(fitCoordinates);
+    // console.log(fitCoordinates);
 
     if (urlEndJson) {
+
+        // CREATE COLOR MARKER STATE
+        // useEffect(() => {
+        //     let colorArray = []
+        //     const mapItemsLength = mapItems.length;
+        //     for (let i = 0; i < mapItemsLength; i++) {
+        //         colorArray.push("red");
+        //     }
+        //     setAllIndiviualColors(colorArray);
+        //     setAllIndiviualColorsOriginal([...colorArray]);
+        // }, []);
+
         listOfMapItems = mapItems
             .map((mapItem, index) => {
                 listOfMarkId.push('m' + index.toString());
                 return <Marker
                     coordinate={{ latitude: parseFloat(mapItem["latitude"]), longitude: parseFloat(mapItem["longitude"]) }}
-                    title={mapItem["namn"]}
+                    title={mapItem['namn']}
                     identifier={'m' + index.toString()}
                     key={index}
                     onPress={() => {
-                        updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
+                        // updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
+                        updateHoveringTitle(null);
+                        // updateMarkerStyle(index);
                     }}/>
             });
     }
+
+    // function updateMarkerStyle(index: number) {
+    //     listOfMapItems[index] = <Marker
+    //         coordinate={{ latitude: parseFloat(mapItems[index]["latitude"]), longitude: parseFloat(mapItems[index]["longitude"]) }}
+    //         // title={mapItem["namn"]}
+    //         identifier={'m' + index.toString()}
+    //         pinColor="green"
+    //         key={index}
+    //         onPress={() => {
+    //             // updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
+    //             updateHoveringTitle(mapItems[index]['namn']);
+    //             updateMarkerStyle(index);
+    //         }} />
+    // }
 
     if (urlEndGeo) {
         console.log("DOING GEOJSON");
@@ -99,15 +128,16 @@ export default function MapAll(props) {
                         //     mapItem['namn']
                         // );
                         // console.log("helluuu?");
-                        console.log(data);
-                        updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
+                        // console.log(data);
+                        // updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
+                        updateHoveringTitle(mapItem['namn']);
                         updateGeoStyle(index);
                     }}
                 />
             });
     }
 
-    console.log(mapItemsCompl);
+    // console.log(mapItemsCompl);
 
     if (urlEndCompl) {
         listOfMapItemsCompl = mapItemsCompl
@@ -115,11 +145,15 @@ export default function MapAll(props) {
                 // listOfMarkId.push('m' + index.toString());
                 return <Marker
                     coordinate={{ latitude: parseFloat(mapItem["latitude"]), longitude: parseFloat(mapItem["longitude"]) }}
-                    title={mapItem["namn"]}
+                    // title={mapItem["namn"]}
                     identifier={'m' + index.toString()}
                     key={index}
+                    title={mapItem['namn']}
                     onPress={() => {
-                        updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
+                        // updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
+                        // updateHoveringTitle(mapItem['namn']);
+                        updateHoveringTitle(null);
+                        resetGeoStyle();
                     }} />
             });
     }
@@ -128,6 +162,12 @@ export default function MapAll(props) {
 
     // console.log(listOfMapItems[0]);
 
+    // function updateMarkerStyle(index: number) {
+    //     let newColArray = [... allIndiviualColorsOriginal];
+    //     newColArray[index] = 'blue';
+    //     setAllIndiviualColors(newColArray);
+    // }
+
     function updateGeoStyle(index: number) {
         // let newColArray = [... allIndiviualColorsOriginal];
         // newColArray[index] = 'blue';
@@ -135,6 +175,11 @@ export default function MapAll(props) {
         // console.log("eeh");
         let newWidthArray = [... allIndiviualWidthsOriginal];
         newWidthArray[index] = 4;
+        setAllIndiviualWidths(newWidthArray);
+    }
+
+    function resetGeoStyle() {
+        let newWidthArray = [...allIndiviualWidthsOriginal];
         setAllIndiviualWidths(newWidthArray);
     }
 
@@ -151,14 +196,31 @@ export default function MapAll(props) {
         );
     };
 
-    function updateDetails (title: string, description: string, webpage: string) {
-        // console.log("PRESSED");
-        // console.log(title);
-        setTitle(title);
-        setDescription(description);
-        // console.log(webbpage);
-        setWebpage(webpage);
-    };
+    // function updateDetails (title: string, description: string, webpage: string) {
+    //     // console.log("PRESSED");
+    //     // console.log(title);
+    //     setTitle(title);
+    //     setDescription(description);
+    //     // console.log(webbpage);
+    //     setWebpage(webpage);
+    // };
+
+    function updateHoveringTitle(title: string | null) {
+        console.log("eh");
+        console.log(title);
+        if (title === null) {
+            console.log("WTHF??");
+            setHoveringTitle(null);
+        } else {
+            setHoveringTitle(
+                <View style={Base.titleOverMapHolder}>
+                    <View style={Base.arrowLeft}></View>
+                    <Text style={Base.titleOverMapText}>{title}</Text>
+                    <View style={Base.arrowRight}></View>
+                </View>
+            );
+        }
+    }
 
 
     // console.log(listOfMarkId);
@@ -204,7 +266,7 @@ export default function MapAll(props) {
             {/* <Text style={Typography.header2}>{props.title}</Text> */}
             <View style={Base.content}>
                 <Text style={Typography.header2}>{title}</Text>
-                {
+                {/* {
                     description !== "" && description !== undefined &&
                     <Text style={Typography.normalCenter}>{description}</Text>
                 }
@@ -220,7 +282,7 @@ export default function MapAll(props) {
                             <Text style={Typography.smallButton}>Webbsida</Text>
                         </TouchableOpacity>
                     </View>
-                }
+                } */}
             </View>
             <View style={Base.mapContainer}>
                 <MapView
@@ -242,6 +304,7 @@ export default function MapAll(props) {
 
                     }}
                 >
+
                     {listOfMapItems}
                     {listOfMapItemsCompl}
                     {/* {textMarker} */}
@@ -249,13 +312,7 @@ export default function MapAll(props) {
                     {locationMarker}
 
                 </MapView>
-
-                <View style={Base.titleOverMapHolder}>
-                    <View style={Base.arrowLeft}></View>
-                    <Text style={Base.titleOverMapText}>Måsnareleden</Text>
-                    <View style={Base.arrowRight}></View>
-                </View>
-
+                {hoveringTitle}
             </View>
         </View>
     );

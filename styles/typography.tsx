@@ -21,7 +21,7 @@ export const header1NoMargin = {
 
 export const header2 = {
     color: '#2F7E36',
-    fontSize: 30,
+    fontSize: 35,
     fontFamily: "sans-serif",
     // fontWeight: 'bold',
     textAlign: "center",

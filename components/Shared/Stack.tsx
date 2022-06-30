@@ -16,7 +16,7 @@ import Details from '../Shared/Details';
 const Stack = createNativeStackNavigator();
 
 export default function Stacking({ route }) {
-    const { title, subtitle, urlEndJson, urlEndGeo, urlEndCompl, dataType } = route.params;
+    const { title, subtitle, urlEndJson, urlEndGeo, urlEndCompl } = route.params;
     const [data, setData] = useState([]);
     const [dataComl, setdataComl] = useState([]);
 
@@ -48,41 +48,53 @@ export default function Stacking({ route }) {
     }, []);
 
 
-    // TODO:
-    // ---- KLART ----
-    // 1. FIXA CONFIG SÅ ATT DET ÄR https://catalog.sodertalje.se/
-    // DÅ KAN MAN FYLLA I MED urlEND /rowstore/dataset/... om det är JSON eller /store/1/resource/... om det är GEOJSON. OBS!!! SAMTLIGA URLÄNDELSER BEHÖVER ÄNDRAS!!
-    // 2. TA MED NEDAN I REFINEDDATA TYP "geoKoordinationer" OCH "geoNamn" (fyll eventuellt på med fler detaljer senare)
-    // 3. FIXA I LIST SÅ ATT DEN KAN LÄSA AV GEONAMN OCH LISTA DEM (kanske inte behövs med ?? i ListorMap?)
-    // 4. HITTA TVÅ YTTRE KOORDINATIONER SÅ ATT KARTAN KAN ANPASSA SIG I BÖRJAN (FITTOCOORDINATES)
-    // 5. FIXA I MAPSINGLE SÅ ATT DEN KAN LÄSA AV GEONAMN OCH GEOKOORDINATIONER
-    // 6. HA "COMPLEMENTARY JSON" SÅ ATT MAN KAN FÅ IN DET I VANDRINGSLEDER (startpunkter) OCH MOTIONSSPÅR (paring)
-    // 7. (PROVA FÖRST NR 8) FÖRSÖK IGEN ATT FÅ UPP Callout FÖR GEOJSON. ANNARS FÖRSÖK GÖMMA KARTAN BAKOM TEXTEN. ANNARS SUCK... LÄGG TILL + SYMBOL FÖR ATT VISA/DÖLJA INFO I MAPVIEW (STATE I APP SOM SPARAS I TOKEN SÅ ATT MAN INTE MÅSTE STÄLLA IN VARJE GÅNG)
-
-    // ---- BEHÖVER FIXAS ----
-    // 8. Fixa med titel i både mapAll och mapSingle (gör även responsiv så att den inte kan bli konstig)
-    // 8. BILDER
-    // 9. ORDNA MED CATEGORIES I APP.tsx
-
-
     let refinedData:Array<any> = [];
 
     if (urlEndJson) {
+        // console.log(data[0]);
         refinedData = data
+            .filter(dataItem => dataItem["name"] !== "")
             .map((dataItem) => {
+                if (dataItem["name"] === "") {
+                    return
+                }
+                if (dataItem["nord-koordinat (wgs84)"]) {
+                    const refinedLat = dataItem["nord-koordinat (wgs84)"].replace(",", ".");
+                    const refinedLong = dataItem["ost-koordinat (wgs84)"].replace(",", ".");
+                    dataItem["nord-koordinat (wgs84)"] = refinedLat;
+                    dataItem["ost-koordinat (wgs84)"] = refinedLong;
+                }
+                if (dataItem["latitude"]) {
+
+                    const refinedLat = dataItem["latitude"].replace(",", ".");
+                    const refinedLong = dataItem["longitude"].replace(",", ".");
+                    dataItem["latitude"] = refinedLat;
+                    dataItem["longitude"] = refinedLong;
+                }
+                console.log(dataItem);
                 return {
                     "beskrivning": dataItem["beskrivning"]
                         ?? dataItem["information"]
                         ?? dataItem["informatiom"]
+                        ?? dataItem["description"]
                         ?? dataItem["vägbeskrivning"],
 
-                    "latitude": dataItem["nord-koordinat (wgs84)"],
-                    "longitude": dataItem["ost-koordinat (wgs84)"],
-                    "webbsida": dataItem["webbsida"],
+                    "latitude": dataItem["nord-koordinat (wgs84)"]
+                        ?? dataItem["latitude"],
+
+                    "longitude": dataItem["ost-koordinat (wgs84)"]
+                        ?? dataItem["longitude"],
+
+                    "webbsida": dataItem["webbsida"]
+                        ?? dataItem["visit_url"],
+
                     "namn": dataItem["﻿namn"]
+                        ?? dataItem["name"]
                 }
             });
     }
+
+    // console.log(refinedData);
 
     if (urlEndGeo) {
         fitCoordinates = calculateFitCoordinatesGeoJson(data);
@@ -122,7 +134,7 @@ export default function Stacking({ route }) {
             });
     }
 
-    console.log(refinedDataCompl);
+    // console.log(refinedDataCompl);
 
     return (
         <Stack.Navigator initialRouteName="ListOrMap" >

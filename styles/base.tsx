@@ -72,7 +72,7 @@ export const titleOverMapHolder = {
 }
 
 export const titleOverMapText = {
-
+    color: '#213F23',
     fontSize: 23,
     fontWeight: 'bold',
     fontFamily: "sans-serif",

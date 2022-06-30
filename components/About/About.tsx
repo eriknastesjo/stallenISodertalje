@@ -48,13 +48,13 @@ export default function About() {
                 <Text style={Typography.header1}>Om appen</Text>
 
                 <Text style={Typography.normal}>
-                    Välkommen till <Text style={Typography.bold}>Ställen i Södertälje</Text>. Här kan du hitta information om olika platser i Södertäljes kommun. Välj först vilken typ av platser du vill gå till. Därifrån kan du välja att leta i en listad vy där du ser namnen på platserna. Du kan också välja att se platserna i en kartvy.
+                    Välkommen till <Text style={Typography.bold}>Ställen i Södertälje</Text>. Här kan du hitta information om olika platser i Södertäljes kommun. Välj först vilken typ av platser du vill gå till. Därifrån kan du välja att leta i en listad vy eller kartvy.
                 </Text>
 
                 <Text style={Typography.normal}>
-                    Om du vill kan du skapa en profil med namn och bild. Då får du en lite mer personlig hälsning varje gång som du går in i appen. Tryck på ikonen uppe i högra hörnet när du är i startmenyn.
+                    Om du vill kan du skapa en profil med namn och bild. Då får du en lite mer personlig hälsning varje gång som du går in i appen. Tryck på ikonen uppe i högra hörnet i startmenyn för att skapa din profil.
                 </Text>
-{/*
+                {/*
                 <Text style={Typography.normalMoreMargin}>
                     Nedan kan du läsa mer om hur appen är uppbyggd.
                 </Text> */}
