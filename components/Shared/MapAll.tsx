@@ -1,6 +1,6 @@
 import { Ionicons, Foundation, AntDesign, SimpleLineIcons, MaterialIcons, Entypo } from '@expo/vector-icons';
 import { useState, useEffect, useRef } from "react";
-import { Text, View, ScrollView, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Text, View, Platform, ScrollView, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Base, Typography, Images, Buttons } from "../../styles";
 import MapView, { Marker, Geojson, Callout } from 'react-native-maps';
 import * as Linking from 'expo-linking';
@@ -420,16 +420,19 @@ export default function MapAll(props) {
                         resetGeoDescription();
                     }}
                     onMapLoaded={() => {
-                        if (fitCoordinates) {
-                            mapRef?.current?.fitToCoordinates(fitCoordinates), {
-                                animated: true
-                            }
+                        if (Platform.OS === 'ios') {
+                            mapRef?.current?.fitToElements(true);
                         } else {
-                            mapRef?.current?.fitToSuppliedMarkers(listOfMarkId), {
-                                animated: true
+                            if (fitCoordinates) {
+                                mapRef?.current?.fitToCoordinates(fitCoordinates), {
+                                    animated: true
+                                }
+                            } else {
+                                mapRef?.current?.fitToSuppliedMarkers(listOfMarkId), {
+                                    animated: true
+                                }
                             }
                         }
-
                     }}
                 >
 

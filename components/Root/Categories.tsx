@@ -53,6 +53,7 @@ export default function Categories({ categories, navigation, name, profilepics, 
             } */}
 
             <FlatGrid
+                alwaysBounceVertical={true}
                 itemDimension={140}
                 data={listCategories}
                 spacing={18}

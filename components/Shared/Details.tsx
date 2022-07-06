@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Text, View, Button, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, Button, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { Base, Typography, Buttons } from "../../styles";
 import * as Linking from 'expo-linking';
 import Map from "./MapSingle";
@@ -12,9 +12,9 @@ export default function Details({ route }) {
 
     return (
         <View style={Base.container}>
-
-            <View style={Base.content}>
-                <Text style={Typography.header2}>{mapItemFocused.namn}</Text>
+            <Text style={Typography.header2}>{mapItemFocused.namn}</Text>
+            <View style={Base.contentMaxHeight}>
+                <ScrollView>
                 {
                     mapItemFocused.beskrivning !== undefined && mapItemFocused.beskrivning !== "" &&
                     <Text style={Typography.normalCenter}>{mapItemFocused.beskrivning}</Text>
@@ -57,7 +57,7 @@ export default function Details({ route }) {
                     </Text>
                 }
 
-
+            </ScrollView>
             </View>
 
             <View style={Base.mapContainer}>

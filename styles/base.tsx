@@ -13,6 +13,12 @@ export const content = {
     paddingRight: 40,
 }
 
+export const contentMaxHeight = {
+    paddingLeft: 40,
+    paddingRight: 40,
+    maxHeight: '40%',
+}
+
 export const centerContainer = {
     flex: 1,
     alignItems: "center",
