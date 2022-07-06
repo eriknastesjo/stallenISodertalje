@@ -99,17 +99,18 @@ const categories: Array<Partial<Category>> = [
     urlEndJson: '/rowstore/dataset/adf0ed85-2614-4f0e-a1d1-531900361a9c',
   },
   {
-    stackName: "Återvinning",
-    title: "Återvinning",
-    imgUrl: require("./assets/återvinning.png"),
-    urlEndJson: '/rowstore/dataset/785a36e3-41bc-4726-a043-befbe60628b9',
-  },
-  {
     stackName: "Hotell",
     title: "Hotell",
     imgUrl: require("./assets/hotell.png"),
     urlEndJson: '/rowstore/dataset/3ef1e5df-9e40-4682-8054-cca1c218ea69',
   },
+  {
+    stackName: "Återvinning",
+    title: "Återvinning",
+    imgUrl: require("./assets/återvinning.png"),
+    urlEndJson: '/rowstore/dataset/785a36e3-41bc-4726-a043-befbe60628b9',
+  },
+
 ];
 
 

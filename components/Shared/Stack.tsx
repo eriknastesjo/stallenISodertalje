@@ -53,25 +53,24 @@ export default function Stacking({ route }) {
     if (urlEndJson) {
         // console.log(data[0]);
         refinedData = data
-            .filter(dataItem => dataItem["name"] !== "")
             .map((dataItem) => {
                 if (dataItem["name"] === "") {
                     return
                 }
-                if (dataItem["nord-koordinat (wgs84)"]) {
-                    const refinedLat = dataItem["nord-koordinat (wgs84)"].replace(",", ".");
-                    const refinedLong = dataItem["ost-koordinat (wgs84)"].replace(",", ".");
-                    dataItem["nord-koordinat (wgs84)"] = refinedLat;
-                    dataItem["ost-koordinat (wgs84)"] = refinedLong;
-                }
-                if (dataItem["latitude"]) {
+                // if (dataItem["nord-koordinat (wgs84)"]) {
+                //     const refinedLat = dataItem["nord-koordinat (wgs84)"].replace(",", ".");
+                //     const refinedLong = dataItem["ost-koordinat (wgs84)"].replace(",", ".");
+                //     dataItem["nord-koordinat (wgs84)"] = refinedLat;
+                //     dataItem["ost-koordinat (wgs84)"] = refinedLong;
+                // }
+                // if (dataItem["latitude"]) {
 
-                    const refinedLat = dataItem["latitude"].replace(",", ".");
-                    const refinedLong = dataItem["longitude"].replace(",", ".");
-                    dataItem["latitude"] = refinedLat;
-                    dataItem["longitude"] = refinedLong;
-                }
-                console.log(dataItem);
+                //     const refinedLat = dataItem["latitude"].replace(",", ".");
+                //     const refinedLong = dataItem["longitude"].replace(",", ".");
+                //     dataItem["latitude"] = refinedLat;
+                //     dataItem["longitude"] = refinedLong;
+                // }
+                // console.log(dataItem);
                 return {
                     "beskrivning": dataItem["beskrivning"]
                         ?? dataItem["information"]
@@ -108,8 +107,18 @@ export default function Stacking({ route }) {
                 //     ?? dataItem["vägbeskrivning"],
 
                 // "webbsida": dataItem["webbsida"],
+
+                "geoJson": dataItem,
+
                 "namn": dataItem.features[0].properties.Namn,
-                "geoJson": dataItem
+
+                "längd": dataItem.features[0].properties["Längd"],
+
+                "underlag": dataItem.features[0].properties["Underlag"],
+
+                "svårighetsgrad": dataItem.features[0].properties["Svårighetsgrad"],
+
+                "belysning": dataItem.features[0].properties["Belysning"]
             }
         });
     }

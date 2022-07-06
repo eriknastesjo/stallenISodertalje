@@ -1,5 +1,5 @@
 export const buttonContainer = {
-    overflow: 'hidden',
+    // overflow: 'hidden',
     // paddingBottom: 5,
 }
 
@@ -19,17 +19,18 @@ export const button = {
     // shadowRadius: 200,
     // shadowOpacity: 1,
 
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: 1 },
     shadowColor: 'black',
-    shadowOpacity: 1,
+    shadowOpacity: 0.3,
     elevation: 4,
-    shadowRadius: 10,
+    shadowRadius: 2,
     // background color must be set
     // backgroundColor: "#0000" // invisible color
     zIndex: 999,
 }
 
 export const buttonGrid = {
+    alignSelf: 'center',
     flex: 1,
     justifyContent: "center",
     width: 170,
@@ -46,11 +47,11 @@ export const buttonGrid = {
     // shadowRadius: 200,
     // shadowOpacity: 1,
 
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: 1 },
     shadowColor: 'black',
-    shadowOpacity: 1,
+    shadowOpacity: 0.3,
     elevation: 4,
-    shadowRadius: 10,
+    shadowRadius: 2,
     // background color must be set
     // backgroundColor: "#0000" // invisible color
     zIndex: 999,
@@ -70,11 +71,11 @@ export const button2 = {
     // shadowRadius: 200,
     // shadowOpacity: 1,
 
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: 1 },
     shadowColor: 'black',
-    shadowOpacity: 1,
+    shadowOpacity: 0.3,
     elevation: 4,
-    shadowRadius: 10,
+    shadowRadius: 2,
     // background color must be set
     // backgroundColor: "#0000" // invisible color
     zIndex: 999,
@@ -95,11 +96,43 @@ export const buttonCenter = {
     // shadowRadius: 200,
     // shadowOpacity: 1,
 
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: 1 },
     shadowColor: 'black',
-    shadowOpacity: 1,
+    shadowOpacity: 0.3,
     elevation: 4,
-    shadowRadius: 10,
+    shadowRadius: 2,
+    // background color must be set
+    // backgroundColor: "#0000" // invisible color
+    zIndex: 999,
+}
+
+export const buttonInRightCorner = {
+    backgroundColor: '#398440',
+    // backgroundColor: '#FAFAFA',
+    position: 'absolute',
+    bottom: 45,
+    right: 12,
+
+    // borderRadius: 8,
+    padding: 3,
+    paddingTop: 4,
+    paddingBottom: 4,
+    marginBottom: 20,
+    // marginLeft: 40,
+    // marginRight: 40,
+    width: 95,
+    alignSelf: 'center',
+
+    // shadowColor: '#006BFF',
+    // shadowOffset: { width: 150, height: 150 },
+    // shadowRadius: 200,
+    // shadowOpacity: 1,
+
+    shadowOffset: { width: 0, height: 1 },
+    shadowColor: 'black',
+    shadowOpacity: 0.3,
+    elevation: 4,
+    shadowRadius: 1,
     // background color must be set
     // backgroundColor: "#0000" // invisible color
     zIndex: 999,
@@ -108,6 +141,7 @@ export const buttonCenter = {
 export const gridContainer = {
     marginLeft: 10,
     marginRight: 10,
+
 }
 
 export const buttonProfile = {
@@ -123,11 +157,11 @@ export const buttonProfile = {
     // shadowRadius: 200,
     // shadowOpacity: 1,
 
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: 1 },
     shadowColor: 'black',
-    shadowOpacity: 1,
+    shadowOpacity: 0.3,
     elevation: 4,
-    shadowRadius: 10,
+    shadowRadius: 2,
     // background color must be set
     // backgroundColor: "#0000" // invisible color
     zIndex: 999,
@@ -150,11 +184,11 @@ export const buttonProfileSmall = {
     // shadowRadius: 200,
     // shadowOpacity: 1,
 
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: 1 },
     shadowColor: 'black',
-    shadowOpacity: 1,
+    shadowOpacity: 0.3,
     elevation: 4,
-    shadowRadius: 10,
+    shadowRadius: 2,
     // background color must be set
     // backgroundColor: "#0000" // invisible color
     zIndex: 999,
@@ -178,11 +212,11 @@ export const buttonProfileSmallRed = {
     // shadowRadius: 200,
     // shadowOpacity: 1,
 
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: 1 },
     shadowColor: 'black',
-    shadowOpacity: 1,
+    shadowOpacity: 0.3,
     elevation: 4,
-    shadowRadius: 10,
+    shadowRadius: 2,
     // background color must be set
     // backgroundColor: "#0000" // invisible color
     zIndex: 999,
@@ -203,11 +237,11 @@ export const buttonProfileCenter = {
     // shadowRadius: 200,
     // shadowOpacity: 1,
 
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: { width: 0, height: 1 },
     shadowColor: 'black',
-    shadowOpacity: 1,
+    shadowOpacity: 0.3,
     elevation: 4,
-    shadowRadius: 10,
+    shadowRadius: 2,
     // background color must be set
     // backgroundColor: "#0000" // invisible color
     zIndex: 999,
@@ -235,4 +269,16 @@ export const buttonArrow2 = {
     position: 'absolute',
     right: '6%',
     top: '53%',
+}
+
+export const buttonArrow3 = {
+    position: 'absolute',
+    right: '3%',
+    top: '20%',
+}
+
+export const buttonArrow4 = {
+    position: 'absolute',
+    right: '6%',
+    top: '60%',
 }

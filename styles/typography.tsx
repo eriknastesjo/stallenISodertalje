@@ -61,6 +61,15 @@ export const header3LessMargin = {
     marginBottom: 15,
 };
 
+export const instructionUnderHeader = {
+    color: '#3D3D3D',
+    fontSize: 14,
+    fontFamily: "sans-serif",
+    marginBottom: 10,
+    lineHeight: 29,
+    textAlign: "center",
+}
+
 export const normal = {
     color: '#3D3D3D',
     fontSize: 19,
@@ -119,6 +128,13 @@ export const smallButton = {
     color: 'white',
     textAlign: "center",
     fontSize: 17,
+    fontFamily: "sans-serif",
+};
+
+export const smallestButton = {
+    color: 'white',
+    // textAlign: "center",
+    fontSize: 13,
     fontFamily: "sans-serif",
 };
 
@@ -204,27 +220,18 @@ export const label = {
     lineHeight: 29,
 };
 
-export const mapLabel = {
-    backgroundColor: 'white',
-    fontSize: 14,
+export const calloutTitle = {
+    fontSize: 16,
     fontWeight: 'bold',
-    fontFamily: "sans-serif",
-    paddingVertical: 3,
-    paddingHorizontal: 8,
 
     textAlign: "center",
-    alignSelf: 'center',
+    // alignSelf: 'center',
 
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: "blue",
-
-    // shadowOffset: { width: 0, height: 10 },
-    // shadowColor: 'black',
-    // shadowOpacity: 1,
-    // elevation: 200,
-    // shadowRadius: 10,
-    // // background color must be set
-    // // backgroundColor: "#0000" // invisible color
-    // zIndex: 999,
 };
+
+export const calloutDescription = {
+    // padding: 2,
+    // paddingBottom: 5,
+    // padding: 5,
+    marginBottom: 3,
+}

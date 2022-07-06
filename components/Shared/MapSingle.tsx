@@ -22,6 +22,7 @@ export default function Map(props) {
     const [strokeColor, setStrokeColor] = useState("red");
 
     const mapRef = useRef<MapView>(null);
+    const markerRef = useRef<Array<Marker>>([]);
 
 
 
@@ -31,6 +32,11 @@ export default function Map(props) {
             // title={mapItem.namn}
             title={"❤️️"}
             identifier="there"
+            ref={element => markerRef[0] = element}
+            onCalloutPress={() => {
+                console.log("PRESSED CALLOUT");
+                markerRef[0].hideCallout();
+            }}
         />;
 
         useEffect(() => {
@@ -47,7 +53,6 @@ export default function Map(props) {
     }
 
     if (urlEndGeo) {
-        // todo: sätt textMarker också!!!
         fitCoordinates = calculateFitCoordinatesGeoJson(mapItem)
         // console.log(mapItem);
         mapItemRender = <Geojson
@@ -64,6 +69,11 @@ export default function Map(props) {
             }}
             title={"Endast en ungefärlig startpunkt!"}
             identifier="textMarker"
+            ref={element => markerRef[0] = element}
+            onCalloutPress={() => {
+                console.log("PRESSED CALLOUT");
+                markerRef[0].hideCallout();
+            }}
         >
             {/* <Text style={Typography.mapLabel}>
                 {name}
@@ -98,7 +108,7 @@ export default function Map(props) {
                     latitude: currentLocation.coords.latitude,
                     longitude: currentLocation.coords.longitude
                 }}
-                title="Min plats"
+                title="Här är du"
                 pinColor="blue"
                 identifier="here"
             />);

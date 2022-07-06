@@ -1,7 +1,8 @@
+import { Ionicons, Foundation, AntDesign, SimpleLineIcons, MaterialIcons, Entypo } from '@expo/vector-icons';
 import { useState, useEffect, useRef } from "react";
 import { Text, View, ScrollView, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Base, Typography, Images, Buttons } from "../../styles";
-import MapView, { Marker, Geojson } from 'react-native-maps';
+import MapView, { Marker, Geojson, Callout } from 'react-native-maps';
 import * as Linking from 'expo-linking';
 // import getCoordinates from '../../models/nominatim';
 import * as Location from 'expo-location';
@@ -16,7 +17,8 @@ export default function MapAll(props) {
     const [hoveringTitle, setHoveringTitle] = useState(null);
     // const [title, setTitle] = useState(props.title);
     // const [description, setDescription] = useState("Tryck på en markör eller slinga för att se detaljer.");
-    // const [webbpage, setWebpage] = useState("");
+    const [hoveringGeoDescription, setHoveringGeoDescription] = useState(null);
+    const [webpage, setWebpage] = useState(null);
 
     const [allIndiviualColors, setAllIndiviualColors] = useState(["black"]);
     const [allIndiviualColorsOriginal, setAllIndiviualColorsOriginal] = useState(["black"]);
@@ -32,6 +34,8 @@ export default function MapAll(props) {
     const [textMarker, settextMarker] = useState(null);
 
     const mapRef = useRef<MapView>(null);
+    const markerRef = useRef<Array<Marker>>([]);
+    const markerComplRef = useRef<Array<Marker>>([]);
 
     const [locationMarker, setLocationMarker] = useState(null);
     const [initRegion, setInitRegion] = useState(null);
@@ -57,16 +61,39 @@ export default function MapAll(props) {
         listOfMapItems = mapItems
             .map((mapItem, index) => {
                 listOfMarkId.push('m' + index.toString());
+
                 return <Marker
                     coordinate={{ latitude: parseFloat(mapItem["latitude"]), longitude: parseFloat(mapItem["longitude"]) }}
                     title={mapItem['namn']}
                     identifier={'m' + index.toString()}
                     key={index}
+                    ref={element => markerRef[index] = element}
+                    onCalloutPress={() => {
+                        markerRef[index].hideCallout();
+                    }}
                     onPress={() => {
                         // updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
                         updateHoveringTitle(null);
+                        resetGeoDescription();
+                        updateWebpage(mapItem['webbsida']);
+                        // console.log(mapItem['beskrivning']);
                         // updateMarkerStyle(index);
-                    }}/>
+                    }}>
+                    <Callout>
+                        <View style={Base.callout}>
+                            {/* <AntDesign style={Base.calloutExit} name="rightcircle" size={20} color="#9AE9A1" /> */}
+                            <Text style={Typography.calloutTitle}>{mapItem['namn']}</Text>
+                            {
+                                mapItem['beskrivning'] !== undefined && mapItem['beskrivning'] !== "" &&
+                                <Text style={Typography.calloutDescription}>{mapItem['beskrivning']}</Text>
+                            }
+                            {
+                                mapItem['beskrivning'] !== undefined && mapItem['beskrivning'] !== "" &&
+                                <Entypo style={Base.calloutExit} name="circle-with-cross" size={12} color="#7B7B7B" />
+                            }
+                        </View>
+                    </Callout>
+                </Marker>
             });
     }
 
@@ -132,6 +159,7 @@ export default function MapAll(props) {
                         // updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
                         updateHoveringTitle(mapItem['namn']);
                         updateGeoStyle(index);
+                        updateGeoDescription(mapItem);
                     }}
                 />
             });
@@ -149,12 +177,31 @@ export default function MapAll(props) {
                     identifier={'m' + index.toString()}
                     key={index}
                     title={mapItem['namn']}
+                    ref={element => markerComplRef[index] = element}
+                    onCalloutPress={() => {
+                        markerComplRef[index].hideCallout();
+                    }}
                     onPress={() => {
                         // updateDetails(mapItem['namn'], mapItem['beskrivning'], mapItem['webbsida']);
                         // updateHoveringTitle(mapItem['namn']);
                         updateHoveringTitle(null);
                         resetGeoStyle();
-                    }} />
+                        resetGeoDescription();
+                    }}>
+                        <Callout>
+                            <View style={Base.callout}>
+                                <Text style={Typography.calloutTitle}>{mapItem['namn']}</Text>
+                                {
+                                    mapItem['beskrivning'] !== undefined && mapItem['beskrivning'] !== "" &&
+                                    <Text>{mapItem['beskrivning']}</Text>
+                                }
+                                {
+                                    mapItem['beskrivning'] !== undefined && mapItem['beskrivning'] !== "" &&
+                                    <Entypo style={Base.calloutExit} name="circle-with-cross" size={12} color="#7B7B7B" />
+                                }
+                            </View>
+                        </Callout>
+                    </Marker>
             });
     }
 
@@ -168,12 +215,32 @@ export default function MapAll(props) {
     //     setAllIndiviualColors(newColArray);
     // }
 
+    function updateWebpage(urlPage: string) {
+        {
+            urlPage !== undefined && urlPage !== "" ?
+                setWebpage(<View>
+                        <TouchableOpacity
+                            style={Buttons.buttonInRightCorner}
+                            onPress={() => {
+                                Linking.openURL(urlPage)
+                            }}
+                        >
+                        <Text style={Typography.smallestButton}>   Webbsida</Text>
+                        <View style={Buttons.buttonArrow3}><MaterialIcons name="arrow-right" size={20} color="white" /></View>
+                        </TouchableOpacity>
+                    </View>
+                )
+                :
+                setWebpage(null);
+        }
+    }
+
     function updateGeoStyle(index: number) {
         // let newColArray = [... allIndiviualColorsOriginal];
         // newColArray[index] = 'blue';
         // setAllIndiviualColors(newColArray);
         // console.log("eeh");
-        let newWidthArray = [... allIndiviualWidthsOriginal];
+        let newWidthArray = [...allIndiviualWidthsOriginal];
         newWidthArray[index] = 4;
         setAllIndiviualWidths(newWidthArray);
     }
@@ -184,7 +251,7 @@ export default function MapAll(props) {
     }
 
     function updateTextMarker(lat: number, lng: number, name: string) {
-        console.log("updating");
+        // console.log("updating");
         settextMarker(<Marker
             coordinate={{ latitude: parseFloat(lat), longitude: parseFloat(lng) }}
             identifier="textMarker"
@@ -206,22 +273,65 @@ export default function MapAll(props) {
     // };
 
     function updateHoveringTitle(title: string | null) {
-        console.log("eh");
-        console.log(title);
+        // console.log("eh");
+        // console.log(title);
         if (title === null) {
-            console.log("WTHF??");
             setHoveringTitle(null);
         } else {
             setHoveringTitle(
-                <View style={Base.titleOverMapHolder}>
-                    <View style={Base.arrowLeft}></View>
-                    <Text style={Base.titleOverMapText}>{title}</Text>
-                    <View style={Base.arrowRight}></View>
-                </View>
+                <TouchableOpacity
+                    style={Base.titleOverMapHolder}
+                    onPress={() => {
+                        setHoveringTitle(null);
+                    }}
+                >
+                    {/* <View >
+                    </View> */}
+                        <Text style={Base.titleOverMapText}>{title}</Text>
+                        <View style={Base.arrowLeft}></View>
+                        <View style={Base.arrowRight}></View>
+                </TouchableOpacity>
             );
         }
     }
 
+    function resetGeoDescription() {
+        setHoveringGeoDescription(null);
+    }
+
+
+    function updateGeoDescription(geoData: any) {
+        if (geoData['längd'] !== undefined ||
+            geoData['underlag'] !== undefined ||
+            geoData['svårighetsgrad'] !== undefined ||
+            geoData['belysning'] !== undefined) {
+            setHoveringGeoDescription(
+                <TouchableOpacity
+                    onPress={() => {
+                        resetGeoDescription(null);
+                    }}
+                    style={Base.descriptionOverMapHolder}>
+                    {
+                        geoData['längd'] !== "" && geoData['längd'] !== undefined &&
+                        <Text style={Base.descriptionOverMapText}>Längd: {geoData['längd']}</Text>
+                    }
+                    {
+                        geoData['underlag'] !== "" && geoData['underlag'] !== undefined &&
+                        <Text style={Base.descriptionOverMapText}>Underlag: {geoData['underlag']}</Text>
+                    }
+                    {
+                        geoData['svårighetsgrad'] !== "" && geoData['svårighetsgrad'] !== undefined &&
+                        <Text style={Base.descriptionOverMapText}>Svårighetsgrad: {geoData['svårighetsgrad']}</Text>
+                    }
+                    {
+                        geoData['belysning'] !== "" && geoData['belysning'] !== undefined &&
+                        <Text style={Base.descriptionOverMapText}>Belysning: {geoData['belysning']}</Text>
+                    }
+                    <Entypo style={Base.calloutExit2} name="circle-with-cross" size={12} color="#7B7B7B" />
+                </TouchableOpacity>
+            );
+            }
+    }
 
     // console.log(listOfMarkId);
     // console.log(listOfMapItems);
@@ -265,7 +375,19 @@ export default function MapAll(props) {
         <View style={Base.container}>
             {/* <Text style={Typography.header2}>{props.title}</Text> */}
             <View style={Base.content}>
-                <Text style={Typography.header2}>{title}</Text>
+                <Text style={Typography.header2NoMargin}>{title}</Text>
+                {
+                    urlEndJson &&
+                    <Text style={Typography.instructionUnderHeader}>Tryck på en markör för att se detaljer.</Text>
+                }
+                {
+                    urlEndGeo && !urlEndCompl &&
+                    <Text style={Typography.instructionUnderHeader}>Tryck på en slinga för att se detaljer.</Text>
+                }
+                {
+                    urlEndGeo && urlEndCompl &&
+                    <Text style={Typography.instructionUnderHeader}>Tryck på en slinga eller markör för att se detaljer.</Text>
+                }
                 {/* {
                     description !== "" && description !== undefined &&
                     <Text style={Typography.normalCenter}>{description}</Text>
@@ -291,6 +413,12 @@ export default function MapAll(props) {
                     loadingIndicatorColor='#63AF69'
                     style={styles.map}
                     initialRegion={initRegion}
+                    onPress={() => {
+                        updateWebpage("");
+                        updateHoveringTitle(null);
+                        resetGeoStyle();
+                        resetGeoDescription();
+                    }}
                     onMapLoaded={() => {
                         if (fitCoordinates) {
                             mapRef?.current?.fitToCoordinates(fitCoordinates), {
@@ -313,7 +441,9 @@ export default function MapAll(props) {
 
                 </MapView>
                 {hoveringTitle}
+                {hoveringGeoDescription}
             </View>
+            {webpage}
         </View>
     );
 };

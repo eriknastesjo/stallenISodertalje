@@ -27,18 +27,44 @@ export default function Details({ route }) {
                             onPress={() => {
                                 Linking.openURL(mapItemFocused.webbsida)
                             }}
-                        >
+                            >
                             <Text style={Typography.smallButton}>Webbsida</Text>
                         </TouchableOpacity>
                     </View>
                 }
+                {
+                    (mapItemFocused['längd'] !== undefined ||
+                    mapItemFocused['underlag'] !== undefined ||
+                    mapItemFocused['svårighetsgrad'] !== undefined ||
+                    mapItemFocused['belysning'] !== undefined) &&
+                    <Text style={Typography.normalCenter}>
+                        {
+                            mapItemFocused['längd'] !== "" && mapItemFocused['längd'] !== undefined &&
+                            <Text>Längd: {mapItemFocused['längd']}.</Text>
+                        }
+                        {
+                            mapItemFocused['underlag'] !== "" && mapItemFocused['underlag'] !== undefined &&
+                            <Text> Underlag: {mapItemFocused['underlag']}.</Text>
+                        }
+                        {
+                            mapItemFocused['svårighetsgrad'] !== "" && mapItemFocused['svårighetsgrad'] !== undefined &&
+                            <Text> Svårighetsgrad: {mapItemFocused['svårighetsgrad']}.</Text>
+                        }
+                        {
+                            mapItemFocused['belysning'] !== "" && mapItemFocused['belysning'] !== undefined &&
+                            <Text> Belysning: {mapItemFocused['belysning']}.</Text>
+                        }
+                    </Text>
+                }
+
+
             </View>
 
             <View style={Base.mapContainer}>
                 <Map mapItem={mapItemFocused}
                     urlEndJson={urlEndJson}
                     urlEndGeo={urlEndGeo}
-                    urlEndCompl={urlEndCompl}
+                    // urlEndCompl={urlEndCompl}
                 />
             </View>
 

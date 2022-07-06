@@ -31,7 +31,7 @@ export default function Choices(props) {
                     :
                     <Text style={Typography.boldButtonSideWhite}>{props.name}</Text>
                 }
-                <View style={Buttons.buttonArrow}><AntDesign name="rightcircle" size={22} color="white" /></View>
+                <View style={Buttons.buttonArrow4}><AntDesign name="rightcircle" size={22} color="white" /></View>
             </TouchableOpacity>
 
             {/* Bild */}
@@ -40,7 +40,7 @@ export default function Choices(props) {
                 onPress={() => {props.navigation.navigate('Bild');}}>
                 <Image source={props.profilepics[props.picNum]} style={Images.buttonIconStart} />
                 <Text style={Typography.boldButtonSideWhite}>Välj bild</Text>
-                <View style={Buttons.buttonArrow}><AntDesign name="rightcircle" size={22} color="white" /></View>
+                <View style={Buttons.buttonArrow4}><AntDesign name="rightcircle" size={22} color="white" /></View>
             </TouchableOpacity>
 
             <Text></Text>

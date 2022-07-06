@@ -26,7 +26,8 @@ export const backgroundCol = {
 
 export const rowContainer = {
     flexWrap: "wrap",
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: "center",
 }
 
 export const rowContainerCenter = {
@@ -72,7 +73,7 @@ export const titleOverMapHolder = {
 }
 
 export const titleOverMapText = {
-    color: '#213F23',
+    color: '#333333',
     fontSize: 23,
     fontWeight: 'bold',
     fontFamily: "sans-serif",
@@ -80,6 +81,58 @@ export const titleOverMapText = {
 
     textAlign: "center",
     alignSelf: 'center',
+}
+
+export const descriptionOverMapHolder = {
+    position: "absolute",
+    bottom: 20,
+    left: 10,
+    // marginRight: 10,
+
+    maxWidth: 300,
+
+    backgroundColor: "white",
+    // fontSize: 20,
+    // fontWeight: 'bold',
+    // fontFamily: "sans-serif",
+    paddingVertical: 6,
+    paddingHorizontal: 8,
+
+    // textAlign: "center",
+    // alignSelf: 'center',
+
+    shadowOffset: { width: 0, height: 20 },
+    shadowColor: 'black',
+    shadowOpacity: 1,
+    elevation: 2,
+    shadowRadius: 5,
+    // background color must be set
+    // backgroundColor: "#0000" // invisible color
+    zIndex: 999,
+}
+
+export const descriptionTitleOverMapText = {
+    color: '#333333',
+    fontSize: 15,
+    fontWeight: 'bold',
+    fontFamily: "sans-serif",
+    // letterSpacing: 1,
+
+    // textAlign: "center",
+    // alignSelf: 'center',
+    padding: 3,
+}
+
+export const descriptionOverMapText = {
+    color: '#333333',
+    fontSize: 15,
+    // fontWeight: 'bold',
+    fontFamily: "sans-serif",
+    // letterSpacing: 1,
+
+    // textAlign: "center",
+    // alignSelf: 'center',
+    padding: 2,
 }
 
 export const arrowLeft = {
@@ -118,4 +171,25 @@ export const arrowRight = {
     borderBottomColor: "white",
 
     transform: [{ rotate: "90deg" }],
+}
+
+export const callout = {
+    // maxWidth: 5,
+    maxWidth: 250,
+    padding: 4,
+    // marginBottom: 5,
+    // height: 100,
+    // flex: 1,
+}
+
+export const calloutExit = {
+    position: "absolute",
+    right: 0,
+    top: 0,
+}
+
+export const calloutExit2 = {
+    position: "absolute",
+    right: 5,
+    top: 5,
 }

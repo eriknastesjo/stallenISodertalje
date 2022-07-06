@@ -5,7 +5,9 @@ import { useState, useEffect } from 'react';
 import { Typography, Base, Buttons } from '../../styles';
 
 
-export default function List({ navigation, listItems, listItemsCompl, title, subtitle, urlEndJson, urlEndGeo, urlEndCompl, fitCoordinates }) {
+export default function List(props) {
+
+    const { listItems, title, subtitle, urlEndJson, urlEndGeo, navigation } = props;
 
     // Get in alphabetical order
     listItems.sort((a, b) => {
@@ -40,7 +42,7 @@ export default function List({ navigation, listItems, listItemsCompl, title, sub
                             // så blir det inte tydligt om inte man får upp pratbubbla med platsnamn ovanför
                             urlEndJson: urlEndJson,
                             urlEndGeo: urlEndGeo,
-                            urlEndCompl: urlEndCompl
+                            // urlEndCompl: urlEndCompl
                         });
                     }}
                 >
