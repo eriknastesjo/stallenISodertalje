@@ -1,6 +1,6 @@
 import { Ionicons, Foundation, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { View, Text, TextInput, Button, ScrollView, TouchableOpacity } from "react-native";
-import { Typography, Forms, Base, Buttons } from '../../styles';
+import { Typography, Forms, Base, Buttons } from '../../../styles';
 
 
 export default function AuthFields({ auth, setAuth, title, submit, navigation }) {

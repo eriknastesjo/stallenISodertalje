@@ -1,17 +1,14 @@
 import { useState, useEffect } from 'react';
 import { View, ScrollView, Text, TextInput, Button, TouchableOpacity, Image } from "react-native";
 import { Base, Typography, Forms, Buttons, Images } from '../../styles';
-import { showMessage } from 'react-native-flash-message';
 import { Feather, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import storage from '../../models/storage';
 
 
-export default function Pic({ navigation, picNum, setPicNum, profilepics }) {
+export default function Pic({ navigation, picNum, setPicNum, profilepicList }) {
 
     const [currentPicNum, setCurrentPicNum] = useState<number>(-1);
-    console.log("PICNUMMMMM");
-    console.log(picNum);
 
     let listPics = "";
     redefineListPics();
@@ -26,7 +23,7 @@ export default function Pic({ navigation, picNum, setPicNum, profilepics }) {
     }
 
     function redefineListPics() {
-        listPics = profilepics
+        listPics = profilepicList
             .map((profilepic, index) => {
                 return <TouchableOpacity
                     key={index}
@@ -45,11 +42,6 @@ export default function Pic({ navigation, picNum, setPicNum, profilepics }) {
 
         await storage.setPicNum(currentPicNum.toString());
 
-        // showMessage({
-        //     message: `Bra val!`,
-        //     type: "success",
-        // });
-
         navigation.navigate("Menyval");
 
     }
@@ -57,8 +49,6 @@ export default function Pic({ navigation, picNum, setPicNum, profilepics }) {
     async function cancel() {
         navigation.navigate("Menyval");
     }
-
-    // console.log(setProfilename);
 
     return (
         <ScrollView style={Base.content}>

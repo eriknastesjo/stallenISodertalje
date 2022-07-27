@@ -2,15 +2,15 @@ import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity, Image }
 import { Typography, Base, Buttons, Images } from '../../styles';
 import { FlatGrid } from 'react-native-super-grid';
 
-
-export default function Categories({ categories, navigation, name, profilepics, picNum }) {
+// * Kallas från RootStack.tsx
+export default function Categories({ categories, navigation, name, profilepicList, picNum }) {
 
     function goToProfile() {
         navigation.navigate("Profil");
     }
 
-    const onPress = (categoryObj) => () => {
-        // console.log(categoryObj);
+    const goToCategory = (categoryObj) => () => {
+
         navigation.navigate(categoryObj.stackName, {
             title: categoryObj.title,
             urlEndJson: categoryObj.urlEndJson,
@@ -20,10 +20,11 @@ export default function Categories({ categories, navigation, name, profilepics, 
         });
     };
 
+    // För varje kategori skapas en klickbar knapp med en passande bild och text som bestäms av vad som angivits i komponenten Categories.
+    // =====================================================
     const listCategories = categories
         .map((categoryObj, index) => {
-            // console.log(categoryObj.imgUrl);
-            return <TouchableOpacity onPress={onPress(categoryObj)} style={Buttons.buttonGrid} key={index}>
+            return <TouchableOpacity onPress={goToCategory(categoryObj)} style={Buttons.buttonGrid} key={index}>
                 <Image source={categoryObj.imgUrl} style={Images.buttonImage} />
                 <Text style={Typography.boldCenterButton}>{categoryObj.stackName}</Text>
             </TouchableOpacity>
@@ -38,19 +39,14 @@ export default function Categories({ categories, navigation, name, profilepics, 
             :
                 <Text style={Typography.boldCenter}>Hej {name},</Text>
             }
-            {/* <Text style={Typography.boldCenter}>Platser i Södertälje</Text> */}
+
             <Text style={Typography.normalCenterLessMargin}>Vart vill du gå idag?</Text>
 
 
             <TouchableOpacity style={Images.profilePicContainer} onPress={() => { goToProfile(); }}>
                 <Image source={require("../../assets/profilePicBackg.png")} style={Images.profilePicBackg} />
-                <Image source={profilepics[picNum]} style={Images.profilePic} />
+                <Image source={profilepicList[picNum]} style={Images.profilePic} />
             </TouchableOpacity>
-
-            {/* {
-                isLoggedIn &&
-                <Image source={require("../../assets/profilePic.png")} style={Images.profilePic} />
-            } */}
 
             <FlatGrid
                 alwaysBounceVertical={true}

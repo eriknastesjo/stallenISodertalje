@@ -1,19 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import { Text, View, Button, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import { Base, Typography, Buttons } from "../../styles";
+import { Base, Typography, Buttons } from "../../../styles";
 import * as Linking from 'expo-linking';
-import Map from "./MapSingle";
+import MapSingle from "../Map/MapSingle";
 
 
 export default function Details({ route }) {
-    const { mapItemFocused, urlEndJson, urlEndGeo, urlEndCompl } = route.params; // se i ParkList funktionen listOfParks och vid 'Onpress'
-
-    // console.log(mapItemFocused);
+    const { mapItemFocused, urlEndJson, urlEndGeo, urlEndCompl } = route.params;
 
     return (
         <View style={Base.container}>
             <Text style={Typography.header2}>{mapItemFocused.namn}</Text>
             <View style={Base.contentMaxHeight}>
+                {
+                    // MaxHeight har införts så att detaljinfo inte täcker mer än 40 % av skärmutrymmet. Om detaljinfo överstiger detta så får användaren scrolla för att se all info.
+                    // =======================================================
+                }
                 <ScrollView>
                 {
                     mapItemFocused.beskrivning !== undefined && mapItemFocused.beskrivning !== "" &&
@@ -33,6 +35,7 @@ export default function Details({ route }) {
                     </View>
                 }
                 {
+                    // todo: just nu visas inga detaljer om längd, underlag osv om inte ALLA finns med. Kan behöva ändras senare om vissa platser saknar några av detaljerna.
                     (mapItemFocused['längd'] !== undefined ||
                     mapItemFocused['underlag'] !== undefined ||
                     mapItemFocused['svårighetsgrad'] !== undefined ||
@@ -61,7 +64,7 @@ export default function Details({ route }) {
             </View>
 
             <View style={Base.mapContainer}>
-                <Map mapItem={mapItemFocused}
+                <MapSingle mapItem={mapItemFocused}
                     urlEndJson={urlEndJson}
                     urlEndGeo={urlEndGeo}
                     // urlEndCompl={urlEndCompl}

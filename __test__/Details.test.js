@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react-native';
-import Details from '../components/Shared/Details';
+import Details from '../components/Flow/List/Details';
 
 jest.useFakeTimers();   // inte säker på vad detta är men utan den blir det felmeddelande
 // ReferenceError: You are trying to `import` a file after the Jest environment has been torn down.

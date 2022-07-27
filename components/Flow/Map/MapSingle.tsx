@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Text, View, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import MapView, { Marker, Geojson, Callout, Overlay, LatLng } from 'react-native-maps';
-// import getCoordinates from '../../models/nominatim';
 import * as Location from 'expo-location';
-import { Base, Typography, Images } from "../../styles";
-import geoData from "./testGeoData.json";
 
 export default function Map(props) {
 
@@ -14,7 +11,7 @@ export default function Map(props) {
     let textMarker;
     let fitCoordinates: any;
 
-    // const [marker, setMarker] = useState(null);
+
     const [locationMarker, setLocationMarker] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [initRegion, setInitRegion] = useState(null);
@@ -29,8 +26,7 @@ export default function Map(props) {
     if (urlEndJson) {
         mapItemRender = <Marker
             coordinate={{ latitude: parseFloat(mapItem.latitude), longitude: parseFloat(mapItem.longitude) }}
-            // title={mapItem.namn}
-            title={"❤️️"}
+            title={mapItem.namn}
             identifier="there"
             ref={element => markerRef[0] = element}
             onCalloutPress={() => {
@@ -53,8 +49,7 @@ export default function Map(props) {
     }
 
     if (urlEndGeo) {
-        fitCoordinates = calculateFitCoordinatesGeoJson(mapItem)
-        // console.log(mapItem);
+        fitCoordinates = calculateFitCoordinatesGeoJson(mapItem);
         mapItemRender = <Geojson
             geojson={mapItem.geoJson}
             strokeWidth={4}
@@ -74,12 +69,10 @@ export default function Map(props) {
                 console.log("PRESSED CALLOUT");
                 markerRef[0].hideCallout();
             }}
-        >
-            {/* <Text style={Typography.mapLabel}>
-                {name}
-            </Text> */}
-        </Marker>
+        />
 
+    // Initial region sätts över Södertälje stad.
+    // =============================
         useEffect(() => {
             (async () => {
                 setInitRegion({
@@ -115,7 +108,6 @@ export default function Map(props) {
         })();
     }, []);
 
-    // console.log(mapRef);
 
     return (
         <MapView
@@ -132,10 +124,7 @@ export default function Map(props) {
                     animated: true
                 }
             }}
-            // onPress={e => console.log(e.nativeEvent)}
-            // onPress={(e) => {
-            //     console.log("onPress...");
-            // }}
+            // onPress={e => console.log(e.nativeEvent)} Ger information om var användaren har klickat (sker inte om användaren klickar på t.ex. en markör)
             // onPoiClick={(e) => {
             //     console.log("on Point Of Interest..."); // <------ add this
             // }}
@@ -147,6 +136,9 @@ export default function Map(props) {
         </MapView>
     );
 
+    // Används för att anpassa fitToCoordinates vid GeoJson.
+    // Räknar ut två punkter, en längst nederst åt vänster och en längst upp åt höger.
+    // ============================================
     function calculateFitCoordinatesGeoJson(geoJsonHolder: any) {
 
         if (geoJsonHolder.length != 0) {
@@ -165,11 +157,8 @@ export default function Map(props) {
             const highestLng = allCoordinates.reduce((a, b) => a[0] > b[0] ? a : b)[0];
 
             return [{ latitude: lowestLat, longitude: lowestLng }, { latitude: highestLat, longitude: highestLng }]
-
         }
-
     }
-
 };
 
 

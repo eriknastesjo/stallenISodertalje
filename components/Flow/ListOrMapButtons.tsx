@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity, Image } from 'react-native';
 import { Typography, Base, Buttons, Images } from '../../styles';
 
-export default function ListOrMap({ navigation }) {
+export default function ListOrMapButtons({ navigation }) {
 
     function goToList() {
         navigation.navigate("Lista");

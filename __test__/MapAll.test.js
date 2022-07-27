@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react-native';
 // import ParkMap from '../components/Park/ParkMap';
 // import DogParkMap from '../components/DogPark/DogParkMap';
-import MapAll from '../components/Shared/MapAll';
+import MapAll from '../components/Flow/Map/MapAll';
 
 jest.useFakeTimers();   // inte säker på vad detta är men utan den blir det felmeddelande
                         // ReferenceError: You are trying to `import` a file after the Jest environment has been torn down.

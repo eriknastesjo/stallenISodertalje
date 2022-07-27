@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { View, ScrollView, Text, TextInput, Button, TouchableOpacity } from "react-native";
-import { Base, Typography, Forms, Buttons } from '../../styles';
+import { Base, Typography, Forms, Buttons } from '../../../styles';
 import { showMessage } from 'react-native-flash-message';
 
-import auth from '../../models/auth';
-import artefactsModel from '../../models/artefacts';
+import auth from '../../../models/auth';
+import artefactsModel from '../../../models/artefacts';
 
 // import { showMessage } from 'react-native-flash-message';
 

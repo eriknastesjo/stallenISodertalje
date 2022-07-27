@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react-native';
-import Categories from '../components/Root/Categories';
+import Categories from '../components/RootMenu/CategoryButtons';
 
 jest.useFakeTimers();   // inte säker på vad detta är men utan den blir det felmeddelande
                         // ReferenceError: You are trying to `import` a file after the Jest environment has been torn down.

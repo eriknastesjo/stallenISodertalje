@@ -1,10 +1,10 @@
-import Auth from '../../interfaces/auth';
+import Auth from '../../../interfaces/old/auth';
 import { showMessage } from 'react-native-flash-message';
 import { useState } from 'react';
-import authModel from '../../models/auth';
+import authModel from '../../../models/auth';
 import AuthFields from './Authfields';
 
-import artefactsModel from '../../models/artefacts';
+import artefactsModel from '../../../models/artefacts';
 
 
 export default function Login({ navigation, setIsLoggedIn, setArtefact }) {

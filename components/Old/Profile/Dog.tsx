@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { View, ScrollView, Text, TextInput, Button, TouchableOpacity } from "react-native";
-import { Base, Typography, Forms, Buttons } from '../../styles';
+import { Base, Typography, Forms, Buttons } from '../../../styles';
 import { showMessage } from 'react-native-flash-message';
-import artefactsModel from '../../models/artefacts';
+import artefactsModel from '../../../models/artefacts';
 
 // import ProductDropDown from './ProductDropDown';
 

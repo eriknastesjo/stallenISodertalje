@@ -1,6 +1,6 @@
-import config from "../config/config.json";
+import config from "../../config/config.json";
 
-import storage from "./storage";
+import storage from "../storage";
 
 const auth = {
     loggedIn: async function loggedIn() {

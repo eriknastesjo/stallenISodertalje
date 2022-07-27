@@ -9,15 +9,13 @@ import Pic from './Pic';
 const Stack = createNativeStackNavigator();
 
 export default function Personalize(props) {
-    console.log("PROFILE");
-    console.log(props.profilepics);
     return (
         <Stack.Navigator initialRouteName="Menyval" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Menyval" options={{headerShown: false}}>
                 {(screenProps) => <Choices {...screenProps}
                     name={props.name}
                     picNum={props.picNum}
-                    profilepics={props.profilepics}
+                    profilepicList={props.profilepicList}
                 />}
             </Stack.Screen>
             <Stack.Screen name="Namn">
@@ -31,7 +29,7 @@ export default function Personalize(props) {
                     <Pic {...screenProps}
                         picNum={props.picNum}
                         setPicNum={props.setPicNum}
-                        profilepics={props.profilepics}
+                        profilepicList={props.profilepicList}
                     />}
             </Stack.Screen>
         </Stack.Navigator>

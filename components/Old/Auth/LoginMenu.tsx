@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons, Foundation, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { View, Text, Button, TouchableOpacity } from "react-native";
-import { Typography, Base, Buttons } from '../../styles';
+import { Typography, Base, Buttons } from '../../../styles';
 
 export default function LoginMenu({ navigation }) {
 

@@ -1,8 +1,8 @@
 import { showMessage } from 'react-native-flash-message';
 import { Ionicons, Foundation, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { View, Text, Button, TouchableOpacity, Image } from "react-native";
-import { Typography, Buttons, Images, Base } from '../../styles';
-import AuthModel from '../../models/auth';
+import { Typography, Buttons, Images, Base } from '../../../styles';
+import AuthModel from '../../../models/auth';
 
 // import artefactsModel from '../../models/artefacts';
 // import { showMessage } from 'react-native-flash-message';

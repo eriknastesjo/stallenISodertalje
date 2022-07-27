@@ -10,9 +10,9 @@ import AuthModel from '../../models/auth';
 export default function Choices(props) {
 
     console.log("AHAAA");
-    console.log(props.profilepics);
+    console.log(props.profilepicList);
     console.log(props.picNum);
-    console.log(props.profilepics[props.picNum]);
+    console.log(props.profilepicList[props.picNum]);
 
     return (
         <View style={Base.backgroundCol}>
@@ -38,7 +38,7 @@ export default function Choices(props) {
             <TouchableOpacity
                 style={Buttons.buttonProfile}
                 onPress={() => {props.navigation.navigate('Bild');}}>
-                <Image source={props.profilepics[props.picNum]} style={Images.buttonIconStart} />
+                <Image source={props.profilepicList[props.picNum]} style={Images.buttonIconStart} />
                 <Text style={Typography.boldButtonSideWhite}>Välj bild</Text>
                 <View style={Buttons.buttonArrow4}><AntDesign name="rightcircle" size={22} color="white" /></View>
             </TouchableOpacity>
