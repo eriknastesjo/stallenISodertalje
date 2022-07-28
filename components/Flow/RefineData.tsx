@@ -2,40 +2,13 @@ import { useState, useEffect } from 'react';
 import sodertaljeModel from '../../models/sodertalje';
 
 
-// * Kallas från FlowStack.tsx
+// * Kallas från ListOrMapButtons.tsx
 // Hämtar data från model och "förfinar" den baserat på om API är baserat på Json eller GeoJson.
 // Tittar också på om kompletterande information ska hämtas (t.ex. startpunkter som ska visas i MapAll men inte i List).
 // ==========================================
-export default function GetData(rawData, urlEndJson, urlEndGeo, urlEndCompl) {
-    // const { urlEndJson, urlEndGeo, urlEndCompl } = props;
-    // const [data, setData] = useState([]);
-    // const [dataComl, setdataComl] = useState([]);
+export default function RefineData(rawData, rawDataCompl, urlEndJson, urlEndGeo, urlEndCompl) {
 
     let fitCoordinates: any;
-
-    // useEffect(() => {
-
-    //     if (urlEndJson) {
-    //         (async function () {
-    //             setData(await sodertaljeModel.getJsonData(urlEndJson));
-    //         })();
-    //     }
-
-    //     if (urlEndGeo) {
-    //         (async function () {
-    //             const result = await sodertaljeModel.getGeoJsonData(urlEndGeo)
-    //             setData(result);
-    //         })();
-    //     }
-
-    //     if (urlEndCompl) {
-    //         (async function () {
-    //             setdataComl(await sodertaljeModel.getJsonData(urlEndCompl));
-    //         })();
-    //     }
-
-    // }, []);
-
 
     let refinedData: Array<any> = [];
 
@@ -87,8 +60,8 @@ export default function GetData(rawData, urlEndJson, urlEndGeo, urlEndCompl) {
 
     let refinedDataCompl: Array<any> = [];
 
-    if (urlEndCompl && rawData) {
-        refinedDataCompl = dataComl
+    if (urlEndCompl && rawDataCompl) {
+        refinedDataCompl = rawDataCompl
             .map((dataItem) => {
                 return {
                     "beskrivning": dataItem["beskrivning"]

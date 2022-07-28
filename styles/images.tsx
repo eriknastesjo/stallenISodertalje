@@ -9,6 +9,12 @@ export const buttonImageSmall = {
     alignSelf: 'center',
 }
 
+export const buttonImageReload = {
+    width: 70,
+    height: 70,
+    alignSelf: 'center',
+}
+
 export const buttonIconStart = {
     width: 40,
     height: 40,

@@ -4,7 +4,6 @@ import Geojson from "../interfaces/geojson";
 
 const sodertaljeModel = {
     getJsonData: async function getJsonData(urlEnd: string): Promise<any> {
-        console.log("getting Data");
         try {
             const response = await fetch(`${config.base_url}/${urlEnd}`);
             const result = await response.json();

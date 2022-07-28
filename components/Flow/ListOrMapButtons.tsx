@@ -1,45 +1,52 @@
 import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity, Image } from 'react-native';
 import { Typography, Base, Buttons, Images } from '../../styles';
-import GetData from './RefineData';
+import RefineData from './RefineData';
 import { useState, useEffect } from 'react';
 import sodertaljeModel from '../../models/sodertalje';
 
 export default function ListOrMapButtons({ route, navigation, title, urlEndJson, urlEndGeo, urlEndCompl }) {
 
-    // const { navigation, title, urlEndJson, urlEndGeo, urlEndCompl } = props;
-    // let data: any;
     const [data, setData] = useState<any>("");
     let hasReloaded = false;
 
+    // RefineData kommer hämta data från model och "förfina" den baserat på om API är baserat på Json eller GeoJson.
+    // ==========================================
     if (route.params !== undefined && route.params.reload === true && hasReloaded == false) {
         hasReloaded = true;
         getAndRefineData();
     }
 
-    // GetData kommer hämta data från model och "förfina" den baserat på om API är baserat på Json eller GeoJson.
-    // ==========================================
-    // data = GetData({ urlEndJson, urlEndGeo, urlEndCompl });
-
     useEffect(() => {
         getAndRefineData();
-        // (async function () {
-        //     const dataRaw = await sodertaljeModel.getJsonData(urlEndJson);
-        //     setData(GetData(dataRaw, urlEndJson, urlEndGeo, urlEndCompl));
-        // })();
     }, []);
 
+    // Först hämtas rätt data från model beroende på url-ändelser.
+    // RefineData "förfinar" datan så att den följer samma format oberoende av kategori.
+    // ==========================================
     async function getAndRefineData() {
-        const dataRaw = await sodertaljeModel.getJsonData(urlEndJson);
-        setData(GetData(dataRaw, urlEndJson, urlEndGeo, urlEndCompl));
+        if (urlEndJson) {
+            const dataRaw = await sodertaljeModel.getJsonData(urlEndJson);
+            let dataRawCompl = undefined;
+            if (urlEndCompl) {
+                dataRawCompl = await sodertaljeModel.getJsonData(urlEndCompl);
+            }
+            setData(RefineData(dataRaw, dataRawCompl, urlEndJson, urlEndGeo, urlEndCompl));
+        }
+        if (urlEndGeo) {
+            const dataRaw = await sodertaljeModel.getGeoJsonData(urlEndGeo);
+            let dataRawCompl = undefined;
+            if (urlEndCompl) {
+                dataRawCompl = await sodertaljeModel.getJsonData(urlEndCompl);
+            }
+            setData(RefineData(dataRaw, dataRawCompl, urlEndJson, urlEndGeo, urlEndCompl));
+        }
     }
 
-    function updateListOrMap() {
+    function reloadListOrMap() {
         navigation.navigate("ListOrMap", {
             reload: true
         });
     }
-
-    console.log("render again");
 
     function goToList() {
         navigation.navigate("Lista", {
@@ -72,9 +79,10 @@ export default function ListOrMapButtons({ route, navigation, title, urlEndJson,
                     <View style={Base.content}>
                         <Text style={Typography.boldCenter2}>Något gick fel!</Text>
                         <Text style={Typography.normalCenter}>Tyvärr kunde inte informationen hämtas. Kontrollera att du är uppkopplad till internet. Tryck sedan på knappen nedan för att uppdatera.</Text>
+                        <Text></Text>
 
-                        <TouchableOpacity onPress={updateListOrMap} style={Buttons.button}>
-                            <Text style={Typography.boldCenterButton}>UPPDATERA</Text>
+                        <TouchableOpacity onPress={reloadListOrMap}>
+                            <Image source={require("../../assets/reloadButton.png")} style={Images.buttonImageReload} />
                         </TouchableOpacity>
                     </View>
                     :

@@ -47,10 +47,10 @@ export default function Stacking({ route }) {
                 // fitCoordinates={data.fitCoordinates}
             />}
             </Stack.Screen>
-            <Stack.Screen name="ListError">{(props) => <ListError {...props}
+            {/* <Stack.Screen name="ListError">{(props) => <ListError {...props}
                 title={title}
             />}
-            </Stack.Screen>
+            </Stack.Screen> */}
 
         </Stack.Navigator>
     );
