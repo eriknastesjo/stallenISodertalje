@@ -39,7 +39,7 @@ export default function GetData(props) {
 
     let refinedData: Array<any> = [];
 
-    if (urlEndJson) {
+    if (urlEndJson && data) {
         refinedData = data
             .map((dataItem) => {
                 return {
@@ -64,7 +64,7 @@ export default function GetData(props) {
             });
     }
 
-    if (urlEndGeo) {
+    if (urlEndGeo && data) {
         fitCoordinates = calculateFitCoordinatesGeoJson(data);
         refinedData = data
             .map((dataItem) => {
@@ -87,7 +87,7 @@ export default function GetData(props) {
 
     let refinedDataCompl: Array<any> = [];
 
-    if (urlEndCompl) {
+    if (urlEndCompl && data) {
         refinedDataCompl = dataComl
             .map((dataItem) => {
                 return {
@@ -102,6 +102,12 @@ export default function GetData(props) {
                     "namn": dataItem["﻿namn"]
                 }
             });
+    }
+
+    // Om t.ex. något går fel vid hämtning av data, t.ex. pga dålig internetuppkoppling så skickas detta istället.
+    // ============================================
+    if (!data) {
+        return "data not found";
     }
 
     return {

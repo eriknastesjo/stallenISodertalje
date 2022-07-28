@@ -6,6 +6,8 @@ import MapAll from './Map/MapAll';
 import Details from './List/Details';
 import GetData from './GetData';
 
+import ListError from './List/ListError';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -16,9 +18,15 @@ export default function Stacking({ route }) {
     // ==========================================
     const data = GetData({ urlEndJson, urlEndGeo, urlEndCompl });
 
+    console.log("1");
+
     return (
         <Stack.Navigator initialRouteName="ListOrMap" >
-            <Stack.Screen name="ListOrMap" component={ListOrMapButtons} options={{ title: title }} />
+            {/* <Stack.Screen name="ListOrMap" component={ListOrMapButtons} options={{ title: title }} /> */}
+            <Stack.Screen name="ListOrMap" options={{title: title}}>{(props) => <ListOrMapButtons {...props}
+                data={data.refinedData}
+                />}
+            </Stack.Screen>
             <Stack.Screen name="Detaljer" component={Details} />
             <Stack.Screen name="Lista">{(props) => <List {...props}
                 listItems={data.refinedData}
@@ -40,6 +48,11 @@ export default function Stacking({ route }) {
                 fitCoordinates={data.fitCoordinates}
             />}
             </Stack.Screen>
+            <Stack.Screen name="ListError">{(props) => <ListError {...props}
+                title={title}
+            />}
+            </Stack.Screen>
+
         </Stack.Navigator>
     );
 };

@@ -57,16 +57,9 @@ export default function List(props) {
 
     return (
         <ScrollView style={Base.backgroundCol}>
-            {subtitle !== undefined ?
-                <View>
-                    <Text style={Typography.header1NoMargin}>{title}</Text>
-                    <Text style={Typography.header3}>{subtitle}</Text>
-                </View>
-                :
-                <View>
-                    <Text style={Typography.header1}>{title}</Text>
-                </View>
-            }
+            <View>
+                <Text style={Typography.header1}>{title}</Text>
+            </View>
             {listReturn}
         </ScrollView>
     );
