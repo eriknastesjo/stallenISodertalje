@@ -6,9 +6,11 @@ import MapView, { Marker, Geojson, Callout } from 'react-native-maps';
 import * as Linking from 'expo-linking';
 import * as Location from 'expo-location';
 
-export default function MapAll(props) {
+export default function MapAll({route}) {
 
-    const { title, mapItems, mapItemsCompl, urlEndJson, urlEndGeo, urlEndCompl, fitCoordinates } = props;
+    // const { title, mapItems, mapItemsCompl, urlEndJson, urlEndGeo, urlEndCompl, fitCoordinates } = props;
+    const { title, mapItems, mapItemsCompl, urlEndJson, urlEndGeo, urlEndCompl, fitCoordinates } = route.params;
+
     let listOfMapItems;
     let listOfMapItemsCompl;
 

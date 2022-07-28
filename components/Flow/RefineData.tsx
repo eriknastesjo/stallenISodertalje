@@ -6,41 +6,41 @@ import sodertaljeModel from '../../models/sodertalje';
 // Hämtar data från model och "förfinar" den baserat på om API är baserat på Json eller GeoJson.
 // Tittar också på om kompletterande information ska hämtas (t.ex. startpunkter som ska visas i MapAll men inte i List).
 // ==========================================
-export default function GetData(props) {
-    const { urlEndJson, urlEndGeo, urlEndCompl } = props;
-    const [data, setData] = useState([]);
-    const [dataComl, setdataComl] = useState([]);
+export default function GetData(rawData, urlEndJson, urlEndGeo, urlEndCompl) {
+    // const { urlEndJson, urlEndGeo, urlEndCompl } = props;
+    // const [data, setData] = useState([]);
+    // const [dataComl, setdataComl] = useState([]);
 
     let fitCoordinates: any;
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (urlEndJson) {
-            (async function () {
-                setData(await sodertaljeModel.getJsonData(urlEndJson));
-            })();
-        }
+    //     if (urlEndJson) {
+    //         (async function () {
+    //             setData(await sodertaljeModel.getJsonData(urlEndJson));
+    //         })();
+    //     }
 
-        if (urlEndGeo) {
-            (async function () {
-                const result = await sodertaljeModel.getGeoJsonData(urlEndGeo)
-                setData(result);
-            })();
-        }
+    //     if (urlEndGeo) {
+    //         (async function () {
+    //             const result = await sodertaljeModel.getGeoJsonData(urlEndGeo)
+    //             setData(result);
+    //         })();
+    //     }
 
-        if (urlEndCompl) {
-            (async function () {
-                setdataComl(await sodertaljeModel.getJsonData(urlEndCompl));
-            })();
-        }
+    //     if (urlEndCompl) {
+    //         (async function () {
+    //             setdataComl(await sodertaljeModel.getJsonData(urlEndCompl));
+    //         })();
+    //     }
 
-    }, []);
+    // }, []);
 
 
     let refinedData: Array<any> = [];
 
-    if (urlEndJson && data) {
-        refinedData = data
+    if (urlEndJson && rawData) {
+        refinedData = rawData
             .map((dataItem) => {
                 return {
                     "beskrivning": dataItem["beskrivning"]
@@ -64,9 +64,9 @@ export default function GetData(props) {
             });
     }
 
-    if (urlEndGeo && data) {
-        fitCoordinates = calculateFitCoordinatesGeoJson(data);
-        refinedData = data
+    if (urlEndGeo && rawData) {
+        fitCoordinates = calculateFitCoordinatesGeoJson(rawData);
+        refinedData = rawData
             .map((dataItem) => {
                 return {
 
@@ -87,7 +87,7 @@ export default function GetData(props) {
 
     let refinedDataCompl: Array<any> = [];
 
-    if (urlEndCompl && data) {
+    if (urlEndCompl && rawData) {
         refinedDataCompl = dataComl
             .map((dataItem) => {
                 return {
@@ -106,8 +106,8 @@ export default function GetData(props) {
 
     // Om t.ex. något går fel vid hämtning av data, t.ex. pga dålig internetuppkoppling så skickas detta istället.
     // ============================================
-    if (!data) {
-        return "data not found";
+    if (!rawData) {
+        return "not found";
     }
 
     return {

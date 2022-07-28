@@ -4,6 +4,7 @@ import Geojson from "../interfaces/geojson";
 
 const sodertaljeModel = {
     getJsonData: async function getJsonData(urlEnd: string): Promise<any> {
+        console.log("getting Data");
         try {
             const response = await fetch(`${config.base_url}/${urlEnd}`);
             const result = await response.json();
@@ -11,13 +12,11 @@ const sodertaljeModel = {
         } catch (e) {
             // Om t.ex. något går fel vid hämtning av data, t.ex. pga dålig internetuppkoppling så skickas detta istället.
             // ============================================
-            console.log("error Json");
             return false;
         }
 
     },
     getGeoJsonData: async function getGeoJsonData(urlEnd: string): Promise<any> {
-        console.log("getting geoData");
         try {
             const response = await fetch(`${config.base_url}/${urlEnd}`);
             const result: Geojson = await response.json();
@@ -53,7 +52,6 @@ const sodertaljeModel = {
         } catch {
             // Om t.ex. något går fel vid hämtning av data, t.ex. pga dålig internetuppkoppling så skickas detta istället.
             // ============================================
-            console.log("error Json");
             return false;
         }
     }

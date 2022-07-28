@@ -4,9 +4,10 @@ import { StyleSheet, Text, View, SafeAreaView, Button, ScrollView, TouchableOpac
 import { Typography, Base, Buttons } from '../../../styles';
 
 
-export default function List(props) {
+export default function List({navigation, route}) {
 
-    const { listItems, title, subtitle, urlEndJson, urlEndGeo, navigation } = props;
+    // const { listItems, title, urlEndJson, urlEndGeo, navigation } = props;
+    const { listItems, title, urlEndJson, urlEndGeo } = route.params;
 
     // Funktion för att få listnamn i alfabetisk ordning.
     // ====================================
