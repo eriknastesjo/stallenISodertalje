@@ -9,7 +9,7 @@ const categories: Array<Partial<Category>> = [
         stackName: "Park",
         title: "Parker",
         imgUrl: require("../../assets/park.png"),
-        urlEndJson: '/rowstore/dataset/2cc90eb1-2c6a-444b-ab52-e4bcd22c71300'
+        urlEndJson: '/rowstore/dataset/2cc90eb1-2c6a-444b-ab52-e4bcd22c7130'
     },
     {
         stackName: "Lekplats",
@@ -27,7 +27,7 @@ const categories: Array<Partial<Category>> = [
         stackName: "Vandringsled",
         title: "Vandringsleder",
         imgUrl: require("../../assets/vandringsled.png"),
-        urlEndGeo: '/store/1/resource/4866',
+        urlEndGeo: '/store/1/resource/486',
         urlEndCompl: '/rowstore/dataset/f6b33e8d-19bd-4d2d-a59b-35c4df352a2c',
     },
     {
